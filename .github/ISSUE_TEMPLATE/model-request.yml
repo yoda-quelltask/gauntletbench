@@ -1,0 +1,25 @@
+name: Model request
+description: Suggest a local model for the roster
+title: "[model] "
+labels: ["model-request"]
+body:
+  - type: input
+    id: model
+    attributes:
+      label: Model (org/name, exact variant + quant)
+      placeholder: "e.g. Qwen/Qwen3.8-27B, Q6_K GGUF"
+    validations:
+      required: true
+  - type: input
+    id: size
+    attributes:
+      label: Size on disk / fits in 128 GB unified?
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why this one?
+      description: What do you expect it to be good at, and which axis would prove it?
+    validations:
+      required: true

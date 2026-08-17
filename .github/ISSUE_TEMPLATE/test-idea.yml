@@ -1,0 +1,31 @@
+name: Test idea
+description: Propose a task or suite for the GAUNTLET (Phase 2 — we run it on our hardware, you get credit)
+title: "[test idea] "
+labels: ["test-idea"]
+body:
+  - type: input
+    id: axis
+    attributes:
+      label: Which axis does this test?
+      placeholder: "G / A / U / N / T / L / E / Throughput — or a case none of them cover"
+    validations:
+      required: true
+  - type: textarea
+    id: task
+    attributes:
+      label: The task
+      description: What the model is asked to do. Real-workload framing beats trivia.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What a good answer contains
+      description: Expected elements, traps worth planting, how you'd score it 0-20.
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: Can it be runtime-verified?
+      description: If the output is runnable/checkable, how would we verify it beyond judging the text?
