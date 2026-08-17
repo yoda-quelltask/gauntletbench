@@ -1,4 +1,6 @@
 ---
+const cleanQuant = (q, f) => { if (!q) return q; let s = String(q); const fl = String(f||''); if (fl) { const re = new RegExp('\\b' + fl + '\\b', 'ig'); s = s.replace(re, '').replace(/\s{2,}/g, ' ').trim(); } return s; };
+
 import Base from '../layouts/Base.astro';
 import Radar from '../components/Radar.astro';
 import Progress from '../components/Progress.astro';
@@ -30,7 +32,7 @@ const podiumClass = ['first', 'second', 'third'];
           <span class="podium-rank">#{i + 1}</span>
           <Radar axes={m.axes} size={180} />
           <h2 class="podium-name"><a href={`/models/${m.slug}/`}>{m.name}</a></h2>
-          <p class="podium-meta">{m.params} · {m.quant} {m.format}</p>
+          <p class="podium-meta">{m.params} · {cleanQuant(m.quant, m.format)} {m.format}</p>
           <div class="podium-stats">
             <Progress model={m} />
             {m.mean_tok_s != null && <span>{fmt1(m.mean_tok_s)} tok/s</span>}
@@ -65,7 +67,7 @@ const podiumClass = ['first', 'second', 'third'];
               data-rank={i + 1}
               data-name={m.name.toLowerCase()}
               data-params={m.params.toLowerCase()}
-              data-quant={`${m.quant} ${m.format}`.toLowerCase()}
+              data-quant={`${cleanQuant(m.quant, m.format)} ${m.format}`.toLowerCase()}
               {...Object.fromEntries(AXIS_ORDER.map((k) => [`data-ax_${k}`, m.axes[k] ?? -1]))}
               data-scored={m.axes_scored}
               data-toks={m.mean_tok_s ?? -1}
@@ -73,7 +75,7 @@ const podiumClass = ['first', 'second', 'third'];
               <td class="rank">{i + 1}</td>
               <td class="model"><a href={`/models/${m.slug}/`}>{m.name}</a></td>
               <td class="dim">{m.params}</td>
-              <td class="dim"><span class="chip">{m.quant}</span> <span class="chip">{m.format}</span></td>
+              <td class="dim">{cleanQuant(m.quant, m.format) && <span class="chip">{cleanQuant(m.quant, m.format)}</span>} <span class="chip">{m.format}</span></td>
               {AXIS_ORDER.map((key) => (
                 <td class="num"><AxisCell value={m.axes[key]} axisKey={key} axisName={axisMeta[key].name} /></td>
               ))}

@@ -1,4 +1,6 @@
 ---
+const cleanQuant = (q, f) => { if (!q) return q; let s = String(q); const fl = String(f||''); if (fl) { const re = new RegExp('\\b' + fl + '\\b', 'ig'); s = s.replace(re, '').replace(/\s{2,}/g, ' ').trim(); } return s; };
+
 import Base from '../../layouts/Base.astro';
 import Radar from '../../components/Radar.astro';
 import Progress from '../../components/Progress.astro';
@@ -80,7 +82,7 @@ const statusLabel = statusLabels[model.status] ?? model.status;
           <dt>Parameters</dt><dd>{model.params}</dd>
           <dt>Architecture</dt><dd>{model.arch}</dd>
           <dt>Size on disk</dt><dd>{model.size_gb} GB</dd>
-          <dt>Quantization</dt><dd>{model.quant}</dd>
+          <dt>Quantization</dt><dd>{cleanQuant(model.quant, model.format)}</dd>
           <dt>Format</dt><dd>{model.format}</dd>
           <dt>Reasoning (CoT)</dt><dd>{model.is_cot ? 'Yes — emits reasoning tokens' : 'No'}</dd>
           {model.base_org && (<><dt>Base org</dt><dd>{model.base_org}</dd></>)}
