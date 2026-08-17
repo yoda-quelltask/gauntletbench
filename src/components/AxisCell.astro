@@ -11,7 +11,7 @@ const { value, axisKey, axisName } = Astro.props;
 {value != null ? (
   <span class={`sc ${scoreClass(value)}`} title={`${axisName}: ${fmtAxis(value)} / 100`}>{fmtAxis(value)}</span>
 ) : axisKey === 't' ? (
-  <span class="pending-cell" title="Thinking axis: data collected, formal scoring in progress">pending</span>
+  <span class="pending-cell" title="Thinking axis: fewer than 15 observed tests — unscored until more data">n/d</span>
 ) : (
   <span class="na" title={`${axisName}: not yet run`}>—</span>
 )}

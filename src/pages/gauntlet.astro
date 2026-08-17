@@ -46,7 +46,7 @@ const unmappedSuites = data.suites.filter(
           <span class={key === 't' ? 'letter-badge pending' : 'letter-badge'}>{axis.letter}</span>
           <div>
             <h2>{axis.name}</h2>
-            <span class="axis-key">axis: {axis.letter} · {key === 't' ? 'scoring in progress' : key === 'tp' ? 'measured, not judged' : `${suites.length} suite${suites.length === 1 ? '' : 's'}`}</span>
+            <span class="axis-key">axis: {axis.letter} · {key === 't' ? 'stall census v1' : key === 'tp' ? 'measured, not judged' : `${suites.length} suite${suites.length === 1 ? '' : 's'}`}</span>
           </div>
         </div>
 
@@ -54,18 +54,24 @@ const unmappedSuites = data.suites.filter(
           <>
             <p>
               The Thinking axis measures reasoning-budget behavior: how many reasoning tokens a
-              model burns to get to an answer, whether it stalls in its own chain of thought and
-              never emits one, and how it responds to effort settings. This matters enormously
-              for agentic use &mdash; a model that thinks for eight thousand tokens on a simple
-              JSON task is not a daily driver, whatever its accuracy.
+              model burns to get to an answer, and whether it stalls in its own chain of thought
+              and never emits one. This matters enormously for agentic use &mdash; a model that
+              thinks for sixteen thousand tokens and returns an empty answer is a dead turn to
+              any harness, whatever its accuracy elsewhere.
             </p>
             <p>
-              The data is already being collected on every run. Formal scoring is in progress,
-              and until the rubric is locked we publish this axis as <em>pending</em> rather
-              than inventing a number. Empty on the radar means &ldquo;not scored yet,&rdquo;
-              never zero.
-            </p>
-          </>
+              <strong>Scoring (v1, stall census):</strong> we scan every archived run &mdash;
+              1,000+ per-test results across all suites &mdash; and count <em>stalls</em>
+              (reasoning emitted, final answer empty) and <em>runaways</em> (token cap hit with
+              no stop). The score is 100&nbsp;&times;&nbsp;(1&nbsp;&minus;&nbsp;(stalls&nbsp;+&nbsp;runaways)&nbsp;/&nbsp;tests
+              observed). A model needs at least 15 observed tests to be scored; below that the
+              axis shows <em>n/d</em> rather than a number built on thin data. Repeat runs count
+              as repeat observations &mdash; this is a behavior census, not a leaderboard average.
+              Each model&rsquo;s page shows its raw census: stalls, observed tests, and reasoning-token
+              appetite (mean and max). Non-reasoning models can score here too: a stall-free record
+              is a stall-free record. Effort-setting sensitivity is collected and will fold into a
+              v2 of this metric.
+            </>
         ) : key === 'tp' ? (
           <>
             <p>

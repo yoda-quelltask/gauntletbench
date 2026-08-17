@@ -51,6 +51,7 @@ const statusLabel = statusLabels[model.status] ?? model.status;
     <h1>{model.name}</h1>
     <div class="sub">
       <span class={`status ${model.status}`}>{statusLabel}</span>
+      {model.axes_scored === 8 && <span class="ran-badge" title="Scored on all eight axes">RAN THE GAUNTLET</span>}
       <span>Rank #{rank} of {rankedModels.length}</span>
       <span>·</span>
       <Progress model={model} label={true} />
@@ -68,7 +69,7 @@ const statusLabel = statusLabels[model.status] ?? model.status;
             {model.axes[key] != null
               ? <div class="num" style="font-size:13.5px;font-weight:600;color:var(--text-dim);font-variant-numeric:tabular-nums;">{fmtAxis(model.axes[key])}</div>
               : key === 't'
-                ? <div style="font-size:11px;color:var(--muted);font-style:italic;">pending</div>
+                ? <div style="font-size:11px;color:var(--muted);font-style:italic;" title="fewer than 15 observed tests">n/d</div>
                 : <div class="na" style="font-size:13.5px;">—</div>}
           </div>
         ))}
@@ -88,6 +89,8 @@ const statusLabel = statusLabels[model.status] ?? model.status;
           {model.base_org && (<><dt>Base org</dt><dd>{model.base_org}</dd></>)}
           <dt>Internal ID</dt><dd>{model.internal_id}</dd>
           {model.mean_tok_s != null && (<><dt>Mean speed</dt><dd>{fmt1(model.mean_tok_s)} tok/s across suites</dd></>)}
+          {model.thinking && (<><dt>Stall census</dt><dd>{model.thinking.stalls} stall{model.thinking.stalls === 1 ? '' : 's'} in {model.thinking.tests_seen} observed tests ({(model.thinking.stall_rate * 100).toFixed(1)}%)</dd></>)}
+          {model.thinking && model.thinking.mean_reasoning_tokens > 0 && (<><dt>Reasoning appetite</dt><dd>{Math.round(model.thinking.mean_reasoning_tokens).toLocaleString()} tokens mean · {model.thinking.max_reasoning_tokens.toLocaleString()} max</dd></>)}
           {model.model_card_url && (
             <><dt>Model card</dt><dd><a href={model.model_card_url} rel="noopener">{new URL(model.model_card_url).hostname}</a></dd></>
           )}
