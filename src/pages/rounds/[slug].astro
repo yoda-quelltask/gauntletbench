@@ -1,0 +1,45 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+import { data } from '../../lib/data.js';
+
+export async function getStaticPaths() {
+  const rounds = await getCollection('rounds');
+  return rounds.map((entry) => ({
+    params: { slug: entry.data.slug ?? entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const modelsBySlug = Object.fromEntries(data.models.map((m) => [m.slug, m]));
+const linkedModels = (entry.data.models ?? [])
+  .map((slug) => modelsBySlug[slug])
+  .filter(Boolean);
+const fmtDate = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+---
+<Base title={entry.data.title} description={entry.data.summary}>
+  <article class="article">
+    <div class="article-head">
+      <a class="back" href="/rounds/" style="font-size:13px;color:var(--muted);">← All rounds</a>
+      <h1>{entry.data.title}</h1>
+      <div class="article-meta">
+        <span>{fmtDate(entry.data.date)}</span>
+        {entry.data.suite && <span class="chip">suite {entry.data.suite}</span>}
+      </div>
+      {linkedModels.length > 0 && (
+        <div class="model-chips">
+          {linkedModels.map((m) => (
+            <a href={`/models/${m.slug}/`}>{m.name}</a>
+          ))}
+        </div>
+      )}
+    </div>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Base>

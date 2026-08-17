@@ -1,0 +1,92 @@
+---
+import { AXIS_ORDER, axisMeta, fmtAxis } from '../lib/data.js';
+
+interface Props {
+  axes: Record<string, number | null>;
+  size?: number;
+  legend?: boolean;
+}
+const { axes, size = 240, legend = false } = Astro.props;
+
+const cx = size / 2;
+const cy = size / 2;
+const labelR = size / 2 - 11;
+const r = size / 2 - 27;
+
+const pts = AXIS_ORDER.map((key, i) => {
+  const ang = (Math.PI / 180) * (-90 + i * 45);
+  const meta = axisMeta[key];
+  const v = axes[key];
+  return {
+    key,
+    letter: meta.letter,
+    name: meta.name,
+    v,
+    ux: Math.cos(ang),
+    uy: Math.sin(ang),
+  };
+});
+
+const ringPts = (f: number) =>
+  pts.map((p) => `${(cx + p.ux * r * f).toFixed(1)},${(cy + p.uy * r * f).toFixed(1)}`).join(' ');
+
+const scored = pts.filter((p) => p.v != null);
+const poly = scored
+  .map((p) => `${(cx + p.ux * r * ((p.v as number) / 100)).toFixed(1)},${(cy + p.uy * r * ((p.v as number) / 100)).toFixed(1)}`)
+  .join(' ');
+
+const fs = Math.max(10, Math.round(size / 16));
+const hasPending = pts.some((p) => p.v == null);
+---
+<svg
+  viewBox={`0 0 ${size} ${size}`}
+  width={size}
+  height={size}
+  class="radar"
+  role="img"
+  aria-label={`GAUNTLET radar: ${scored.map((p) => `${p.name} ${fmtAxis(p.v)}`).join(', ')}${hasPending ? '; unscored axes shown as pending' : ''}`}
+>
+  {[0.25, 0.5, 0.75, 1].map((f) => <polygon points={ringPts(f)} class="grid" />)}
+  {pts.map((p) => (
+    <line
+      x1={cx} y1={cy}
+      x2={(cx + p.ux * r).toFixed(1)} y2={(cy + p.uy * r).toFixed(1)}
+      class={p.v == null ? 'spoke pending' : 'spoke'}
+    />
+  ))}
+  {scored.length >= 3
+    ? <polygon points={poly} class="shape" />
+    : <polyline points={poly} class="shape" />}
+  {scored.map((p) => (
+    <circle
+      cx={(cx + p.ux * r * ((p.v as number) / 100)).toFixed(1)}
+      cy={(cy + p.uy * r * ((p.v as number) / 100)).toFixed(1)}
+      r={size >= 260 ? 3.5 : 2.5}
+      class="dot"
+    />
+  ))}
+  {pts.filter((p) => p.v == null).map((p) => (
+    <circle
+      cx={(cx + p.ux * r).toFixed(1)}
+      cy={(cy + p.uy * r).toFixed(1)}
+      r={size >= 260 ? 4 : 3}
+      class="dot pending"
+    />
+  ))}
+  {pts.map((p) => (
+    <text
+      x={(cx + p.ux * labelR).toFixed(1)}
+      y={(cy + p.uy * labelR).toFixed(1)}
+      class={p.v == null ? 'lbl pending' : 'lbl'}
+      font-size={fs}
+      text-anchor="middle"
+      dominant-baseline="central"
+    >
+      <title>{p.name}{p.v == null ? ' — pending' : ` — ${fmtAxis(p.v)} / 100`}</title>
+      {p.letter}
+    </text>
+  ))}
+</svg>
+{legend && hasPending && (
+  <p class="radar-legend">Hollow markers &amp; dashed spokes: axis not yet scored</p>
+)}

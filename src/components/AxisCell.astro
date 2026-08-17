@@ -1,0 +1,17 @@
+---
+import { fmtAxis, scoreClass } from '../lib/data.js';
+
+interface Props {
+  value: number | null;
+  axisKey: string;
+  axisName: string;
+}
+const { value, axisKey, axisName } = Astro.props;
+---
+{value != null ? (
+  <span class={`sc ${scoreClass(value)}`} title={`${axisName}: ${fmtAxis(value)} / 100`}>{fmtAxis(value)}</span>
+) : axisKey === 't' ? (
+  <span class="pending-cell" title="Thinking axis: data collected, formal scoring in progress">pending</span>
+) : (
+  <span class="na" title={`${axisName}: not yet run`}>—</span>
+)}

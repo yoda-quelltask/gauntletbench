@@ -1,0 +1,130 @@
+---
+import Base from '../layouts/Base.astro';
+import Radar from '../components/Radar.astro';
+import Progress from '../components/Progress.astro';
+import AxisCell from '../components/AxisCell.astro';
+import { data, rankedModels, AXIS_ORDER, axisMeta, fmt1 } from '../lib/data.js';
+
+const podium = rankedModels.slice(0, 3);
+const podiumClass = ['first', 'second', 'third'];
+---
+<Base
+  title="GAUNTLET Bench"
+  description="Models run the gauntlet. Local-LLM leaderboard: agentic, live, verified — every score measured on one controlled host."
+>
+  <section class="hero">
+    <p class="kicker">Local-LLM proving ground</p>
+    <h1>Proving local agents before they act.</h1>
+    <p class="brand-statement">
+      GAUNTLET Bench runs local models through real workloads — agentic, live, verified —
+      and publishes the evidence.
+    </p>
+    <p class="host-line">All scores measured on {data.host.hw}, {data.host.runner}</p>
+  </section>
+
+  <section aria-label="Top three models">
+    <p class="section-title">Current podium</p>
+    <div class="podium">
+      {podium.map((m, i) => (
+        <article class={`podium-card ${podiumClass[i]}`}>
+          <span class="podium-rank">#{i + 1}</span>
+          <Radar axes={m.axes} size={180} />
+          <h2 class="podium-name"><a href={`/models/${m.slug}/`}>{m.name}</a></h2>
+          <p class="podium-meta">{m.params} · {m.quant} {m.format}</p>
+          <div class="podium-stats">
+            <Progress model={m} />
+            {m.mean_tok_s != null && <span>{fmt1(m.mean_tok_s)} tok/s</span>}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section aria-label="Full leaderboard">
+    <p class="section-title">Leaderboard — {rankedModels.length} models · click a column to sort</p>
+    <div class="table-wrap">
+      <table class="board" id="board">
+        <thead>
+          <tr>
+            <th data-key="rank" data-type="num" class="sorted" data-dir="asc" title="Default order: axes scored, then Generalist">#<span class="arrow">▲</span></th>
+            <th data-key="name" data-type="str">Model<span class="arrow">▼</span></th>
+            <th data-key="params" data-type="str">Params<span class="arrow">▼</span></th>
+            <th data-key="quant" data-type="str">Quant / Format<span class="arrow">▼</span></th>
+            {AXIS_ORDER.map((key) => (
+              <th data-key={`ax_${key}`} data-type="num" title={`${axisMeta[key].name} (0–100)`}>
+                {axisMeta[key].letter}<span class="arrow">▼</span>
+              </th>
+            ))}
+            <th data-key="scored" data-type="num" title="GAUNTLET progress: axes scored out of 8">Progress<span class="arrow">▼</span></th>
+            <th data-key="toks" data-type="num" title="Mean generation speed across suites">tok/s<span class="arrow">▼</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          {rankedModels.map((m, i) => (
+            <tr
+              data-rank={i + 1}
+              data-name={m.name.toLowerCase()}
+              data-params={m.params.toLowerCase()}
+              data-quant={`${m.quant} ${m.format}`.toLowerCase()}
+              {...Object.fromEntries(AXIS_ORDER.map((k) => [`data-ax_${k}`, m.axes[k] ?? -1]))}
+              data-scored={m.axes_scored}
+              data-toks={m.mean_tok_s ?? -1}
+            >
+              <td class="rank">{i + 1}</td>
+              <td class="model"><a href={`/models/${m.slug}/`}>{m.name}</a></td>
+              <td class="dim">{m.params}</td>
+              <td class="dim"><span class="chip">{m.quant}</span> <span class="chip">{m.format}</span></td>
+              {AXIS_ORDER.map((key) => (
+                <td class="num"><AxisCell value={m.axes[key]} axisKey={key} axisName={axisMeta[key].name} /></td>
+              ))}
+              <td><Progress model={m} /></td>
+              <td class="num dim">{m.mean_tok_s != null ? fmt1(m.mean_tok_s) : '—'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12.5px;color:var(--muted);margin-top:10px;">
+      Axes are 0–100. <strong style="color:var(--text-dim)">—</strong> = suite not yet run for that model.
+      <em>pending</em> = Thinking axis, formally scored soon (see <a href="/gauntlet#axis-t">methodology</a>).
+      Default order: GAUNTLET progress, then Generalist score.
+    </p>
+  </section>
+
+  <script>
+    const table = document.getElementById('board');
+    if (table) {
+      const tbody = table.tBodies[0];
+      const headers = Array.from(table.querySelectorAll('th[data-key]'));
+      headers.forEach((th) => {
+        th.addEventListener('click', () => {
+          const key = th.dataset.key;
+          const type = th.dataset.type || 'num';
+          // numeric columns default to descending on first click; strings ascending
+          let dir;
+          if (th.classList.contains('sorted')) {
+            dir = th.dataset.dir === 'desc' ? 'asc' : 'desc';
+          } else {
+            dir = type === 'num' ? 'desc' : 'asc';
+          }
+                    headers.forEach((h) => { h.classList.remove('sorted'); delete h.dataset.dir; });
+          th.classList.add('sorted');
+          th.dataset.dir = dir;
+          const arrow = th.querySelector('.arrow');
+          if (arrow) arrow.textContent = dir === 'desc' ? '▼' : '▲';
+          const rows = Array.from(tbody.rows);
+          rows.sort((a, b) => {
+            let cmp;
+            if (type === 'num') {
+              cmp = parseFloat(a.dataset[key]) - parseFloat(b.dataset[key]);
+            } else {
+              cmp = a.dataset[key] < b.dataset[key] ? -1 : a.dataset[key] > b.dataset[key] ? 1 : 0;
+            }
+            return dir === 'desc' ? -cmp : cmp;
+          });
+          rows.forEach((r) => tbody.appendChild(r));
+        });
+      });
+    }
+  </script>
+</Base>

@@ -1,0 +1,39 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const rounds = (await getCollection('rounds')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const fmtDate = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+---
+<Base
+  title="Rounds"
+  description="Round-by-round writeups: what ran, what broke, and what the scores actually mean. Models run the gauntlet."
+>
+  <div class="page-head">
+    <h1>Rounds</h1>
+    <p class="lede">
+      Every batch of testing gets a writeup: what ran, what broke, and what the scores mean.
+      The leaderboard is the summary — this is the evidence trail.
+    </p>
+  </div>
+
+  {rounds.length > 0 ? (
+    <div class="card-grid">
+      {rounds.map((round) => (
+        <a class="round-card" href={`/rounds/${round.data.slug ?? round.id}/`}>
+          <span class="date">{fmtDate(round.data.date)}{round.data.suite ? ` · suite ${round.data.suite}` : ''}</span>
+          <h2>{round.data.title}</h2>
+          <p>{round.data.summary}</p>
+        </a>
+      ))}
+    </div>
+  ) : (
+    <div class="stub">
+      <h2>No writeups published yet</h2>
+      <p>The first round reports are being written up now.</p>
+    </div>
+  )}
+</Base>

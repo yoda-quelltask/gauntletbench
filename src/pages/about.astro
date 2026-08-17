@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import { data, generatedAt, GITHUB_URL } from '../lib/data.js';
+---
+<Base
+  title="About"
+  description="GAUNTLET Bench runs local models through real workloads — agentic, live, verified — and publishes the evidence."
+>
+  <div class="page-head">
+    <h1>About GAUNTLET Bench</h1>
+    <p class="lede">
+      GAUNTLET Bench runs local models through real workloads — agentic, live, verified —
+      and publishes the evidence.
+    </p>
+  </div>
+
+  <div class="prose">
+    <h2>One standard, one host</h2>
+    <p>
+      Every score on this site was measured on the same machine: {data.host.name},
+      {data.host.hw}, running {data.host.os}, served by {data.host.runner}. That's
+      deliberate. Cross-host benchmark numbers are mostly noise — quant behavior, runtime,
+      thermal envelope, and memory bandwidth all move the result. Holding the host constant
+      is what makes a 79 and a 91 comparable.
+    </p>
+    <p>
+      GAUNTLET is Apple-Silicon-first because that's where serious local inference is
+      happening at the high-memory end. A second host row is planned; when it lands it will
+      be a separate, labeled column of evidence — never blended into this one.
+    </p>
+
+    <h2>Generated, not handwritten</h2>
+    <p>
+      Every page on this site derives from the data pipeline or it doesn't exist. Scores,
+      radars, suite tables, model specs — all rendered from the same machine-generated
+      dataset that the harness emits after judging. There is no hand-edited number anywhere
+      on this site. If the pipeline didn't produce it, we don't publish it.
+    </p>
+    <p>
+      The current build was generated from pipeline data stamped <code>{generatedAt}</code> —
+      the same timestamp in the footer of every page.
+    </p>
+
+    <h2>What the letters mean</h2>
+    <p>
+      Eight axes, one per letter of GAUNTLET: Generalist, Agentic, Understanding, Needle,
+      Thinking, Live, Engineering, Throughput. The full breakdown — suites, test counts,
+      scoring, and the contamination policy — is on the
+      <a href="/gauntlet">methodology page</a>.
+    </p>
+
+    <h2>Who runs this</h2>
+    <p>
+      A single operator with a benchmark harness, a controlled machine, and a low tolerance
+      for numbers that don't replicate. The project is public at
+      <a href={GITHUB_URL} rel="noopener">github.com/davelessa/gauntletbench</a> —
+      test ideas and model requests are welcome via
+      <a href="/contribute">the contribute page</a>.
+    </p>
+  </div>
+</Base>

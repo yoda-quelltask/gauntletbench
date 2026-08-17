@@ -1,0 +1,133 @@
+---
+import Base from '../../layouts/Base.astro';
+import Radar from '../../components/Radar.astro';
+import Progress from '../../components/Progress.astro';
+import { data, rankedModels, suitesById, AXIS_ORDER, axisMeta, fmtAxis, fmt1 } from '../../lib/data.js';
+
+export function getStaticPaths() {
+  return rankedModels.map((model, i) => ({
+    params: { slug: model.slug },
+    props: { model, rank: i + 1 },
+  }));
+}
+
+const { model, rank } = Astro.props;
+
+// Per-suite rows in canonical suite order
+const suiteRows = data.suites
+  .filter((s) => model.suites[s.id])
+  .map((s) => {
+    const r = model.suites[s.id];
+    return {
+      id: s.id,
+      name: s.name,
+      scoreTotal: r.score_total,
+      maxTotal: r.tests_total * s.max_score_per_test,
+      scoreAvg: r.score_avg,
+      testsRun: r.tests_run,
+      testsTotal: r.tests_total,
+      tokS: r.avg_tok_s,
+    };
+  });
+
+const statusLabels = {
+  'daily-driver': 'Daily driver',
+  'daily-driver-trial': 'Daily-driver trial',
+  keeper: 'Keeper',
+  candidate: 'Candidate',
+  tested: 'Tested',
+  retired: 'Retired',
+};
+const statusLabel = statusLabels[model.status] ?? model.status;
+---
+<Base
+  title={model.name}
+  description={`${model.name} on the GAUNTLET Bench leaderboard — ${model.axes_scored}/8 axes scored. Models run the gauntlet.`}
+>
+  <div class="model-head">
+    <a class="back" href="/">← Leaderboard</a>
+    <h1>{model.name}</h1>
+    <div class="sub">
+      <span class={`status ${model.status}`}>{statusLabel}</span>
+      <span>Rank #{rank} of {rankedModels.length}</span>
+      <span>·</span>
+      <Progress model={model} label={true} />
+      <span style="font-size:12px;color:var(--muted)">GAUNTLET progress</span>
+    </div>
+  </div>
+
+  <div class="model-grid">
+    <div class="panel radar-panel">
+      <Radar axes={model.axes} size={320} legend={true} />
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px 14px;margin-top:16px;width:100%;max-width:320px;">
+        {AXIS_ORDER.map((key) => (
+          <div style="text-align:center;">
+            <div style="font-family:var(--display);font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.08em;" title={axisMeta[key].name}>{axisMeta[key].letter}</div>
+            {model.axes[key] != null
+              ? <div class="num" style="font-size:13.5px;font-weight:600;color:var(--text-dim);font-variant-numeric:tabular-nums;">{fmtAxis(model.axes[key])}</div>
+              : key === 't'
+                ? <div style="font-size:11px;color:var(--muted);font-style:italic;">pending</div>
+                : <div class="na" style="font-size:13.5px;">—</div>}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:20px;">
+      <div class="panel">
+        <h2>Specification</h2>
+        <dl class="spec-grid">
+          <dt>Parameters</dt><dd>{model.params}</dd>
+          <dt>Architecture</dt><dd>{model.arch}</dd>
+          <dt>Size on disk</dt><dd>{model.size_gb} GB</dd>
+          <dt>Quantization</dt><dd>{model.quant}</dd>
+          <dt>Format</dt><dd>{model.format}</dd>
+          <dt>Reasoning (CoT)</dt><dd>{model.is_cot ? 'Yes — emits reasoning tokens' : 'No'}</dd>
+          {model.base_org && (<><dt>Base org</dt><dd>{model.base_org}</dd></>)}
+          <dt>Internal ID</dt><dd>{model.internal_id}</dd>
+          {model.mean_tok_s != null && (<><dt>Mean speed</dt><dd>{fmt1(model.mean_tok_s)} tok/s across suites</dd></>)}
+          {model.model_card_url && (
+            <><dt>Model card</dt><dd><a href={model.model_card_url} rel="noopener">{new URL(model.model_card_url).hostname}</a></dd></>
+          )}
+        </dl>
+      </div>
+
+      <div class="panel">
+        <h2>Suite results</h2>
+        {suiteRows.length > 0 ? (
+          <div style="overflow-x:auto;">
+            <table class="suites">
+              <thead>
+                <tr>
+                  <th>Suite</th>
+                  <th>Score</th>
+                  <th>Avg / 20</th>
+                  <th>Tests</th>
+                  <th>tok/s</th>
+                </tr>
+              </thead>
+              <tbody>
+                {suiteRows.map((row) => (
+                  <tr>
+                    <td>{row.name} <span class="chip" style="margin-left:4px;">{row.id}</span></td>
+                    <td class="num">{fmt1(row.scoreTotal)} / {row.maxTotal}</td>
+                    <td class="num">{fmt1(row.scoreAvg)}</td>
+                    <td class="num">{row.testsRun}/{row.testsTotal}</td>
+                    <td class="num">{row.tokS != null ? fmt1(row.tokS) : '—'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <p style="color:var(--muted);font-size:13.5px;margin:0;">No suite results recorded yet.</p>
+        )}
+        <p style="font-size:12px;color:var(--muted);margin:12px 0 0;">
+          Each test is LLM-judged 0–20 against a fixed rubric; suite max = tests × 20.
+          Where fewer tests ran than the suite total, unrun tests count as zero toward the axis score.
+          See <a href="/gauntlet">methodology</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,17 @@
+---
+import { AXIS_ORDER } from '../lib/data.js';
+
+interface Props {
+  model: { axes: Record<string, number | null>; axes_scored: number };
+  label?: boolean;
+}
+const { model, label = true } = Astro.props;
+---
+<span class="gprogress" title={`GAUNTLET progress: ${model.axes_scored} of 8 axes scored`}>
+  <span class="segs" aria-hidden="true">
+    {AXIS_ORDER.map((key) => (
+      <span class={model.axes[key] != null ? 'seg on' : key === 't' ? 'seg pend' : 'seg'} />
+    ))}
+  </span>
+  {label && <span class="count">{model.axes_scored}/8</span>}
+</span>

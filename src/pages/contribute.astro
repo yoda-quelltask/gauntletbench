@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import { ISSUES_URL } from '../lib/data.js';
+---
+<Base
+  title="Contribute"
+  description="Suggest tests and request models. Results stay single-operator on controlled hardware — that's the point."
+>
+  <div class="page-head">
+    <h1>Contribute</h1>
+    <p class="lede">
+      The leaderboard is single-operator by design. The test surface doesn't have to be.
+    </p>
+  </div>
+
+  <div class="prose">
+    <h2>Phase 1 — now: ideas in, results ours</h2>
+    <p>
+      Every score on this site is run by one operator, on one controlled host, through one
+      pipeline. That isn't a limitation we're working around — it's what makes the numbers
+      comparable. Community-run results would mean uncontrolled hardware, uncontrolled
+      configs, and a leaderboard measuring setups instead of models.
+    </p>
+    <p>What we want from you right now:</p>
+    <ul>
+      <li><strong>Test ideas.</strong> Workloads you'd actually run on a local model — especially ones where current models embarrass themselves.</li>
+      <li><strong>Model requests.</strong> A model you think belongs in the gauntlet. Tell us why, link the weights.</li>
+    </ul>
+    <p>
+      Both go through
+      <a href={ISSUES_URL} rel="noopener">GitHub issues</a>.
+      No forms, no queue theater — an issue tracker we actually read.
+    </p>
+
+    <h2>Phase 2 — planned: contributed test designs</h2>
+    <p>
+      Full test designs contributed by the community: you design it, we run it on the
+      controlled host, you get credit on the resulting scores. Contributed tests go through
+      the same contamination policy as everything else — prompts and rubrics stay private
+      once they're live.
+    </p>
+
+    <h2>Community-submitted results</h2>
+    <p>
+      Maybe, eventually, as a clearly separated dataset. Never mixed into the verified
+      leaderboard. A number we didn't measure is a number we won't publish as ours.
+    </p>
+  </div>
+</Base>
