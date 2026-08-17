@@ -40,5 +40,5 @@ export function scoreClass(v) {
 /** Human timestamp from generated_at, e.g. "2026-08-17 02:05 UTC" */
 export const generatedAt = raw.generated_at.slice(0, 16).replace('T', ' ') + ' UTC';
 
-export const GITHUB_URL = 'https://github.com/davelessa/gauntletbench';
-export const ISSUES_URL = 'https://github.com/davelessa/gauntletbench/issues';
+export const GITHUB_URL = 'https://github.com/Yoda-quelltask/gauntletbench';
+export const ISSUES_URL = 'https://github.com/Yoda-quelltask/gauntletbench/issues';
