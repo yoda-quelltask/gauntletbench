@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verlet Cloth Simulation</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        background: #1a1a2e;
+        overflow: hidden;
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        color: #e0e0e0;
+        user-select: none;
+    }
+    canvas {
+        display: block;
+        cursor: crosshair;
+    }
+    #ui {
+        position: fixed;
+        top: 16px;
+        left: 16px;
+        z-index: 10;
+        background: rgba(10, 10, 30, 0.85);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 12px;
+        padding: 16px 20px;
+        min-width: 260px;
+        pointer-events: auto;
+    }
+    #ui h1 {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: #c0c0ff;
+        letter-spacing: 0.5px;
+    }
+    .control-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        font-size: 12px;
+    }
+    .control-row label {
+        color: #9999bb;
+    }
+    .control-row input[type="range"] {
+        width: 120px;
+        accent-color: #6666cc;
+    }
+    .control-row .value {
+        min-width: 36px;
+        text-align: right;
+        color: #aaaadd;
+        font-variant-numeric: tabular-nums;
+    }
+    .hint {
+        margin-top: 12px;
+        padding-top: 10px;
+        border-top: 1px solid rgba(255,255,255,0.06);
+        font-size: 11px;
+        color: #7777aa;
+        line-height: 1.6;
+    }
+    .hint kbd {
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 3px;
+        padding: 1px 5px;
+        font-family: inherit;
+        font-size: 10px;
+    }
+</style>
+</head>
+<body>
+
+<div id="ui">
+    <h1>⚙ Verlet Cloth</h1>
+    <div class="control-row">
+        <label>Gravity</label>
+        <input type="range" id="gravitySlider" min="0" max="2000" value="800" step="10">
+        <span class="value" id="gravityVal">800</span>
+    </div>
+    <div class="control-row">
+        <label>Iterations</label>
+        <input type="range" id="iterSlider" min="1" max="30" value="12" step="1">
+        <span class="value" id="iterVal">12</span>
+    </div>
+    <div class="control-row">
+        <label>Stiffness</label>
+        <input type="range" id="stiffSlider" min="0" max="100" value="100" step="1">
+        <span class="value" id="stiffVal">100%</span>
+    </div>
+    <div class="control-row">
+        <label>Wind</label>
+        <input type="range" id="windSlider" min="-1000" max="1000" value="0" step="10">
+        <span class="value" id="windVal">0</span>
+    </div>
+    <div class="hint">
+        <kbd>Left drag</kbd> Pin / pull cloth<br>
+        <kbd>Right click</kbd> Remove pin<br>
+        <kbd>Scroll</kbd> Toggle gravity direction<br>
+        <kbd>R</kbd> Reset cloth
+    </div>
+</div>
+
+<canvas id="canvas"></canvas>
+
+<script>
+// ──────────────────────────────────────────────
+// Vector utilities
+// ──────────────────────────────────────────────
+const Vec2 = {
+    sub: (a, b) => ({ x: a.x - b.x, y: a.y - b.y }),
+    add: (a, b) => ({ x: a.x + b.x, y: a.y + b.y }),
+    scale: (v, s) => ({ x: v.x * s, y: v.y * s }),
+    len: (v) => Math.sqrt(v.x * v.x + v.y * v.y),
+    normalize: (v) => {
+        const l = Math.sqrt(v.x * v.x + v.y * v.y);
+        return l > 0 ? { x: v.x / l, y: v.y / l } : { x: 0, y: 0 };
+    },
+    dist: (a, b) => {
+        const dx = a.x - b.x, dy = a.y - b.y;
+        return Math.sqrt(dx * dx + dy * dy);
+    }
+};
+
+// ──────────────────────────────────────────────
+// Point: represents a single vertex in the cloth
+// ──────────────────────────────────────────────
+class Point {
+    constructor(x, y, pinned = false) {
+        this.x = x;
+        this.y = y;
+        // Verlet: velocity is implicit from current - previous
+        this.x_prev = x;
+        this.y_prev = y;
+        this.pinned = pinned;
+        this.pinX = x;
+        this.pinY = y;
+        this.mass = 1;
+    }
+
+    // Verlet integration step
+    integrate(dt, gravityX, gravityY) {
+        if (this.pinned) {
+            this.x = this.pinX;
+            this.y = this.pinY;
+            this.x_prev = this.pinX;
+            this.y_prev = this.pinY;
+            return;
+        }
+
+        const vx = (this.x - this.x_prev) * 0.99; // slight damping
+        const vy = (this.y - this.y_prev) * 0.99;
+
+        this.x_prev = this.x;
+        this.y_prev = this.y;
+
+        this.x += vx + gravityX * dt * dt;
+        this.y += vy + gravityY * dt * dt;
+    }
+
+    // Force this point to a location (for mouse interaction)
+    pinTo(px, py) {
+        this.pinned = true;
+        this.pinX = px;
+        this.pinY = py;
+    }
+
+    unpin() {
+        this.pinned = false;
+    }
+}
+
+// ──────────────────────────────────────────────
+// Constraint: distance constraint between two points
+// ──────────────────────────────────────────────
+class Constraint {
+    constructor(pointA, pointB, restLength) {
+        this.pointA = pointA;
+        this.pointB = pointB;
+        this.restLength = restLength;
+    }
+
+    solve(stiffness) {
+        const dx = this.pointB.x - this.pointA.x;
+        const dy = this.pointB.y - this.pointA.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist === 0) return;
+
+        const diff = (this.restLength - dist) / dist * stiffness;
+
+        const offsetX = (dx * diff) * 0.5;
+        const offsetY = (dy * diff) * 0.5;
+
+        if (!this.pointA.pinned) {
+            this.pointA.x -= offsetX;
+            this.pointA.y -= offsetY;
+        }
+        if (!this.pointB.pinned) {
+            this.pointB.x += offsetX;
+            this.pointB.y += offsetY;
+        }
+    }
+}
+
+// ──────────────────────────────────────────────
+// Cloth: manages a grid of points and constraints
+// ──────────────────────────────────────────────
+class Cloth {
+    constructor(cols, rows, spacing, startX, startY) {
+        this.cols = cols;
+        this.rows = rows;
+        this.spacing = spacing;
+        this.points = [];
+        this.constraints = [];
+        this.shearConstraints = [];
+        this.bendConstraints = [];
+
+        this._build(startX, startY);
+    }
+
+    _build(startX, startY) {
+        // Create points in a grid
+        for (let row = 0; row < this.rows; row++) {
+            for (let col = 0; col < this.cols; col++) {
+                const x = startX + col * this.spacing;
+                const y = startY + row * this.spacing;
+                const pinned = (row === 0); // pin top row
+                this.points.push(new Point(x, y, pinned));
+            }
+        }
+
+        // Structural constraints (horizontal + vertical)
+        for (let row = 0; row < this.rows; row++) {
+            for (let col = 0; col < this.cols; col++) {
+                const i = row * this.cols + col;
+
+                // Horizontal
+                if (col < this.cols - 1) {
+                    const j = i + 1;
+                    const restLen = this.spacing;
+                    this.constraints.push(new Constraint(
+                        this.points[i], this.points[j], restLen
+                    ));
+                }
+
+                // Vertical
+                if (row < this.rows - 1) {
+                    const j = i + this.cols;
+                    const restLen = this.spacing;
+                    this.constraints.push(new Constraint(
+                        this.points[i], this.points[j], restLen
+                    ));
+                }
+            }
+        }
+
+        // Shear constraints (diagonal) for stability
+        for (let row = 0; row < this.rows - 1; row++) {
+            for (let col = 0; col < this.cols - 1; col++) {
+                const i = row * this.cols + col;
+                const j = i + this.cols + 1;
+                const restLen = Math.sqrt(2) * this.spacing;
+                this.shearConstraints.push(new Constraint(
+                    this.points[i], this.points[j], restLen
+                ));
+            }
+        }
+
+        // Bend constraints (skip-one) for extra rigidity
+        for (let row = 0; row < this.rows - 2; row++) {
+            for (let col = 0; col < this.cols; col++) {
+                const i = row * this.cols + col;
+                const j = (row + 2) * this.cols + col;
+                const restLen = 2 * this.spacing;
+                this.bendConstraints.push(new Constraint(
+                    this.points[i], this.points[j], restLen
+                ));
+            }
+        }
+    }
+
+    integrate(dt, gravityX, gravityY) {
+        for (let i = 0; i < this.points.length; i++) {
+            this.points[i].integrate(dt, gravityX, gravityY);
+        }
+    }
+
+    solveConstraints(stiffness, iterations) {
+        for (let iter = 0; iter < iterations; iter++) {
+            for (let i = 0; i < this.constraints.length; i++) {
+                this.constraints[i].solve(stiffness);
+            }
+            for (let i = 0; i < this.shearConstraints.length; i++) {
+                this.shearConstraints[i].solve(stiffness);
+            }
+            for (let i = 0; i < this.bendConstraints.length; i++) {
+                this.bendConstraints[i].solve(stiffness);
+            }
+        }
+    }
+
+    // Find the point closest to a screen position
+    findNearestPoint(mx, my, maxDist) {
+        let closest = null;
+        let closestDist = maxDist || Infinity;
+
+        for (let i = 0; i < this.points.length; i++) {
+            const p = this.points[i];
+            const dx = p.x - mx;
+            const dy = p.y - my;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < closestDist) {
+                closestDist = dist;
+                closest = p;
+            }
+        }
+        return closest;
+    }
+
+    // Get all pins for rendering
+    getPins() {
+        const pins = [];
+        for (let i = 0; i < this.points.length; i++) {
+            if (this.points[i].pinned) {
+                pins.push(this.points[i]);
+            }
+        }
+        return pins;
+    }
+
+    reset(startX, startY) {
+        for (let row = 0; row < this.rows; row++) {
+            for (let col = 0; col < this.cols; col++) {
+                const i = row * this.cols + col;
+                const x = startX + col * this.spacing;
+                const y = startY + row * this.spacing;
+                const p = this.points[i];
+                p.x = x;
+                p.y = y;
+                p.x_prev = x;
+                p.y_prev = y;
+                p.pinned = (row === 0);
+                p.pinX = x;
+                p.pinY = y;
+            }
+        }
+    }
+}
+
+// ──────────────────────────────────────────────
+// Simulation: orchestrates the physics loop
+// ──────────────────────────────────────────────
+class Simulation {
+    constructor(canvas) {
+        this.canvas = canvas;
+        this.ctx = canvas.getContext('2d');
+        this.width = canvas.width;
+        this.height = canvas.height;
+
+        // Configuration
+        this.gravity = 800;
+        this.iterations = 12;
+        this.stiffness = 1.0;
+        this.wind = 0;
+        this.dt = 1 / 60;
+
+        // Mouse state
+        this.mouseX = 0;
+        this.mouseY = 0;
+        this.mouseDown = false;
+        this.mouseButton = 0;
+        this.pinnedPoint = null;
+        this.mouseMoved = false;
+
+        // Cloth parameters
+        this.cols = 50;
+        this.rows = 35;
+        this.spacing = 12;
+
+        this.cloth = null;
+        this.particles = []; // for tear effect
+
+        this._initCloth();
+        this._bindEvents();
+    }
+
+    _initCloth() {
+        const startX = (this.width - (this.cols - 1) * this.spacing) / 2;
+        const startY = 60;
+        this.cloth = new Cloth(this.cols, this.rows, this.spacing, startX, startY);
+    }
+
+    _bindEvents() {
+        // Mouse events
+        this.canvas.addEventListener('mousedown', (e) => this._onMouseDown(e));
+        this.canvas.addEventListener('mousemove', (e) => this._onMouseMove(e));
+        this.canvas.addEventListener('mouseup', (e) => this._onMouseUp(e));
+        this.canvas.addEventListener('mouseleave', (e) => this._onMouseUp(e));
+
+        // Touch events
+        this.canvas.addEventListener('touchstart', (e) => this._onTouchStart(e), { passive: false });
+        this.canvas.addEventListener('touchmove', (e) => this._onTouchMove(e), { passive: false });
+        this.canvas.addEventListener('touchend', (e) => this._onTouchEnd(e), { passive: false });
+
+        // Scroll to toggle gravity
+        this.canvas.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            this.gravity = Math.max(0, Math.min(2000, this.gravity - e.deltaY * 0.5));
+            document.getElementById('gravitySlider').value = this.gravity;
+            document.getElementById('gravityVal').textContent = Math.round(this.gravity);
+        }, { passive: false });
+
+        // Keyboard
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'r' || e.key === 'R') {
+                this._initCloth();
+                this.particles = [];
+            }
+        });
+
+        // UI sliders
+        document.getElementById('gravitySlider').addEventListener('input', (e) => {
+            this.gravity = parseFloat(e.target.value);
+            document.getElementById('gravityVal').textContent = Math.round(this.gravity);
+        });
+        document.getElementById('iterSlider').addEventListener('input', (e) => {
+            this.iterations = parseInt(e.target.value);
+            document.getElementById('iterVal').textContent = this.iterations;
+        });
+        document.getElementById('stiffSlider').addEventListener('input', (e) => {
+            this.stiffness = parseInt(e.target.value) / 100;
+            document.getElementById('stiffVal').textContent = e.target.value + '%';
+        });
+        document.getElementById('windSlider').addEventListener('input', (e) => {
+            this.wind = parseFloat(e.target.value);
+            document.getElementById('windVal').textContent = Math.round(this.wind);
+        });
+
+        // Resize
+        window.addEventListener('resize', () => this._resize());
+        this._resize();
+    }
+
+    _resize() {
+        this.width = window.innerWidth;
+        this.height = window.innerHeight;
+        this.canvas.width = this.width;
+        this.canvas.height = this.height;
+        this._initCloth();
+    }
+
+    _getCanvasPos(e) {
+        const rect = this.canvas.getBoundingClientRect();
+        return {
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top
+        };
+    }
+
+    _onMouseDown(e) {
+        e.preventDefault();
+        this.mouseDown = true;
+        this.mouseButton = e.button;
+        this.mouseMoved = false;
+
+        const pos = this._getCanvasPos(e);
+        this.mouseX = pos.x;
+        this.mouseY = pos.y;
+
+        if (e.button === 2) {
+            // Right click: remove pin from nearest point
+            const nearest = this.cloth.findNearestPoint(pos.x, pos.y, 30);
+            if (nearest) {
+                nearest.unpin();
+            }
+            return;
+        }
+
+        // Left click: find nearest point and pin it
+        const nearest = this.cloth.findNearestPoint(pos.x, pos.y, this.spacing * 2.5);
+        if (nearest) {
+            this.pinnedPoint = nearest;
+            this.pinnedPoint.pinTo(pos.x, pos.y);
+        }
+    }
+
+    _onMouseMove(e) {
+        const pos = this._getCanvasPos(e);
+        this.mouseX = pos.x;
+        this.mouseY = pos.y;
+
+        if (this.mouseDown && this.pinnedPoint) {
+            this.mouseMoved = true;
+            this.pinnedPoint.pinTo(pos.x, pos.y);
+        }
+    }
+
+    _onMouseUp(e) {
+        if (this.pinnedPoint && !this.mouseMoved) {
+            // Just a click, not a drag — unpin after a short delay
+            // Actually, let's keep it pinned so users can build structures
+            // If they want to unpin, they right-click
+        }
+        this.mouseDown = false;
+        this.pinnedPoint = null;
+        this.mouseMoved = false;
+    }
+
+    // Touch handlers
+    _onTouchStart(e) {
+        e.preventDefault();
+        if (e.touches.length === 1) {
+            const touch = e.touches[0];
+            this.mouseDown = true;
+            this.mouseMoved = false;
+            const pos = this._getCanvasPos(touch);
+            this.mouseX = pos.x;
+            this.mouseY = pos.y;
+
+            const nearest = this.cloth.findNearestPoint(pos.x, pos.y, this.spacing * 2.5);
+            if (nearest) {
+                this.pinnedPoint = nearest;
+                this.pinnedPoint.pinTo(pos.x, pos.y);
+            }
+        }
+    }
+
+    _onTouchMove(e) {
+        e.preventDefault();
+        if (e.touches.length === 1 && this.pinnedPoint) {
+            const touch = e.touches[0];
+            const pos = this._getCanvasPos(touch);
+            this.mouseX = pos.x;
+            this.mouseY = pos.y;
+            this.mouseMoved = true;
+            this.pinnedPoint.pinTo(pos.x, pos.y);
+        }
+    }
+
+    _onTouchEnd(e) {
+        this.mouseDown = false;
+        this.pinnedPoint = null;
+        this.mouseMoved = false;
+    }
+
+    // ──────────────────────────────────────────
+    // Physics step
+    // ──────────────────────────────────────────
+    step() {
+        const gravityX = this.wind * this.dt;
+        const gravityY = this.gravity * this.dt;
+
+        // Integrate
+        this.cloth.integrate(this.dt, gravityX, gravityY);
+
+        // Solve constraints
+        this.cloth.solveConstraints(this.stiffness, this.iterations);
+
+        // Update particles
+        this._updateParticles();
+    }
+
+    // ──────────────────────────────────────────
+    // Rendering
+    // ──────────────────────────────────────────
+    render() {
+        const ctx = this.ctx;
+        ctx.clearRect(0, 0, this.width, this.height);
+
+        this._drawCloth(ctx);
+        this._drawPins(ctx);
+        this._drawParticles(ctx);
+        this._drawMouseIndicator(ctx);
+    }
+
+    _drawCloth(ctx) {
+        const cloth = this.cloth;
+
+        // Draw filled triangles for a solid cloth look
+        ctx.beginPath();
+        for (let row = 0; row < cloth.rows - 1; row++) {
+            for (let col = 0; col < cloth.cols - 1; col++) {
+                const i = row * cloth.cols + col;
+                const p0 = cloth.points[i];
+                const p1 = cloth.points[i + 1];
+                const p2 = cloth.points[i + cloth.cols];
+                const p3 = cloth.points[i + cloth.cols + 1];
+
+                // Two triangles per quad
+                ctx.moveTo(p0.x, p0.y);
+                ctx.lineTo(p1.x, p1.y);
+                ctx.lineTo(p2.x, p2.y);
+                ctx.closePath();
+
+                ctx.moveTo(p1.x, p1.y);
+                ctx.lineTo(p3.x, p3.y);
+                ctx.lineTo(p2.x, p2.y);
+                ctx.closePath();
+            }
+        }
+
+        // Color based on stretch
+        const gradient = ctx.createLinearGradient(0, 0, 0, this.height);
+        gradient.addColorStop(0, '#4466aa');
+        gradient.addColorStop(0.5, '#3355aa');
+        gradient.addColorStop(1, '#2244aa');
+
+        ctx.fillStyle = gradient;
+        ctx.fill('evenodd');
+
+        // Draw wireframe overlay
+        ctx.strokeStyle = 'rgba(180, 200, 255, 0.15)';
+        ctx.lineWidth = 0.5;
+
+        // Structural lines
+        for (let i = 0; i < cloth.constraints.length; i++) {
+            const c = cloth.constraints[i];
+            ctx.beginPath();
+            ctx.moveTo(c.pointA.x, c.pointA.y);
+            ctx.lineTo(c.pointB.x, c.pointB.y);
+            ctx.stroke();
+        }
+
+        // Shear lines (subtle)
+        ctx.strokeStyle = 'rgba(150, 170, 220, 0.06)';
+        for (let i = 0; i < cloth.shearConstraints.length; i++) {
+            const c = cloth.shearConstraints[i];
+            ctx.beginPath();
+            ctx.moveTo(c.pointA.x, c.pointA.y);
+            ctx.lineTo(c.pointB.x, c.pointB.y);
+            ctx.stroke();
+        }
+
+        // Draw points as small dots
+        ctx.fillStyle = 'rgba(200, 210, 255, 0.3)';
+        for (let i = 0; i < cloth.points.length; i++) {
+            const p = cloth.points[i];
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 1, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    _drawPins(ctx) {
+        const pins = this.cloth.getPins();
+
+        for (let i = 0; i < pins.length; i++) {
+            const p = pins[i];
+
+            // Draw pin as a small circle with cross
+            ctx.strokeStyle = 'rgba(255, 200, 100, 0.8)';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 5, 0, Math.PI * 2);
+            ctx.stroke();
+
+            // Crosshair
+            ctx.beginPath();
+            ctx.moveTo(p.x - 3, p.y);
+            ctx.lineTo(p.x + 3, p.y);
+            ctx.moveTo(p.x, p.y - 3);
+            ctx.lineTo(p.x, p.y + 3);
+            ctx.stroke();
+        }
+    }
+
+    _drawParticles() {
+        // Simple particle system for visual flair when cloth is pulled fast
+        for (let i = this.particles.length - 1; i >= 0; i--) {
+            const p = this.particles[i];
+            p.life -= 0.02;
+            if (p.life <= 0) {
+                this.particles.splice(i, 1);
+                continue;
+            }
+            p.x += p.vx;
+            p.y += p.vy;
+            p.vy += 200 * 0.016;
+
+            this.ctx.fillStyle = `rgba(180, 200, 255, ${p.life * 0.5})`;
+            this.ctx.beginPath();
+            this.ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+            this.ctx.fill();
+        }
+    }
+
+    _updateParticles() {
+        // Spawn particles on fast-moving pinned points
+        if (this.pinnedPoint) {
+            const p = this.pinnedPoint;
+            const vx = p.x - p.x_prev;
+            const vy = p.y - p.y_prev;
+            const speed = Math.sqrt(vx * vx + vy * vy);
+
+            if (speed > 5 && Math.random() < 0.3) {
+                for (let i = 0; i < 2; i++) {
+                    this.particles.push({
+                        x: p.x + (Math.random() - 0.5) * 10,
+                        y: p.y + (Math.random() - 0.5) * 10,
+                        vx: (Math.random() - 0.5) * 50,
+                        vy: (Math.random() - 0.5) * 50 - 30,
+                        life: 1.0,
+                        size: Math.random() * 2 + 1
+                    });
+                }
+            }
+        }
+    }
+
+    _drawMouseIndicator(ctx) {
+        if (this.mouseDown && this.pinnedPoint) {
+            // Draw a subtle line from mouse to pinned point
+            ctx.strokeStyle = 'rgba(255, 200, 100, 0.3)';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(this.mouseX, this.mouseY);
+            ctx.lineTo(this.pinnedPoint.x, this.pinnedPoint.y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Mouse cursor ring
+            ctx.strokeStyle = 'rgba(255, 200, 100, 0.5)';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.arc(this.mouseX, this.mouseY, 8, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+    }
+
+    // ──────────────────────────────────────────
+    // Main loop
+    // ──────────────────────────────────────────
+    run() {
+        this.step();
+        this.render();
+        requestAnimationFrame(() => this.run());
+    }
+}
+
+// ──────────────────────────────────────────────
+// Initialize
+// ──────────────────────────────────────────────
+const canvas = document.getElementById('canvas');
+const sim = new Simulation(canvas);
+sim.run();
+</script>
+</body>
+</html>

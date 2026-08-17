@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verlet Cloth Simulator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #1a1a1a;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        canvas {
+            display: block;
+        }
+        #ui {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            pointer-events: none;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        kbd {
+            background: #444;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<div id="ui">
+    <strong>Cloth Simulator</strong><br>
+    • <kbd>Left Click + Drag</kbd> Move Cloth<br>
+    • <kbd>Right Click / Shift + Drag</kbd> Tear Cloth<br>
+    • Constraints tear when overstretched
+</div>
+
+<canvas id="canvas"></canvas>
+
+<script>
+/**
+ * CLOTH SIMULATOR - VERLET INTEGRATION
+ * A self-contained physics engine for cloth simulation.
+ */
+
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d', { alpha: false });
+
+// Configuration
+const CLOTH_WIDTH = 45; // Number of points horizontally
+const CLOTH_HEIGHT = 30; // Number of points vertically
+const SPACING = 15;     // Distance between points
+const GRAVITY = 0.25;
+const DAMPING = 0.98;   // Air resistance / velocity damping
+const ITERATIONS = 12;  // Constraint relaxation iterations (higher = stiffer)
+const TEAR_LIMIT = 2.5; // Multiplier of rest length to trigger auto-tear
+const MOUSE_RADIUS = 40; // Interaction radius
+
+let width, height;
+let points = [];
+let constraints = [];
+
+// Input State
+const mouse = {
+    x: 0,
+    y: 0,
+    prevX: 0,
+    prevY: 0,
+    isDown: false,
+    isRightClick: false,
+    isShift: false
+};
+
+class Point {
+    constructor(x, y, pinned = false) {
+        this.x = x;
+        this.y = y;
+        this.oldX = x;
+        this.oldY = y;
+        this.pinned = pinned;
+    }
+
+    update() {
+        if (this.pinned) return;
+
+        // Verlet Integration: pos = pos + (pos - oldPos) * damping + acceleration
+        const vx = (this.x - this.oldX) * DAMPING;
+        const vy = (this.y - this.oldY) * DAMPING;
+
+        this.oldX = this.x;
+        this.oldY = this.y;
+
+        this.x += vx;
+        this.y += vy + GRAVITY;
+    }
+
+    draw() {
+        // Points are too small to draw individually for performance, 
+        // but we could if needed.
+    }
+}
+
+class Constraint {
+    constructor(p1, p2) {
+        this.p1 = p1;
+        this.p2 = p2;
+        this.length = Math.hypot(p1.x - p2.x, p1.y - p2.y);
+        this.active = true;
+    }
+
+    solve() {
+        if (!this.active) return;
+
+        const dx = this.p2.x - this.p1.x;
+        const dy = this.p2.y - this.p1.y;
+        const distance = Math.hypot(dx, dy);
+
+        // Auto-tear logic
+        if (distance > this.length * TEAR_LIMIT) {
+            this.active = false;
+            return;
+        }
+
+        const diff = (this.length - distance) / distance;
+        const offsetX = dx * diff * 0.5;
+        const offsetY = dy * diff * 0.5;
+
+        if (!this.p1.pinned) {
+            this.p1.x -= offsetX;
+            this.p1.y -= offsetY;
+        }
+        if (!this.p2.pinned) {
+            this.p2.x += offsetX;
+            this.p2.y += offsetY;
+        }
+    }
+}
+
+function init() {
+    resize();
+    points = [];
+    constraints = [];
+
+    const startX = (width - (CLOTH_WIDTH * SPACING)) / 2;
+    const startY = 50;
+
+    // Create points
+    for (let y = 0; y < CLOTH_HEIGHT; y++) {
+        for (let x = 0; x < CLOTH_WIDTH; x++) {
+            const px = startX + x * SPACING;
+            const py = startY + y * SPACING;
+            // Pin the top row
+            const pinned = (y === 0);
+            points.push(new Point(px, py, pinned));
+        }
+    }
+
+    // Create constraints (Structural)
+    for (let y = 0; y < CLOTH_HEIGHT; y++) {
+        for (let x = 0; x < CLOTH_WIDTH; x++) {
+            const idx = y * CLOTH_WIDTH + x;
+
+            // Horizontal constraint
+            if (x < CLOTH_WIDTH - 1) {
+                constraints.push(new Constraint(points[idx], points[idx + 1]));
+            }
+            // Vertical constraint
+            if (y < CLOTH_HEIGHT - 1) {
+                constraints.push(new Constraint(points[idx], points[idx + CLOTH_WIDTH]));
+            }
+        }
+    }
+}
+
+function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+}
+
+function update() {
+    // 1. Update points (Verlet)
+    for (const p of points) {
+        p.update();
+    }
+
+    // 2. Handle Mouse Interaction
+    if (mouse.isDown) {
+        for (const p of points) {
+            const dx = p.x - mouse.x;
+            const dy = p.y - mouse.y;
+            const distSq = dx * dx + dy * dy;
+
+            if (distSq < MOUSE_RADIUS * MOUSE_RADIUS) {
+                if (mouse.isRightClick || mouse.isShift) {
+                    // Tearing mode: find constraints near point and kill them
+                    for (const c of constraints) {
+                        if (!c.active) continue;
+                        // If constraint involves this point and is near mouse, kill it
+                        if (c.p1 === p || c.p2 === p) {
+                            const midX = (c.p1.x + c.p2.x) / 2;
+                            const midY = (c.p1.y + c.p2.y) / 2;
+                            const mdx = midX - mouse.x;
+                            const mdy = midY - mouse.y;
+                            if (mdx * mdx + mdy * mdy < MOUSE_RADIUS * MOUSE_RADIUS) {
+                                c.active = false;
+                            }
+                        }
+                    }
+                } else {
+                    // Dragging mode: move points towards mouse
+                    p.x = mouse.x;
+                    p.y = mouse.y;
+                }
+            }
+        }
+    }
+
+    // 3. Satisfy constraints (Relaxation)
+    for (let i = 0; i < ITERATIONS; i++) {
+        for (const c of constraints) {
+            c.solve();
+        }
+    }
+
+    // 4. Cleanup inactive constraints (optional, but keeps array clean)
+    // For performance in a single-file demo, we just skip them in solve()
+}
+
+function draw() {
+    // Clear background
+    ctx.fillStyle = '#1a1a1a';
+    ctx.fillRect(0, 0, width, height);
+
+    // Draw cloth surface (triangles)
+    ctx.beginPath();
+    ctx.strokeStyle = '#4a9eff';
+    ctx.lineWidth = 0.5;
+
+    // We draw the constraints as lines to visualize the mesh
+    for (const c of constraints) {
+        if (!c.active) continue;
+        ctx.moveTo(c.p1.x, c.p1.y);
+        ctx.lineTo(c.p2.x, c.p2.y);
+    }
+    ctx.stroke();
+
+    // Draw shaded quads for a more "fabric" look (optional, can be heavy)
+    // To keep it fast and clean, we'll just draw the lines with a slight color variation
+    // or use a single stroke. For high performance, we draw lines.
+}
+
+function loop() {
+    update();
+    draw();
+    requestAnimationFrame(loop);
+}
+
+// Event Listeners
+window.addEventListener('resize', () => {
+    // We don't re-init on resize to prevent cloth from jumping, 
+    // but we update canvas dimensions.
+    resize();
+});
+
+window.addEventListener('mousedown', (e) => {
+    mouse.isDown = true;
+    mouse.isRightClick = (e.button === 2);
+});
+
+window.addEventListener('mouseup', () => {
+    mouse.isDown = false;
+    mouse.isRightClick = false;
+});
+
+window.addEventListener('mousemove', (e) => {
+    mouse.prevX = mouse.x;
+    mouse.prevY = mouse.y;
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+});
+
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'Shift') mouse.isShift = true;
+});
+
+window.addEventListener('keyup', (e) => {
+    if (e.key === 'Shift') mouse.isShift = false;
+});
+
+// Prevent context menu on right click so we can use it for tearing
+window.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+});
+
+// Start simulation
+init();
+loop();
+
+</script>
+</body>
+</html>

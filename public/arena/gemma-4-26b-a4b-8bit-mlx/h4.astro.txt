@@ -1,0 +1,333 @@
+<!-- 
+Usage Example:
+<PricingSection 
+  heading="Scalable Solutions for Federal Procurement"
+  subheading="Choose the plan that fits your agency's compliance and scale requirements."
+  tiers={[
+    {
+      name: "Agency Starter",
+      priceMonthly: 0,
+      features: ["Up to 5 users", "Standard compliance reporting", "Email support", "Basic audit logs"],
+      ctaLabel: "Start Free",
+      ctaHref: "/signup/starter"
+    },
+    {
+      name: "Professional",
+      priceMonthly: 499,
+      features: ["Up to 50 users", "FedRAMP Moderate readiness", "Advanced analytics", "Priority support", "API Access"],
+      highlighted: true,
+      ctaLabel: "Get Professional",
+      ctaHref: "/signup/pro"
+    },
+    {
+      name: "Enterprise",
+      priceMonthly: null,
+      features: ["Unlimited users", "Full FedRAMP High compliance", "Dedicated account manager", "Custom integrations", "On-premise options"],
+      ctaLabel: "Contact Sales",
+      ctaHref: "/contact"
+    }
+  ]}
+/>
+-->
+
+---
+/**
+ * PricingSection.astro
+ * A high-performance, zero-JS pricing component for federal SaaS products.
+ */
+
+interface Tier {
+  name: string;
+  priceMonthly: number | null;
+  features: string[];
+  highlighted?: boolean;
+  ctaLabel: string;
+  ctaHref: string;
+}
+
+interface Props {
+  heading: string;
+  subheading?: string;
+  tiers?: Tier[];
+}
+
+const {
+  heading = "Simple, Transparent Pricing",
+  subheading = "Scalable solutions for federal agencies and contractors.",
+  tiers = [
+    {
+      name: "Starter",
+      priceMonthly: 0,
+      features: ["Basic reporting", "Standard security", "Email support"],
+      ctaLabel: "Get Started",
+      ctaHref: "#"
+    },
+    {
+      name: "Pro",
+      priceMonthly: 299,
+      features: ["Advanced analytics", "FedRAMP readiness", "Priority support"],
+      highlighted: true,
+      ctaLabel: "Go Pro",
+      ctaHref: "#"
+    },
+    {
+      name: "Enterprise",
+      priceMonthly: null,
+      features: ["Custom compliance", "Dedicated support", "Full API access"],
+      ctaLabel: "Contact Us",
+      ctaHref: "#"
+    }
+  ]
+} = Astro.props;
+
+const currencyFormatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  maximumFractionDigits: 0,
+});
+
+// Pre-format prices at build time to ensure zero client-side JS
+const processedTiers = tiers.map((tier) => ({
+  ...tier,
+  displayPrice: tier.priceMonthly !== null 
+    ? currencyFormatter.format(tier.priceMonthly) 
+    : "Contact us",
+}));
+---
+
+<section class="pricing-container" aria-labelledby="pricing-heading">
+  <header class="pricing-header">
+    <h2 id="pricing-heading" class="pricing-title">{heading}</h2>
+    {subheading && <p class="pricing-subheading">{subheading}</p>}
+  </header>
+
+  <div class="tiers-grid">
+    {processedTiers.map((tier) => (
+      <article 
+        class:list={[
+          "tier-card", 
+          { "tier-card--highlighted": tier.highlighted }
+        ]}
+      >
+        {tier.highlighted && (
+          <div class="badge" aria-label="Most popular plan">
+            Most popular
+          </div>
+        )}
+
+        <div class="tier-content">
+          <h3 class="tier-name">{tier.name}</h3>
+          <div class="tier-price" aria-label={`Price: ${tier.displayPrice} per month`}>
+            {tier.priceMonthly !== null && <span class="currency-symbol">$</span>}
+            <span class="price-value">{tier.displayPrice.replace('$', '')}</span>
+            {tier.priceMonthly !== null && <span class="price-period">/mo</span>}
+          </div>
+
+          <ul class="tier-features" aria-label={`${tier.name} features`}>
+            {tier.features.map((feature) => (
+              <li>
+                <svg 
+                  class="feature-icon" 
+                  viewBox="0 0 20 20" 
+                  fill="currentColor" 
+                  aria-hidden="true"
+                >
+                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="tier-actions">
+          <a href={tier.ctaHref} class:list={["cta-button", { "cta-button--primary": tier.highlighted }]}>
+            {tier.ctaLabel}
+          </a>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  /* Scoped CSS Variables for a professional Federal/SaaS aesthetic */
+  .pricing-container {
+    --color-primary: #0f172a; /* Slate 900 */
+    --color-accent: #2563eb;  /* Blue 600 */
+    --color-accent-hover: #1d4ed8;
+    --color-text-main: #334155; /* Slate 700 */
+    --color-text-muted: #64748b; /* Slate 500 */
+    --color-bg: #f8fafc;       /* Slate 50 */
+    --color-white: #ffffff;
+    --color-border: #e2e8f0;   /* Slate 200 */
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+    
+    padding: 4rem 1.5rem;
+    background-color: var(--color-bg);
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .pricing-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 4rem auto;
+  }
+
+  .pricing-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    letter-spacing: -0.025em;
+  }
+
+  .pricing-subheading {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  .tiers-grid {
+    display: grid;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* Responsive grid: 3 columns on desktop, stacks automatically via minmax */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+
+  .tier-card {
+    position: relative;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .tier-card--highlighted {
+    border: 2px solid var(--color-accent);
+    box-shadow: var(--shadow-lg);
+    transform: scale(1.05);
+    z-index: 1;
+  }
+
+  /* Badge styling */
+  .badge {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--color-accent);
+    color: white;
+    padding: 0.25rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .tier-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+  }
+
+  .tier-price {
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: baseline;
+    color: var(--color-primary);
+  }
+
+  .price-value {
+    font-size: 3rem;
+    font-weight: 800;
+  }
+
+  .currency-symbol, .price-period {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+  }
+
+  .tier-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2.5rem 0;
+    flex-grow: 1;
+  }
+
+  .tier-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    color: var(--color-text-main);
+    font-size: 0.95rem;
+  }
+
+  .feature-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  .tier-actions {
+    margin-top: auto;
+  }
+
+  .cta-button {
+    display: block;
+    text-align: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease, outline 0.1s ease;
+    border: 1px solid var(--color-border);
+    color: var(--color-primary);
+  }
+
+  .cta-button--primary {
+    background-color: var(--color-accent);
+    color: white;
+    border-color: var(--color-accent);
+  }
+
+  .cta-button:hover {
+    background-color: #f1f5f9;
+  }
+
+  .cta-button--primary:hover {
+    background-color: var(--color-accent-hover);
+  }
+
+  /* Accessibility: Visible focus states */
+  .cta-button:focus-visible,
+  .tier-card:focus-within {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 4px;
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 768px) {
+    .tier-card--highlighted {
+      transform: none; /* Remove scale on mobile to prevent overflow */
+    }
+    
+    .pricing-title {
+      font-size: 2rem;
+    }
+
+    .tiers-grid {
+      grid-template-columns: 1fr; /* Force single column on small screens */
+    }
+  }
+</style>

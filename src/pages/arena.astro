@@ -1,27 +1,256 @@
 ---
 import Base from '../layouts/Base.astro';
+import { data, fmt1 } from '../lib/data.js';
+
+const bySlug = Object.fromEntries(data.models.map((m) => [m.slug, m]));
+
+// Field order matches the 1H static leaderboard.
+const FIELD = [
+  'qwen3.8-27b-q6-k-gguf',
+  'qwen3.6-27b-dense-8bit-mlx',
+  'qwen3.6-35b-a3b-4bit-mlx',
+  'gemma-4-26b-a4b-8bit-mlx',
+];
+
+interface Entry {
+  slug: string;
+  file: string;         // filename under /arena/<slug>/
+  runnable: boolean;    // false => source view (Astro component)
+  verdicts?: string[];  // browser-verification article statements only
+  h5Score?: string;     // per-test score, only where the article states it
+  note?: string;
+}
+
+interface Section {
+  id: string;
+  title: string;
+  blurb: string;
+  fieldNote?: string;
+  entries: Entry[];
+}
+
+const sections: Section[] = [
+  {
+    id: 'h1',
+    title: 'H1 · Arcade game',
+    blurb: 'A one-shot canvas arcade game, played as shipped.',
+    fieldNote:
+      'Browser verification reshuffled this podium: the in-browser winner was the 35B MoE, not the static leader.',
+    entries: [
+      { slug: FIELD[0], file: 'h1.html', runnable: true, verdicts: ['Browser check: the game plays great — static score and reality agree.'] },
+      { slug: FIELD[1], file: 'h1.html', runnable: true },
+      { slug: FIELD[2], file: 'h1.html', runnable: true, verdicts: ['Browser check: the in-browser winner of the game test.'] },
+      { slug: FIELD[3], file: 'h1.html', runnable: true },
+    ],
+  },
+  {
+    id: 'h2',
+    title: 'H2 · Cloth simulation',
+    blurb: 'A verlet cloth sim — an r/LocalLLaMA favorite. Try to pull the cloth with your mouse.',
+    fieldNote:
+      'Browser verification: the cloth interaction failed 0-for-4 across the entire field (worst case: the cloth disappears on click). The cloth renders and hangs; the mouse is where it breaks.',
+    entries: [
+      { slug: FIELD[0], file: 'h2.html', runnable: true, verdicts: ['Browser check: renders and hangs beautifully, but it won’t pull with the mouse and tearing behaves oddly — likely a mouse-coordinate/device-pixel-ratio mapping bug.'] },
+      { slug: FIELD[1], file: 'h2.html', runnable: true },
+      { slug: FIELD[2], file: 'h2.html', runnable: true },
+      { slug: FIELD[3], file: 'h2.html', runnable: true },
+    ],
+  },
+  {
+    id: 'h3',
+    title: 'H3 · Parallax car — community prompt',
+    blurb: 'The community parallax-car prompt, run verbatim — grammar quirks and all — for public comparability.',
+    fieldNote: 'Browser verification: two of the four models drew the car backwards.',
+    entries: [
+      { slug: FIELD[0], file: 'h3.html', runnable: true, verdicts: ['Browser check: the scene scrolls correctly, but the car body faces left while motion and headlights point right.'] },
+      { slug: FIELD[1], file: 'h3.html', runnable: true },
+      { slug: FIELD[2], file: 'h3.html', runnable: true },
+      { slug: FIELD[3], file: 'h3.html', runnable: true, verdicts: ['Browser check: the car test’s overall pick — despite a mirrored body and missing headlights, the rest of its scene held together best.'] },
+    ],
+  },
+  {
+    id: 'h4',
+    title: 'H4 · Pricing component',
+    blurb:
+      'A static-site pricing section. Each model shipped an Astro component — source, not a standalone page — so this test is shown as the exact file the model wrote, viewable but not runnable on its own.',
+    entries: [
+      { slug: FIELD[0], file: 'h4.astro.txt', runnable: false },
+      { slug: FIELD[1], file: 'h4.astro.txt', runnable: false },
+      { slug: FIELD[2], file: 'h4.astro.txt', runnable: false },
+      { slug: FIELD[3], file: 'h4.astro.txt', runnable: false },
+    ],
+  },
+  {
+    id: 'h5',
+    title: 'H5 · Cloth, loose prompt',
+    blurb:
+      'The community’s loose cloth prompt, verbatim — “think it through… simulate everything before you write a line of code”. A design-judgment axis rather than a spec axis; scored separately from the 1H/80 total.',
+    entries: [
+      { slug: FIELD[0], file: 'h5.html', runnable: true, h5Score: '17/20',
+        note: 'This artifact is the low-reasoning-effort rerun. At its production medium effort the model stalled outright — 24,575 reasoning tokens, 22.7 minutes, zero-token answer — so there was nothing to ship from that run.' },
+      { slug: FIELD[1], file: 'h5.html', runnable: true, h5Score: '18/20' },
+      { slug: FIELD[2], file: 'h5.html', runnable: true, h5Score: '14/20' },
+      { slug: FIELD[3], file: 'h5.html', runnable: true, h5Score: '15/20' },
+    ],
+  },
+];
 ---
 <Base
   title="Arena"
-  description="Playable artifacts from the Live axis — each build embedded next to its score. Coming soon."
+  description="Every Live-axis build embedded exactly as the model wrote it — one file, no edits. Play the artifacts and judge them with your own hands."
 >
   <div class="page-head">
     <h1>Arena</h1>
     <p class="lede">
-      Playable artifacts from the Live axis land here — each build embedded next to its score.
+      Every Live-axis build ships here exactly as the model wrote it — one file, no edits.
+      Static scores grade the code; the browser grades the truth.
     </p>
   </div>
 
-  <div class="stub">
-    <h2>Under construction — honestly</h2>
+  <div class="arena-callout">
     <p>
-      The Live axis already runtime-verifies one-shot builds in a real browser
-      (see <a href="/gauntlet#axis-l">methodology</a>). The Arena is where those
-      artifacts become playable: the thing the model built, embedded on the page,
-      right next to the score it earned. You judge it with your own hands.
+      <strong>Read the round first:</strong>
+      <a href="/rounds/browser-verification/">79/80 on Paper, Cloth Won't Pull in the Browser</a>
+      — the writeup behind these artifacts: a near-perfect static score, then a human loaded the
+      files. Every browser-verification verdict quoted below comes from that article.
     </p>
-    <p style="color:var(--muted);font-size:13.5px;">
-      Nothing to play yet. When there is, it will be here — not before.
+    <p class="arena-callout-sub">
+      Artifacts run in sandboxed iframes (scripts only). Suite totals shown are the static 1H
+      score out of 80; per-test static scores aren't published, so none are shown.
     </p>
   </div>
+
+  {sections.map((section) => (
+    <section class="arena-section" id={section.id}>
+      <h2>{section.title}</h2>
+      <p class="arena-blurb">{section.blurb}</p>
+      {section.fieldNote && <p class="arena-fieldnote">{section.fieldNote}</p>}
+      <div class="arena-grid">
+        {section.entries.map((e) => {
+          const m = bySlug[e.slug];
+          const src = `/arena/${e.slug}/${e.file}`;
+          const total = m.suites?.['1h']?.score_total;
+          return (
+            <article class="arena-card">
+              <header>
+                <h3><a href={`/models/${e.slug}/`}>{m.name}</a></h3>
+                <div class="arena-card-meta">
+                  {total != null && <span class="arena-score">1H suite: {fmt1(total)}/80</span>}
+                  {e.h5Score && <span class="arena-score h5">H5: {e.h5Score}</span>}
+                  <a class="arena-open" href={src} target="_blank" rel="noopener">
+                    {e.runnable ? 'Open artifact ↗' : 'Open source ↗'}
+                  </a>
+                </div>
+              </header>
+              {e.verdicts && e.verdicts.map((v) => <p class="arena-verdict">{v}</p>)}
+              {e.note && <p class="arena-note">{e.note}</p>}
+              <div class="arena-frame">
+                <iframe
+                  loading="lazy"
+                  sandbox="allow-scripts"
+                  src={src}
+                  title={`${m.name} — ${section.title}${e.runnable ? '' : ' (source view)'}`}
+                ></iframe>
+              </div>
+              {!e.runnable && (
+                <p class="arena-note">Astro component source, shown as plain text — exactly the file the model produced.</p>
+              )}
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  ))}
 </Base>
+
+<style>
+  .arena-callout {
+    background: var(--bg-card);
+    border: 1px solid rgba(37, 99, 235, 0.45);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 26px 0 8px;
+  }
+  .arena-callout p { margin: 0 0 8px; color: var(--text-dim); }
+  .arena-callout p:last-child { margin-bottom: 0; }
+  .arena-callout-sub { font-size: 13px; color: var(--muted); }
+
+  .arena-section { margin: 44px 0 0; }
+  .arena-section h2 {
+    font-size: 22px;
+    margin: 0 0 6px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-soft);
+  }
+  .arena-blurb { color: var(--text-dim); margin: 0 0 6px; max-width: 760px; }
+  .arena-fieldnote {
+    color: var(--muted);
+    font-size: 13.5px;
+    margin: 0 0 4px;
+    max-width: 760px;
+  }
+  .arena-fieldnote::before { content: '\25B8 '; color: var(--accent-bright); }
+
+  .arena-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    gap: 18px;
+    margin: 18px 0 0;
+  }
+  @media (max-width: 480px) {
+    .arena-grid { grid-template-columns: 1fr; }
+  }
+
+  .arena-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 16px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .arena-card h3 { font-size: 15.5px; margin: 0 0 6px; }
+  .arena-card h3 a { color: #f1f5f9; }
+  .arena-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 14px;
+    font-size: 12.5px;
+  }
+  .arena-score {
+    font-family: var(--mono);
+    color: var(--text-dim);
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 2px 10px;
+  }
+  .arena-score.h5 { border-color: rgba(34, 197, 94, 0.4); }
+  .arena-open { font-weight: 500; white-space: nowrap; }
+
+  .arena-verdict {
+    margin: 0;
+    font-size: 13.5px;
+    color: var(--text-dim);
+    border-left: 3px solid var(--accent);
+    padding-left: 10px;
+  }
+  .arena-note { margin: 0; font-size: 12.5px; color: var(--muted); }
+
+  .arena-frame {
+    aspect-ratio: 16 / 10;
+    background: #0b1020;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .arena-frame iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #0b1020;
+  }
+</style>

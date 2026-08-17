@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cloth Simulator</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #10141c;
+  }
+  canvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    cursor: crosshair;
+  }
+  #hint {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    color: rgba(255,255,255,0.75);
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    background: rgba(0,0,0,0.35);
+    padding: 10px 14px;
+    border-radius: 8px;
+    pointer-events: none;
+    user-select: none;
+  }
+  #hint b { color: #ffd27a; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="hint">
+  <b>Left-drag</b> &mdash; pull the cloth<br>
+  <b>Right-drag</b> (or <b>Shift</b>+drag) &mdash; tear the cloth<br>
+  Overstretched threads snap on their own
+</div>
+<script>
+(function () {
+  "use strict";
+
+  const canvas = document.getElementById("c");
+  const ctx = canvas.getContext("2d");
+
+  // ---------- Configuration ----------
+  const COLS = 40;                 // points per row  (>= 30)
+  const ROWS = 25;                 // points per column (>= 20)
+  const ITERATIONS = 12;           // constraint relaxation passes per frame
+  const GRAVITY = 0.55;            // px / frame^2
+  const DAMPING = 0.985;           // air drag / velocity retention
+  const TEAR_RATIO = 1.9;          // constraint breaks when stretched beyond rest * ratio
+  const MOUSE_RADIUS = 60;         // influence radius for drag / tear
+  const MOUSE_STRENGTH = 0.35;     // how strongly points are pulled toward cursor
+  const FIXED_DT = 1 / 60;         // fixed physics timestep (seconds)
+
+  // ---------- State ----------
+  let W = 0, H = 0;
+  let points = [];
+  let constraints = [];
+  let spacing = 0;
+  let clothX = 0, clothY = 0;
+
+  const mouse = { x: 0, y: 0, down: false, tear: false, inside: false };
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    buildCloth();
+  }
+
+  function buildCloth() {
+    points = [];
+    constraints = [];
+
+    // Fit cloth to viewport with margins
+    const marginX = Math.max(40, W * 0.12);
+    const marginY = 60;
+    const clothW = W - marginX * 2;
+    const clothH = Math.min(H - marginY * 2, clothW * 0.75);
+    spacing = clothW / (COLS - 1);
+    clothX = marginX;
+    clothY = marginY;
+
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        const x = clothX + c * spacing;
+        const y = clothY + r * spacing;
+        points.push({
+          x: x, y: y,
+          px: x, py: y,       // previous position (Verlet)
+          pinned: (r === 0)   // top row pinned
+        });
+      }
+    }
+
+    const idx = (r, c) => r * COLS + c;
+
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        // structural: right neighbor
+        if (c < COLS - 1) {
+          constraints.push(makeConstraint(idx(r, c), idx(r, c + 1), spacing));
+        }
+        // structural: down neighbor
+        if (r < ROWS - 1) {
+          constraints.push(makeConstraint(idx(r, c), idx(r + 1, c), spacing));
+        }
+        // shear: diagonals for extra stability
+        if (c < COLS - 1 && r < ROWS - 1) {
+          const diag = spacing * Math.SQRT2;
+          constraints.push(makeConstraint(idx(r, c), idx(r + 1, c + 1), diag));
+          constraints.push(makeConstraint(idx(r, c + 1), idx(r + 1, c), diag));
+        }
+      }
+    }
+  }
+
+  function makeConstraint(a, b, rest) {
+    return { a: a, b: b, rest: rest, broken: false };
+  }
+
+  // ---------- Physics ----------
+  function step() {
+    // Verlet integration
+    for (let i = 0; i < points.length; i++) {
+      const p = points[i];
+      if (p.pinned) continue;
+
+      const vx = (p.x - p.px) * DAMPING;
+      const vy = (p.y - p.py) * DAMPING;
+
+      p.px = p.x;
+      p.py = p.y;
+      p.x += vx;
+      p.y += vy + GRAVITY;
+    }
+
+    // Mouse drag: pull nearby points toward cursor
+    if (mouse.down && !mouse.tear && mouse.inside) {
+      const r2 = MOUSE_RADIUS * MOUSE_RADIUS;
+      for (let i = 0; i < points.length; i++) {
+        const p = points[i];
+        if (p.pinned) continue;
+        const dx = mouse.x - p.x;
+        const dy = mouse.y - p.y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < r2) {
+          // stronger effect closer to cursor
+          const t = 1 - Math.sqrt(d2) / MOUSE_RADIUS;
+          p.x += dx * MOUSE_STRENGTH * t;
+          p.y += dy * MOUSE_STRENGTH * t;
+        }
+      }
+    }
+
+    // Constraint relaxation (Gauss-Seidel style, multiple passes)
+    for (let iter = 0; iter < ITERATIONS; iter++) {
+      for (let i = 0; i < constraints.length; i++) {
+        const con = constraints[i];
+        if (con.broken) continue;
+
+        const p1 = points[con.a];
+        const p2 = points[con.b];
+
+        const dx = p2.x - p1.x;
+        const dy = p2.y - p1.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist === 0) continue;
+
+        // auto-tear when overstretched
+        if (dist > con.rest * TEAR_RATIO) {
+          con.broken = true;
+          continue;
+        }
+
+        const diff = (dist - con.rest) / dist;
+        const ox = dx * diff * 0.5;
+        const oy = dy * diff * 0.5;
+
+        if (!p1.pinned) { p1.x += ox; p1.y += oy; }
+        if (!p2.pinned) { p2.x -= ox; p2.y -= oy; }
+      }
+    }
+
+    // Mouse tear: cut constraints near cursor
+    if (mouse.down && mouse.tear && mouse.inside) {
+      const r2 = MOUSE_RADIUS * MOUSE_RADIUS;
+      for (let i = 0; i < constraints.length; i++) {
+        const con = constraints[i];
+        if (con.broken) continue;
+        const p1 = points[con.a];
+        const p2 = points[con.b];
+        const mx = (p1.x + p2.x) * 0.5;
+        const my = (p1.y + p2.y) * 0.5;
+        const dx = mouse.x - mx;
+        const dy = mouse.y - my;
+        if (dx * dx + dy * dy < r2) {
+          con.broken = true;
+        }
+      }
+    }
+  }
+
+  // ---------- Rendering ----------
+  function render() {
+    ctx.clearRect(0, 0, W, H);
+
+    // background gradient
+    const g = ctx.createLinearGradient(0, 0, 0, H);
+    g.addColorStop(0, "#141a26");
+    g.addColorStop(1, "#0b0e14");
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, W, H);
+
+    // --- shaded quads ---
+    // For each cell, compute a pseudo-normal from the two diagonals and
+    // shade by how "faced" it is toward the viewer.
+    for (let r = 0; r < ROWS - 1; r++) {
+      for (let c = 0; c < COLS - 1; c++) {
+        const i00 = r * COLS + c;
+        const i10 = i00 + 1;
+        const i01 = i00 + COLS;
+        const i11 = i01 + 1;
+
+        const a = points[i00], b = points[i10], d = points[i01], e = points[i11];
+
+        // diagonals
+        const d1x = e.x - a.x, d1y = e.y - a.y;
+        const d2x = d.x - b.x, d2y = d.y - b.y;
+
+        // cross product z-component (pseudo depth)
+        const cross = d1x * d2y - d1y * d2x;
+        const len1 = Math.sqrt(d1x * d1x + d1y * d1y) || 1;
+        const len2 = Math.sqrt(d2x * d2x + d2y * d2y) || 1;
+        const sin = cross / (len1 * len2); // -1..1, 0 = flat facing viewer
+
+        // shade: brighter when flat, darker when folded
+        const shade = 0.55 + 0.45 * Math.abs(sin);
+        const hue = 210 + sin * 25;
+        const light = 30 + 35 * shade;
+
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.lineTo(e.x, e.y);
+        ctx.lineTo(d.x, d.y);
+        ctx.closePath();
+        ctx.fillStyle = "hsl(" + hue + ", 45%, " + light + "%)";
+        ctx.fill();
+      }
+    }
+
+    // --- constraint lines ---
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.28)";
+    ctx.beginPath();
+    for (let i = 0; i < constraints.length; i++) {
+      const con = constraints[i];
+      if (con.broken) continue;
+      const p1 = points[con.a];
+      const p2 = points[con.b];
+      ctx.moveTo(p1.x, p1.y);
+      ctx.lineTo(p2.x, p2.y);
+    }
+    ctx.stroke();
+
+    // --- pins ---
+    ctx.fillStyle = "#ffd27a";
+    for (let c = 0; c < COLS; c++) {
+      const p = points[c];
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // --- mouse cursor indicator ---
+    if (mouse.inside) {
+      ctx.beginPath();
+      ctx.arc(mouse.x, mouse.y, MOUSE_RADIUS, 0, Math.PI * 2);
+      ctx.strokeStyle = mouse.tear ? "rgba(255, 90, 90, 0.5)" : "rgba(120, 200, 255, 0.35)";
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+  }
+
+  // ---------- Main loop (fixed timestep, 60fps) ----------
+  let last = performance.now();
+  let acc = 0;
+
+  function frame(now) {
+    let dt = (now - last) / 1000;
+    last = now;
+    if (dt > 0.1) dt = 0.1; // avoid spiral of death after tab switch
+    acc += dt;
+
+    while (acc >= FIXED_DT) {
+      step();
+      acc -= FIXED_DT;
+    }
+
+    render();
+    requestAnimationFrame(frame);
+  }
+
+  // ---------- Input ----------
+  function updateMouse(e) {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+    mouse.inside = true;
+  }
+
+  canvas.addEventListener("mousemove", function (e) {
+    updateMouse(e);
+    mouse.tear = e.buttons & 2 || e.shiftKey;
+  });
+
+  canvas.addEventListener("mousedown", function (e) {
+    updateMouse(e);
+    mouse.down = true;
+    mouse.tear = (e.button === 2) || e.shiftKey;
+    e.preventDefault();
+  });
+
+  window.addEventListener("mouseup", function () {
+    mouse.down = false;
+    mouse.tear = false;
+  });
+
+  canvas.addEventListener("mouseleave", function () {
+    mouse.inside = false;
+  });
+
+  canvas.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+  });
+
+  // Touch support (bonus): drag to pull, two-finger to tear
+  canvas.addEventListener("touchstart", function (e) {
+    const t = e.touches[0];
+    updateMouse(t);
+    mouse.down = true;
+    mouse.tear = e.touches.length > 1;
+    e.preventDefault();
+  }, { passive: false });
+
+  canvas.addEventListener("touchmove", function (e) {
+    const t = e.touches[0];
+    updateMouse(t);
+    mouse.tear = e.touches.length > 1;
+    e.preventDefault();
+  }, { passive: false });
+
+  canvas.addEventListener("touchend", function () {
+    mouse.down = false;
+    mouse.tear = false;
+  });
+
+  window.addEventListener("resize", resize);
+
+  // ---------- Go ----------
+  resize();
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

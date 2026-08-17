@@ -1,0 +1,351 @@
+---
+// Usage example:
+// <PricingSection
+//   heading="Choose Your Procurement Plan"
+//   subheading="Transparent pricing for agencies of every size"
+//   tiers={[
+//     {
+//       name: "Starter",
+//       priceMonthly: 299,
+//       features: ["Up to 50 solicitations/year", "Basic compliance checks", "Email support"],
+//       ctaLabel: "Start free trial",
+//       ctaHref: "/signup?plan=starter"
+//     },
+//     {
+//       name: "Professional",
+//       priceMonthly: 799,
+//       features: ["Unlimited solicitations", "Advanced FAR compliance", "Dedicated account manager", "API access"],
+//       highlighted: true,
+//       ctaLabel: "Start free trial",
+//       ctaHref: "/signup?plan=professional"
+//     },
+//     {
+//       name: "Enterprise",
+//       priceMonthly: null,
+//       features: ["Custom integrations", "On-premise deployment", "24/7 phone support", "SLA guarantees"],
+//       ctaLabel: "Contact sales",
+//       ctaHref: "/contact"
+//     }
+//   ]}
+// />
+---
+
+interface Tier {
+  name: string;
+  priceMonthly: number | null;
+  features: string[];
+  highlighted?: boolean;
+  ctaLabel: string;
+  ctaHref: string;
+}
+
+interface Props {
+  heading: string;
+  subheading?: string;
+  tiers: Tier[];
+}
+
+const {
+  heading = "Choose Your Procurement Plan",
+  subheading = "Transparent pricing for agencies of every size",
+  tiers = [
+    {
+      name: "Starter",
+      priceMonthly: 299,
+      features: [
+        "Up to 50 solicitations per year",
+        "Basic FAR compliance checks",
+        "Email support",
+        "Standard reporting"
+      ],
+      ctaLabel: "Start free trial",
+      ctaHref: "/signup?plan=starter"
+    },
+    {
+      name: "Professional",
+      priceMonthly: 799,
+      features: [
+        "Unlimited solicitations",
+        "Advanced FAR compliance engine",
+        "Dedicated account manager",
+        "API access",
+        "Custom workflow automation"
+      ],
+      highlighted: true,
+      ctaLabel: "Start free trial",
+      ctaHref: "/signup?plan=professional"
+    },
+    {
+      name: "Enterprise",
+      priceMonthly: null,
+      features: [
+        "Custom integrations",
+        "On-premise deployment option",
+        "24/7 priority phone support",
+        "Guaranteed SLA",
+        "FedRAMP authorization support"
+      ],
+      ctaLabel: "Contact sales",
+      ctaHref: "/contact"
+    }
+  ]
+}: Props = Astro.props;
+
+const currencyFormatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0
+});
+
+const formatPrice = (price: number | null): string => {
+  if (price === null) return 'Contact us';
+  return currencyFormatter.format(price);
+};
+---
+
+<section class="pricing-section" aria-labelledby="pricing-heading">
+  <header class="pricing-header">
+    <h2 id="pricing-heading" class="pricing-heading">{heading}</h2>
+    {subheading && <p class="pricing-subheading">{subheading}</p>}
+  </header>
+
+  <div class="pricing-grid">
+    {tiers.map((tier) => (
+      <article class={`pricing-card ${tier.highlighted ? 'pricing-card--highlighted' : ''}`}>
+        {tier.highlighted && (
+          <span class="pricing-badge" aria-hidden="true">Most popular</span>
+        )}
+        <h3 class="pricing-card__title">
+          {tier.name}
+          {tier.highlighted && <span class="pricing-card__sr-only">Most popular</span>}
+        </h3>
+        <div class="pricing-card__price">
+          <span class="pricing-card__amount">{formatPrice(tier.priceMonthly)}</span>
+          {tier.priceMonthly !== null && (
+            <span class="pricing-card__period">/month</span>
+          )}
+        </div>
+        <ul class="pricing-card__features">
+          {tier.features.map((feature) => (
+            <li class="pricing-card__feature">{feature}</li>
+          ))}
+        </ul>
+        <a
+          href={tier.ctaHref}
+          class={`pricing-card__cta ${tier.highlighted ? 'pricing-card__cta--primary' : 'pricing-card__cta--secondary'}`}
+        >
+          {tier.ctaLabel}
+        </a>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .pricing-section {
+    --pricing-bg: #f8f9fa;
+    --pricing-card-bg: #ffffff;
+    --pricing-card-border: #e2e8f0;
+    --pricing-text-primary: #1a202c;
+    --pricing-text-secondary: #4a5568;
+    --pricing-text-muted: #718096;
+    --pricing-accent: #2563eb;
+    --pricing-accent-hover: #1d4ed8;
+    --pricing-highlight-border: #2563eb;
+    --pricing-highlight-bg: #eff6ff;
+    --pricing-badge-bg: #2563eb;
+    --pricing-badge-text: #ffffff;
+    --pricing-radius: 0.75rem;
+    --pricing-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+    --pricing-shadow-highlight: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --pricing-focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.5);
+
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+    background-color: var(--pricing-bg);
+  }
+
+  .pricing-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .pricing-heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--pricing-text-primary);
+    margin: 0 0 0.75rem;
+    line-height: 1.2;
+  }
+
+  .pricing-subheading {
+    font-size: 1.125rem;
+    color: var(--pricing-text-secondary);
+    margin: 0;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  @media (min-width: 768px) {
+    .pricing-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  .pricing-card {
+    position: relative;
+    background-color: var(--pricing-card-bg);
+    border: 2px solid var(--pricing-card-border);
+    border-radius: var(--pricing-radius);
+    padding: 2rem;
+    box-shadow: var(--pricing-shadow);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pricing-card--highlighted {
+    border-color: var(--pricing-highlight-border);
+    background-color: var(--pricing-highlight-bg);
+    box-shadow: var(--pricing-shadow-highlight);
+    transform: scale(1.02);
+    z-index: 1;
+  }
+
+  @media (min-width: 768px) {
+    .pricing-card--highlighted {
+      transform: scale(1.05);
+    }
+  }
+
+  .pricing-badge {
+    position: absolute;
+    top: -0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--pricing-badge-bg);
+    color: var(--pricing-badge-text);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 1rem;
+    border-radius: 9999px;
+    white-space: nowrap;
+  }
+
+  .pricing-card__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--pricing-text-primary);
+    margin: 0 0 0.5rem;
+  }
+
+  .pricing-card__sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .pricing-card__price {
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+  }
+
+  .pricing-card__amount {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--pricing-text-primary);
+    line-height: 1;
+  }
+
+  .pricing-card__period {
+    font-size: 1rem;
+    color: var(--pricing-text-muted);
+  }
+
+  .pricing-card__features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    flex-grow: 1;
+  }
+
+  .pricing-card__feature {
+    padding: 0.5rem 0;
+    color: var(--pricing-text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    border-bottom: 1px solid var(--pricing-card-border);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .pricing-card__feature:last-child {
+    border-bottom: none;
+  }
+
+  .pricing-card__feature::before {
+    content: "✓";
+    color: var(--pricing-accent);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .pricing-card__cta {
+    display: block;
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    transition: background-color 0.15s ease, box-shadow 0.15s ease;
+    cursor: pointer;
+  }
+
+  .pricing-card__cta--primary {
+    background-color: var(--pricing-accent);
+    color: #ffffff;
+    border: 2px solid var(--pricing-accent);
+  }
+
+  .pricing-card__cta--primary:hover {
+    background-color: var(--pricing-accent-hover);
+    border-color: var(--pricing-accent-hover);
+  }
+
+  .pricing-card__cta--secondary {
+    background-color: transparent;
+    color: var(--pricing-accent);
+    border: 2px solid var(--pricing-accent);
+  }
+
+  .pricing-card__cta--secondary:hover {
+    background-color: var(--pricing-highlight-bg);
+  }
+
+  .pricing-card__cta:focus-visible {
+    outline: none;
+    box-shadow: var(--pricing-focus-ring);
+  }
+</style>

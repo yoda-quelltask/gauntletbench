@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Verlet Cloth Simulation</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { overflow: hidden; background: #0f0f1a; }
+    canvas { display: block; cursor: crosshair; }
+    #hud {
+        position: fixed;
+        top: 16px;
+        left: 16px;
+        color: rgba(255, 255, 255, 0.55);
+        font: 13px/1.6 'SF Mono', 'Fira Code', monospace;
+        pointer-events: none;
+        user-select: none;
+    }
+</style>
+</head>
+<body>
+<div id="hud">
+    drag &mdash; grab cloth<br>
+    right-click &mdash; cut<br>
+    R &mdash; reset
+</div>
+<canvas id="c"></canvas>
+<script>
+(() => {
+    "use strict";
+
+    // ─── Configuration ───────────────────────────────────────────────
+    const COLS = 42;
+    const ROWS = 28;
+    const SPACING = 14;
+    const GRAVITY = 0.55;
+    const DAMPING = 0.985;
+    const ITERATIONS = 6;
+    const GRAB_RADIUS = 50;
+    const CUT_RADIUS = 28;
+    const PIN_COUNT = 8; // number of pinned points along the top edge
+
+    // ─── Canvas Setup ────────────────────────────────────────────────
+    const canvas = document.getElementById("c");
+    const ctx = canvas.getContext("2d");
+
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    // ─── Data Structures ─────────────────────────────────────────────
+    // Particle: { x, y, px, py, pinned }
+    // Constraint: { a, b, rest, active }  (indices into particles array)
+
+    let particles = [];
+    let constraints = [];
+
+    function createCloth() {
+        particles = [];
+        constraints = [];
+
+        const offsetX = (canvas.width - (COLS - 1) * SPACING) / 2;
+        const offsetY = 80;
+
+        // Create particles in a grid
+        for (let row = 0; row < ROWS; row++) {
+            for (let col = 0; col < COLS; col++) {
+                const x = offsetX + col * SPACING;
+                const y = offsetY + row * SPACING;
+                particles.push({
+                    x, y,
+                    px: x, py: y,
+                    pinned: false
+                });
+            }
+        }
+
+        // Pin top edge at evenly spaced intervals
+        for (let i = 0; i < PIN_COUNT; i++) {
+            const col = Math.round(i * (COLS - 1) / (PIN_COUNT - 1));
+            particles[col].pinned = true;
+        }
+
+        // Structural constraints (horizontal + vertical)
+        for (let row = 0; row < ROWS; row++) {
+            for (let col = 0; col < COLS; col++) {
+                const idx = row * COLS + col;
+
+                // Right neighbor
+                if (col < COLS - 1) {
+                    constraints.push({ a: idx, b: idx + 1, rest: SPACING, active: true });
+                }
+                // Bottom neighbor
+                if (row < ROWS - 1) {
+                    constraints.push({ a: idx, b: idx + COLS, rest: SPACING, active: true });
+                }
+                // Shear (diagonal) constraints for stability
+                const diag = SPACING * Math.SQRT2;
+                if (col < COLS - 1 && row < ROWS - 1) {
+                    constraints.push({ a: idx, b: idx + COLS + 1, rest: diag, active: true });
+                    constraints.push({ a: idx + 1, b: idx + COLS, rest: diag, active: true });
+                }
+            }
+        }
+    }
+
+    // ─── Physics ─────────────────────────────────────────────────────
+    function integrate() {
+        for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            if (p.pinned) continue;
+
+            const vx = (p.x - p.px) * DAMPING;
+            const vy = (p.y - p.py) * DAMPING;
+
+            p.px = p.x;
+            p.py = p.y;
+
+            p.x += vx;
+            p.y += vy + GRAVITY;
+        }
+    }
+
+    function solveConstraints() {
+        for (let iter = 0; iter < ITERATIONS; iter++) {
+            for (let i = 0; i < constraints.length; i++) {
+                const c = constraints[i];
+                if (!c.active) continue;
+
+                const pa = particles[c.a];
+                const pb = particles[c.b];
+
+                const dx = pb.x - pa.x;
+                const dy = pb.y - pa.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist === 0) continue;
+
+                const diff = (dist - c.rest) / dist;
+                const offsetX = dx * diff * 0.5;
+                const offsetY = dy * diff * 0.5;
+
+                if (!pa.pinned && !(grabbed === c.a)) {
+                    pa.x += offsetX;
+                    pa.y += offsetY;
+                }
+                if (!pb.pinned && !(grabbed === c.b)) {
+                    pb.x -= offsetX;
+                    pb.y -= offsetY;
+                }
+            }
+
+            enforcePins();
+        }
+    }
+
+    function enforcePins() {
+        for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            if (p.pinned) {
+                p.x = p.px;
+                p.y = p.py;
+            }
+        }
+        if (grabbed !== -1) {
+            const p = particles[grabbed];
+            p.x = mouseX;
+            p.y = mouseY;
+        }
+    }
+
+    // ─── Mouse Interaction ───────────────────────────────────────────
+    let mouseX = 0;
+    let mouseY = 0;
+    let grabbed = -1;
+
+    function getMousePos(e) {
+        const rect = canvas.getBoundingClientRect();
+        return {
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top
+        };
+    }
+
+    function findClosest(mx, my, radius) {
+        let best = -1;
+        let bestDist = radius * radius;
+        for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            const dx = p.x - mx;
+            const dy = p.y - my;
+            const d = dx * dx + dy * dy;
+            if (d < bestDist) {
+                bestDist = d;
+                best = i;
+            }
+        }
+        return best;
+    }
+
+    function cutCloth(mx, my) {
+        const r2 = CUT_RADIUS * CUT_RADIUS;
+        for (let i = 0; i < constraints.length; i++) {
+            const c = constraints[i];
+            if (!c.active) continue;
+
+            const pa = particles[c.a];
+            const pb = particles[c.b];
+
+            // Check if the constraint's midpoint is within the cut radius
+            const midX = (pa.x + pb.x) * 0.5;
+            const midY = (pa.y + pb.y) * 0.5;
+            const dx = midX - mx;
+            const dy = midY - my;
+
+            if (dx * dx + dy * dy < r2) {
+                c.active = false;
+            }
+        }
+    }
+
+    canvas.addEventListener("mousedown", (e) => {
+        const pos = getMousePos(e);
+        mouseX = pos.x;
+        mouseY = pos.y;
+
+        if (e.button === 0) {
+            grabbed = findClosest(mouseX, mouseY, GRAB_RADIUS);
+        } else if (e.button === 2) {
+            cutCloth(mouseX, mouseY);
+        }
+    });
+
+    canvas.addEventListener("mousemove", (e) => {
+        const pos = getMousePos(e);
+        mouseX = pos.x;
+        mouseY = pos.y;
+    });
+
+    canvas.addEventListener("mouseup", (e) => {
+        if (e.button === 0) {
+            grabbed = -1;
+        }
+    });
+
+    canvas.addEventListener("contextmenu", (e) => e.preventDefault());
+
+    window.addEventListener("keydown", (e) => {
+        if (e.key === "r" || e.key === "R") {
+            createCloth();
+        }
+    });
+
+    // ─── Rendering ───────────────────────────────────────────────────
+    function render() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw cloth as shaded quads
+        for (let row = 0; row < ROWS - 1; row++) {
+            for (let col = 0; col < COLS - 1; col++) {
+                const i00 = row * COLS + col;
+                const i10 = i00 + 1;
+                const i01 = i00 + COLS;
+                const i11 = i01 + 1;
+
+                const p00 = particles[i00];
+                const p10 = particles[i10];
+                const p01 = particles[i01];
+                const p11 = particles[i11];
+
+                // Check if any constraint in this quad is cut
+                // We'll still draw it but with reduced opacity if disconnected
+                // For simplicity, always draw the quad
+
+                // Compute pseudo-normal via cross product of diagonals for shading
+                const dx1 = p11.x - p00.x;
+                const dy1 = p11.y - p00.y;
+                const dx2 = p10.x - p01.x;
+                const dy2 = p10.y - p01.y;
+                const cross = dx1 * dy2 - dy1 * dx2;
+
+                // Rest area for a square quad
+                const restArea = SPACING * SPACING * 2;
+                const shade = Math.max(0, Math.min(1, cross / restArea));
+
+                // Color based on shade
+                const r = Math.floor(40 + shade * 60);
+                const g = Math.floor(60 + shade * 80);
+                const b = Math.floor(120 + shade * 100);
+                const alpha = 0.85 + shade * 0.15;
+
+                ctx.beginPath();
+                ctx.moveTo(p00.x, p00.y);
+                ctx.lineTo(p10.x, p10.y);
+                ctx.lineTo(p11.x, p11.y);
+                ctx.lineTo(p01.x, p01.y);
+                ctx.closePath();
+                ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
+                ctx.fill();
+
+                // Subtle edge
+                ctx.strokeStyle = `rgba(${r + 30}, ${g + 30}, ${b + 40}, 0.3)`;
+                ctx.lineWidth = 0.5;
+                ctx.stroke();
+            }
+        }
+
+        // Draw pinned points
+        ctx.fillStyle = "rgba(255, 200, 100, 0.9)";
+        for (let i = 0; i < particles.length; i++) {
+            if (particles[i].pinned) {
+                ctx.beginPath();
+                ctx.arc(particles[i].x, particles[i].y, 4, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Draw grabbed indicator
+        if (grabbed !== -1) {
+            const p = particles[grabbed];
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 6, 0, Math.PI * 2);
+            ctx.strokeStyle = "rgba(255, 100, 100, 0.8)";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+    }
+
+    // ─── Main Loop ───────────────────────────────────────────────────
+    function step() {
+        integrate();
+        solveConstraints();
+        render();
+        requestAnimationFrame(step);
+    }
+
+    createCloth();
+    step();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verlet Cloth Simulation</title>
+<style>
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0a0a0f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    color: #c0c0c8;
+    overflow: hidden;
+}
+
+canvas {
+    border: 1px solid #1a1a2e;
+    border-radius: 4px;
+    cursor: crosshair;
+    background: #0d0d14;
+}
+
+.controls {
+    margin-top: 16px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.controls label {
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.controls input[type="range"] {
+    width: 100px;
+    accent-color: #6c63ff;
+}
+
+.controls button {
+    background: #6c63ff;
+    color: white;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.controls button:hover {
+    background: #5a52d5;
+}
+
+.info {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #555;
+}
+</style>
+</head>
+<body>
+
+<canvas id="canvas"></canvas>
+
+<div class="controls">
+    <label>Gravity: <input type="range" id="gravitySlider" min="0" max="1" step="0.01" value="0.4"></label>
+    <label>Damping: <input type="range" id="dampingSlider" min="0.9" max="1" step="0.001" value="0.995"></label>
+    <label>Iterations: <input type="range" id="iterSlider" min="1" max="20" step="1" value="8"></label>
+    <button id="resetBtn">Reset Cloth</button>
+    <button id="cutBtn">Cut Mode</button>
+</div>
+<div class="info">Click &amp; drag to interact · Cut mode: drag across to sever constraints</div>
+
+<script>
+/**
+ * Verlet Cloth Simulation
+ *
+ * Uses position-based Verlet integration with iterative constraint solving.
+ * Points store current and previous positions; velocity is implicit.
+ * Constraints enforce fixed distances between point pairs.
+ */
+
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+// --- Configuration ---
+const CONFIG = {
+    canvasWidth: 900,
+    canvasHeight: 600,
+    pointSpacing: 22,
+    cols: 40,
+    rows: 25,
+    gravity: 0.4,
+    damping: 0.995,
+    constraintIterations: 8,
+    mouseRadius: 20,
+    pinTopRows: 2,
+    pointRadius: 2.5,
+    cutRadius: 12,
+};
+
+canvas.width = CONFIG.canvasWidth;
+canvas.height = CONFIG.canvasHeight;
+
+// --- State ---
+let points = [];
+let constraints = [];
+let mouse = { x: 0, y: 0, down: false, dragging: null, cutting: false, lastX: 0, lastY: 0 };
+let cutMode = false;
+
+// --- Point Class ---
+class Point {
+    constructor(x, y, pinned = false) {
+        this.x = x;
+        this.y = y;
+        this.oldX = x;
+        this.oldY = y;
+        this.pinned = pinned;
+        this.mass = 1;
+    }
+
+    update() {
+        if (this.pinned) return;
+
+        const vx = (this.x - this.oldX) * CONFIG.damping;
+        const vy = (this.y - this.oldY) * CONFIG.damping;
+
+        this.oldX = this.x;
+        this.oldY = this.y;
+
+        this.x += vx;
+        this.y += vy + CONFIG.gravity;
+    }
+
+    constrainToBounds() {
+        if (this.pinned) return;
+
+        const w = canvas.width;
+        const h = canvas.height;
+        const r = CONFIG.pointRadius;
+
+        // Floor
+        if (this.y > h - r) {
+            this.y = h - r;
+            // Friction on floor: reduce horizontal velocity
+            const vx = this.x - this.oldX;
+            this.oldX = this.x - vx * 0.7;
+        }
+
+        // Walls
+        if (this.x < r) {
+            this.x = r;
+            const vx = this.x - this.oldX;
+            this.oldX = this.x - vx * 0.7;
+        }
+        if (this.x > w - r) {
+            this.x = w - r;
+            const vx = this.x - this.oldX;
+            this.oldX = this.x - vx * 0.7;
+        }
+
+        // Ceiling
+        if (this.y < r) {
+            this.y = r;
+        }
+    }
+}
+
+// --- Constraint Class ---
+class Constraint {
+    constructor(p1, p2) {
+        this.p1 = p1;
+        this.p2 = p2;
+        const dx = p2.x - p1.x;
+        const dy = p2.y - p1.y;
+        this.restLength = Math.sqrt(dx * dx + dy * dy);
+        this.active = true;
+    }
+
+    solve() {
+        if (!this.active) return;
+
+        const dx = this.p2.x - this.p1.x;
+        const dy = this.p2.y - this.p1.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        // Prevent division by zero
+        if (dist < 0.0001) return;
+
+        const diff = (this.restLength - dist) / dist;
+
+        // Offset each point by half the difference (weighted equally for equal mass)
+        const offsetX = dx * diff * 0.5;
+        const offsetY = dy * diff * 0.5;
+
+        if (!this.p1.pinned) {
+            this.p1.x -= offsetX;
+            this.p1.y -= offsetY;
+        }
+        if (!this.p2.pinned) {
+            this.p2.x += offsetX;
+            this.p2.y += offsetY;
+        }
+    }
+}
+
+// --- Cloth Construction ---
+function createCloth() {
+    points = [];
+    constraints = [];
+
+    const startX = (canvas.width - (CONFIG.cols - 1) * CONFIG.pointSpacing) / 2;
+    const startY = 60;
+
+    // Create grid of points
+    for (let row = 0; row < CONFIG.rows; row++) {
+        for (let col = 0; col < CONFIG.cols; col++) {
+            const x = startX + col * CONFIG.pointSpacing;
+            const y = startY + row * CONFIG.pointSpacing;
+            const pinned = row < CONFIG.pinTopRows;
+            points.push(new Point(x, y, pinned));
+        }
+    }
+
+    // Helper to get point index
+    const idx = (row, col) => row * CONFIG.cols + col;
+
+    // Structural constraints (horizontal and vertical neighbors)
+    for (let row = 0; row < CONFIG.rows; row++) {
+        for (let col = 0; col < CONFIG.cols; col++) {
+            const i = idx(row, col);
+
+            // Right neighbor
+            if (col < CONFIG.cols - 1) {
+                constraints.push(new Constraint(points[i], points[idx(row, col + 1)]));
+            }
+
+            // Bottom neighbor
+            if (row < CONFIG.rows - 1) {
+                constraints.push(new Constraint(points[i], points[idx(row + 1, col)]));
+            }
+        }
+    }
+
+    // Shear constraints (diagonal neighbors) for added stability
+    for (let row = 0; row < CONFIG.rows; row++) {
+        for (let col = 0; col < CONFIG.cols; col++) {
+            const i = idx(row, col);
+
+            // Bottom-right diagonal
+            if (row < CONFIG.rows - 1 && col < CONFIG.cols - 1) {
+                constraints.push(new Constraint(points[i], points[idx(row + 1, col + 1)]));
+            }
+
+            // Bottom-left diagonal
+            if (row < CONFIG.rows - 1 && col > 0) {
+                constraints.push(new Constraint(points[i], points[idx(row + 1, col - 1)]));
+            }
+        }
+    }
+}
+
+// --- Mouse Interaction ---
+function getMousePos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    return {
+        x: (e.clientX - rect.left) * scaleX,
+        y: (e.clientY - rect.top) * scaleY,
+    };
+}
+
+function findNearestPoint(x, y, radius) {
+    let nearest = null;
+    let minDist = radius;
+
+    for (const p of points) {
+        const dx = p.x - x;
+        const dy = p.y - y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < minDist) {
+            minDist = dist;
+            nearest = p;
+        }
+    }
+
+    return nearest;
+}
+
+function findConstraintsNearLine(x1, y1, x2, y2, radius) {
+    const severed = [];
+    for (const c of constraints) {
+        if (!c.active) continue;
+
+        // Check if the line segment between the two constraint points
+        // comes close enough to the mouse drag line
+        const dist = pointToSegmentDistance(
+            c.p1.x, c.p1.y,
+            x1, y1, x2, y2
+        );
+
+        if (dist < radius) {
+            c.active = false;
+            severed.push(c);
+        }
+    }
+    return severed;
+}
+
+function pointToSegmentDistance(px, py, x1, y1, x2, y2) {
+    const dx = x2 - x1;
+    const dy = y2 - y1;
+    const lenSq = dx * dx + dy * dy;
+
+    if (lenSq === 0) {
+        const dpx = px - x1;
+        const dpy = py - y1;
+        return Math.sqrt(dpx * dpx + dpy * dpy);
+    }
+
+    // Project point onto line, clamped to segment
+    let t = ((px - x1) * dx + (py - y1) * dy) / lenSq;
+    t = Math.max(0, Math.min(1, t));
+
+    const projX = x1 + t * dx;
+    const projY = y1 + t * dy;
+
+    const dpx = px - projX;
+    const dpy = py - projY;
+    return Math.sqrt(dpx * dpx + dpy * dpy);
+}
+
+canvas.addEventListener('mousedown', (e) => {
+    const pos = getMousePos(e);
+    mouse.x = pos.x;
+    mouse.y = pos.y;
+    mouse.down = true;
+    mouse.lastX = pos.x;
+    mouse.lastY = pos.y;
+
+    if (cutMode) {
+        mouse.cutting = true;
+        return;
+    }
+
+    const nearest = findNearestPoint(pos.x, pos.y, CONFIG.mouseRadius);
+    if (nearest) {
+        mouse.dragging = nearest;
+    }
+});
+
+canvas.addEventListener('mousemove', (e) => {
+    const pos = getMousePos(e);
+    mouse.lastX = mouse.x;
+    mouse.lastY = mouse.y;
+    mouse.x = pos.x;
+    mouse.y = pos.y;
+
+    if (cutMode && mouse.cutting) {
+        findConstraintsNearLine(mouse.lastX, mouse.lastY, mouse.x, mouse.y, CONFIG.cutRadius);
+        return;
+    }
+
+    if (mouse.dragging) {
+        mouse.dragging.x = pos.x;
+        mouse.dragging.y = pos.y;
+        // Reset previous position to prevent explosive velocity on release
+        mouse.dragging.oldX = pos.x;
+        mouse.dragging.oldY = pos.y;
+    }
+});
+
+canvas.addEventListener('mouseup', () => {
+    mouse.down = false;
+    mouse.dragging = null;
+    mouse.cutting = false;
+});
+
+canvas.addEventListener('mouseleave', () => {
+    mouse.down = false;
+    mouse.dragging = null;
+    mouse.cutting = false;
+});
+
+// Touch support
+canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const pos = getMousePos(touch);
+    mouse.x = pos.x;
+    mouse.y = pos.y;
+    mouse.down = true;
+    mouse.lastX = pos.x;
+    mouse.lastY = pos.y;
+
+    if (cutMode) {
+        mouse.cutting = true;
+        return;
+    }
+
+    const nearest = findNearestPoint(pos.x, pos.y, CONFIG.mouseRadius);
+    if (nearest) {
+        mouse.dragging = nearest;
+    }
+}, { passive: false });
+
+canvas.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const pos = getMousePos(touch);
+    mouse.lastX = mouse.x;
+    mouse.lastY = mouse.y;
+    mouse.x = pos.x;
+    mouse.y = pos.y;
+
+    if (cutMode && mouse.cutting) {
+        findConstraintsNearLine(mouse.lastX, mouse.lastY, mouse.x, mouse.y, CONFIG.cutRadius);
+        return;
+    }
+
+    if (mouse.dragging) {
+        mouse.dragging.x = pos.x;
+        mouse.dragging.y = pos.y;
+        mouse.dragging.oldX = pos.x;
+        mouse.dragging.oldY = pos.y;
+    }
+}, { passive: false });
+
+canvas.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    mouse.down = false;
+    mouse.dragging = null;
+    mouse.cutting = false;
+});
+
+// --- UI Controls ---
+document.getElementById('gravitySlider').addEventListener('input', (e) => {
+    CONFIG.gravity = parseFloat(e.target.value);
+});
+
+document.getElementById('dampingSlider').addEventListener('input', (e) => {
+    CONFIG.damping = parseFloat(e.target.value);
+});
+
+document.getElementById('iterSlider').addEventListener('input', (e) => {
+    CONFIG.constraintIterations = parseInt(e.target.value);
+});
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+    createCloth();
+});
+
+document.getElementById('cutBtn').addEventListener('click', () => {
+    cutMode = !cutMode;
+    const btn = document.getElementById('cutBtn');
+    btn.textContent = cutMode ? 'Cut Mode: ON' : 'Cut Mode';
+    btn.style.background = cutMode ? '#ff4757' : '#6c63ff';
+    canvas.style.cursor = cutMode ? 'crosshair' : 'crosshair';
+});
+
+// --- Rendering ---
+function render() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw constraints
+    ctx.lineWidth = 1;
+    for (const c of constraints) {
+        if (!c.active) continue;
+
+        const dx = c.p2.x - c.p1.x;
+        const dy = c.p2.y - c.p1.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const strain = Math.abs(dist - c.restLength) / c.restLength;
+
+        // Color based on strain
+        if (strain < 0.02) {
+            ctx.strokeStyle = 'rgba(100, 120, 200, 0.6)';
+        } else if (strain < 0.08) {
+            ctx.strokeStyle = 'rgba(180, 160, 255, 0.7)';
+        } else {
+            ctx.strokeStyle = 'rgba(255, 120, 140, 0.8)';
+        }
+
+        ctx.beginPath();
+        ctx.moveTo(c.p1.x, c.p1.y);
+        ctx.lineTo(c.p2.x, c.p2.y);
+        ctx.stroke();
+    }
+
+    // Draw points
+    for (const p of points) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, CONFIG.pointRadius, 0, Math.PI * 2);
+
+        if (p.pinned) {
+            ctx.fillStyle = '#ff6b6b';
+        } else if (mouse.dragging === p) {
+            ctx.fillStyle = '#ffd93d';
+        } else {
+            ctx.fillStyle = 'rgba(160, 170, 220, 0.8)';
+        }
+
+        ctx.fill();
+    }
+
+    // Draw mouse influence radius when hovering
+    if (mouse.down && !cutMode) {
+        ctx.beginPath();
+        ctx.arc(mouse.x, mouse.y, CONFIG.mouseRadius, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(255, 217, 61, 0.3)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+    }
+}
+
+// --- Main Loop ---
+function simulate() {
+    // 1. Update all points using Verlet integration
+    for (const p of points) {
+        p.update();
+    }
+
+    // 2. Constrain points to canvas bounds
+    for (const p of points) {
+        p.constrainToBounds();
+    }
+
+    // 3. Solve constraints iteratively
+    for (let i = 0; i < CONFIG.constraintIterations; i++) {
+        for (const c of constraints) {
+            c.solve();
+        }
+    }
+
+    // 4. Render
+    render();
+
+    requestAnimationFrame(simulate);
+}
+
+// --- Initialize ---
+createCloth();
+simulate();
+</script>
+
+</body>
+</html>

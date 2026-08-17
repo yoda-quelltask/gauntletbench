@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloth Simulator</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { overflow: hidden; background: #0f0f23; }
+canvas { display: block; }
+</style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+let W, H;
+function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+// --- Configuration ---
+const COLS = 45;
+const ROWS = 28;
+const SPACING = 11;
+const GRAVITY = 0.4;
+const DAMPING = 0.99;
+const ITERATIONS = 18;
+const TEAR_THRESHOLD = 1.6;
+const MOUSE_RADIUS = 40;
+const TEAR_MOUSE_RADIUS = 25;
+
+// --- Point Masses ---
+const points = [];
+const constraints = [];
+
+function createCloth() {
+    points.length = 0;
+    constraints.length = 0;
+
+    const clothW = (COLS - 1) * SPACING;
+    const clothH = (ROWS - 1) * SPACING;
+    const offsetX = (W - clothW) / 2;
+    const offsetY = 60;
+
+    for (let row = 0; row < ROWS; row++) {
+        for (let col = 0; col < COLS; col++) {
+            const x = offsetX + col * SPACING;
+            const y = offsetY + row * SPACING;
+            const pinned = row === 0;
+            points.push({
+                x, y,
+                oldX: x,
+                oldY: y,
+                pinned,
+                index: points.length
+            });
+        }
+    }
+
+    // Horizontal constraints
+    for (let row = 0; row < ROWS; row++) {
+        for (let col = 0; col < COLS - 1; col++) {
+            const i = row * COLS + col;
+            const j = row * COLS + col + 1;
+            const dx = points[j].x - points[i].x;
+            const dy = points[j].y - points[i].y;
+            constraints.push({
+                p1: i, p2: j,
+                length: Math.sqrt(dx * dx + dy * dy),
+                torn: false
+            });
+        }
+    }
+
+    // Vertical constraints
+    for (let row = 0; row < ROWS - 1; row++) {
+        for (let col = 0; col < COLS; col++) {
+            const i = row * COLS + col;
+            const j = (row + 1) * COLS + col;
+            const dx = points[j].x - points[i].x;
+            const dy = points[j].y - points[i].y;
+            constraints.push({
+                p1: i, p2: j,
+                length: Math.sqrt(dx * dx + dy * dy),
+                torn: false
+            });
+        }
+    }
+
+    // Diagonal constraints for shear resistance
+    for (let row = 0; row < ROWS - 1; row++) {
+        for (let col = 0; col < COLS - 1; col++) {
+            const i = row * COLS + col;
+            const j = (row + 1) * COLS + col + 1;
+            const dx = points[j].x - points[i].x;
+            const dy = points[j].y - points[i].y;
+            constraints.push({
+                p1: i, p2: j,
+                length: Math.sqrt(dx * dx + dy * dy),
+                torn: false
+            });
+        }
+    }
+    for (let row = 0; row < ROWS - 1; row++) {
+        for (let col = 1; col < COLS; col++) {
+            const i = row * COLS + col;
+            const j = (row + 1) * COLS + col - 1;
+            const dx = points[j].x - points[i].x;
+            const dy = points[j].y - points[i].y;
+            constraints.push({
+                p1: i, p2: j,
+                length: Math.sqrt(dx * dx + dy * dy),
+                torn: false
+            });
+        }
+    }
+}
+
+createCloth();
+
+// --- Verlet Integration ---
+function integrate() {
+    for (let i = 0; i < points.length; i++) {
+        const p = points[i];
+        if (p.pinned) continue;
+
+        const vx = (p.x - p.oldX) * DAMPING;
+        const vy = (p.y - p.oldY) * DAMPING;
+
+        p.oldX = p.x;
+        p.oldY = p.y;
+
+        p.x += vx;
+        p.y += vy + GRAVITY;
+    }
+}
+
+// --- Constraint Relaxation ---
+function relaxConstraints() {
+    for (let iter = 0; iter < ITERATIONS; iter++) {
+        for (let c = 0; c < constraints.length; c++) {
+            const con = constraints[c];
+            if (con.torn) continue;
+
+            const p1 = points[con.p1];
+            const p2 = points[con.p2];
+
+            const dx = p2.x - p1.x;
+            const dy = p2.y - p1.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < 0.0001) continue;
+
+            // Check for automatic tearing
+            const stretchRatio = dist / con.length;
+            if (stretchRatio > TEAR_THRESHOLD) {
+                con.torn = true;
+                continue;
+            }
+
+            const diff = (con.length - dist) / dist;
+            const offsetX = dx * diff * 0.5;
+            const offsetY = dy * diff * 0.5;
+
+            if (!p1.pinned) {
+                p1.x -= offsetX;
+                p1.y -= offsetY;
+            }
+            if (!p2.pinned) {
+                p2.x += offsetX;
+                p2.y += offsetY;
+            }
+        }
+    }
+}
+
+// --- Mouse Interaction ---
+let mouse = { x: 0, y: 0, down: false, rightDown: false };
+let dragPoint = null;
+
+function getPointNearMouse(radius) {
+    let closest = null;
+    let closestDist = radius;
+    for (let i = 0; i < points.length; i++) {
+        const p = points[i];
+        const dx = p.x - mouse.x;
+        const dy = p.y - mouse.y;
+        const d = Math.sqrt(dx * dx + dy * dy);
+        if (d < closestDist) {
+            closestDist = d;
+            closest = p;
+        }
+    }
+    return closest;
+}
+
+function tearConstraintsNearMouse() {
+    for (let c = 0; c < constraints.length; c++) {
+        const con = constraints[c];
+        if (con.torn) continue;
+
+        const p1 = points[con.p1];
+        const p2 = points[con.p2];
+
+        const midX = (p1.x + p2.x) / 2;
+        const midY = (p1.y + p2.y) / 2;
+
+        const dx = midX - mouse.x;
+        const dy = midY - mouse.y;
+        const d = Math.sqrt(dx * dx + dy * dy);
+
+        if (d < TEAR_MOUSE_RADIUS) {
+            con.torn = true;
+        }
+    }
+}
+
+canvas.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+    if (e.button === 2 || e.shiftKey) {
+        mouse.rightDown = true;
+    } else {
+        mouse.down = true;
+        dragPoint = getPointNearMouse(MOUSE_RADIUS);
+    }
+});
+
+canvas.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+    if (mouse.down && dragPoint) {
+        dragPoint.x = mouse.x;
+        dragPoint.y = mouse.y;
+        dragPoint.oldX = mouse.x;
+        dragPoint.oldY = mouse.y;
+    }
+    if (mouse.rightDown) {
+        tearConstraintsNearMouse();
+    }
+});
+
+canvas.addEventListener('mouseup', (e) => {
+    if (e.button === 2 || e.shiftKey) {
+        mouse.rightDown = false;
+    } else {
+        mouse.down = false;
+        dragPoint = null;
+    }
+});
+
+canvas.addEventListener('contextmenu', (e) => e.preventDefault());
+
+// Touch support
+canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    const t = e.touches[0];
+    mouse.x = t.clientX;
+    mouse.y = t.clientY;
+    mouse.down = true;
+    dragPoint = getPointNearMouse(MOUSE_RADIUS);
+}, { passive: false });
+
+canvas.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    const t = e.touches[0];
+    mouse.x = t.clientX;
+    mouse.y = t.clientY;
+    if (mouse.down && dragPoint) {
+        dragPoint.x = mouse.x;
+        dragPoint.y = mouse.y;
+        dragPoint.oldX = mouse.x;
+        dragPoint.oldY = mouse.y;
+    }
+}, { passive: false });
+
+canvas.addEventListener('touchend', () => {
+    mouse.down = false;
+    dragPoint = null;
+});
+
+// --- Rendering ---
+function render() {
+    ctx.fillStyle = '#0f0f23';
+    ctx.fillRect(0, 0, W, H);
+
+    // Draw subtle grid background
+    ctx.strokeStyle = 'rgba(255,255,255,0.03)';
+    ctx.lineWidth = 0.5;
+    for (let x = 0; x < W; x += 40) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, H);
+        ctx.stroke();
+    }
+    for (let y = 0; y < H; y += 40) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(W, y);
+        ctx.stroke();
+    }
+
+    // Draw filled quads for shading
+    ctx.globalAlpha = 0.15;
+    for (let row = 0; row < ROWS - 1; row++) {
+        for (let col = 0; col < COLS - 1; col++) {
+            const i = row * COLS + col;
+            const j = i + 1;
+            const k = (row + 1) * COLS + col;
+            const l = k + 1;
+
+            const p1 = points[i];
+            const p2 = points[j];
+            const p3 = points[k];
+            const p4 = points[l];
+
+            // Check if all four edges are intact (not torn)
+            const h1 = getConstraint(i, j);
+            const h2 = getConstraint(k, l);
+            const v1 = getConstraint(i, k);
+            const v2 = getConstraint(j, l);
+
+            if (h1 && !h1.torn && h2 && !h2.torn && v1 && !v1.torn && v2 && !v2.torn) {
+                const shade = 0.3 + 0.7 * (row / ROWS);
+                ctx.fillStyle = `hsl(220, 60%, ${shade * 50}%)`;
+                ctx.beginPath();
+                ctx.moveTo(p1.x, p1.y);
+                ctx.lineTo(p2.x, p2.y);
+                ctx.lineTo(p4.x, p4.y);
+                ctx.lineTo(p3.x, p3.y);
+                ctx.closePath();
+                ctx.fill();
+            }
+        }
+    }
+    ctx.globalAlpha = 1.0;
+
+    // Draw constraints
+    for (let c = 0; c < constraints.length; c++) {
+        const con = constraints[c];
+        if (con.torn) continue;
+
+        const p1 = points[con.p1];
+        const p2 = points[con.p2];
+
+        const dx = p2.x - p1.x;
+        const dy = p2.y - p1.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const stretchRatio = dist / con.length;
+
+        // Color based on stretch
+        const tension = Math.min(stretchRatio / TEAR_THRESHOLD, 1.0);
+        const r = Math.floor(100 + 155 * tension);
+        const g = Math.floor(180 - 100 * tension);
+        const b = Math.floor(220 - 100 * tension);
+
+        ctx.strokeStyle = `rgb(${r},${g},${b})`;
+        ctx.lineWidth = 0.8;
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.stroke();
+    }
+
+    // Draw pinned points
+    for (let i = 0; i < points.length; i++) {
+        const p = points[i];
+        if (p.pinned) {
+            ctx.fillStyle = '#ff6b6b';
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    }
+
+    // Draw mouse interaction indicator
+    if (mouse.down || mouse.rightDown) {
+        const radius = mouse.rightDown ? TEAR_MOUSE_RADIUS : MOUSE_RADIUS;
+        ctx.strokeStyle = mouse.rightDown ? 'rgba(255,100,100,0.4)' : 'rgba(100,200,255,0.4)';
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.arc(mouse.x, mouse.y, radius, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.setLineDash([]);
+    }
+
+    // Draw controls hint
+    drawHint();
+}
+
+function getConstraint(i, j) {
+    for (let c = 0; c < constraints.length; c++) {
+        const con = constraints[c];
+        if (con.torn) continue;
+        if ((con.p1 === i && con.p2 === j) || (con.p1 === j && con.p2 === i)) {
+            return con;
+        }
+    }
+    return null;
+}
+
+function drawHint() {
+    const padding = 15;
+    const boxW = 320;
+    const boxH = 110;
+    const boxX = padding;
+    const boxY = padding;
+
+    ctx.fillStyle = 'rgba(0,0,0,0.6)';
+    ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+    ctx.lineWidth = 1;
+    roundRect(ctx, boxX, boxY, boxW, boxH, 8);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.font = '13px "Segoe UI", system-ui, sans-serif';
+    ctx.fillStyle = '#a0c4ff';
+    ctx.fillText('🖱️ Left Click + Drag — Move cloth', boxX + 15, boxY + 28);
+    ctx.fillStyle = '#ff8787';
+    ctx.fillText('✂️ Right Click (or Shift+Click) — Tear cloth', boxX + 15, boxY + 50);
+    ctx.fillStyle = '#ffd43b';
+    ctx.fillText('⚡ Overstretched constraints tear automatically', boxX + 15, boxY + 72);
+    ctx.fillStyle = '#8be9fd';
+    ctx.fillText('🔄 Reload to reset the cloth', boxX + 15, boxY + 94);
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r);
+    ctx.quadraticCurveTo(x, y, x + r, y);
+    ctx.closePath();
+}
+
+// --- Main Loop ---
+function frame() {
+    integrate();
+    relaxConstraints();
+    render();
+    requestAnimationFrame(frame);
+}
+
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
