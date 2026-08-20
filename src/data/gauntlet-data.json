@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "generated_at": "2026-08-20T07:11:35Z",
+ "generated_at": "2026-08-20T08:56:34Z",
  "host": {
   "name": "MacBook Pro",
   "hw": "Apple M5 Max, 128 GB unified memory",
@@ -1984,6 +1984,48 @@
     "tp": 14.1
    },
    "axes_scored": 2
+  },
+  {
+   "name": "Qwen3.8-27B MLX 6bit (lmstudio-community)",
+   "params": "27B dense",
+   "arch": "qwen3_5",
+   "size_gb": 21.0,
+   "quant": "6bit",
+   "format": "MLX",
+   "is_cot": true,
+   "status": "tested",
+   "base_org": null,
+   "model_card_url": "https://huggingface.co/lmstudio-community/Qwen3.8-27B-MLX-6bit",
+   "slug": "qwen3.8-27b-mlx-6bit-lmstudio-community",
+   "internal_id": "M25f",
+   "suites": {
+    "1a": {
+     "score_avg": 10.38,
+     "score_total": 134.9,
+     "tests_run": 13,
+     "tests_total": 13,
+     "avg_tok_s": 14.1
+    },
+    "1b": {
+     "score_avg": 15.0,
+     "score_total": 120.0,
+     "tests_run": 8,
+     "tests_total": 8,
+     "avg_tok_s": 17.8
+    }
+   },
+   "mean_tok_s": 15.9,
+   "axes": {
+    "g": 51.9,
+    "a": 75.0,
+    "u": null,
+    "n": null,
+    "t": null,
+    "l": null,
+    "e": null,
+    "tp": 6.7
+   },
+   "axes_scored": 3
   },
   {
    "name": "GPT-OSS Safeguard 20B MLX",
