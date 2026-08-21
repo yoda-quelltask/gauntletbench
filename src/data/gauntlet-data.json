@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "generated_at": "2026-08-20T08:56:34Z",
+ "generated_at": "2026-08-21T04:44:40Z",
  "host": {
   "name": "MacBook Pro",
   "hw": "Apple M5 Max, 128 GB unified memory",
@@ -1898,6 +1898,48 @@
     "tp": 5.5
    },
    "axes_scored": 2
+  },
+  {
+   "name": "Qwen3.8-27B MLX 8bit (lmstudio-community)",
+   "params": "27B dense",
+   "arch": "qwen3_5",
+   "size_gb": 28.0,
+   "quant": "8bit",
+   "format": "MLX",
+   "is_cot": true,
+   "status": "tested",
+   "base_org": null,
+   "model_card_url": "https://huggingface.co/lmstudio-community/Qwen3.8-27B-MLX-8bit",
+   "slug": "qwen3.8-27b-mlx-8bit-lmstudio-community",
+   "internal_id": "M25g",
+   "suites": {
+    "1a": {
+     "score_avg": 12.1,
+     "score_total": 157.3,
+     "tests_run": 13,
+     "tests_total": 13,
+     "avg_tok_s": 15.0
+    },
+    "1b": {
+     "score_avg": 17.5,
+     "score_total": 140.0,
+     "tests_run": 8,
+     "tests_total": 8,
+     "avg_tok_s": 15.8
+    }
+   },
+   "mean_tok_s": 15.4,
+   "axes": {
+    "g": 60.5,
+    "a": 87.5,
+    "u": null,
+    "n": null,
+    "t": null,
+    "l": null,
+    "e": null,
+    "tp": 6.4
+   },
+   "axes_scored": 3
   },
   {
    "name": "DeepSeek-R1-Distill-Llama 70B 8bit MLX",
