@@ -4,7 +4,7 @@ const cleanQuant = (q, f) => { if (!q) return q; let s = String(q); const fl = S
 import Base from '../../layouts/Base.astro';
 import Radar from '../../components/Radar.astro';
 import Progress from '../../components/Progress.astro';
-import { data, rankedModels, suitesById, AXIS_ORDER, axisMeta, fmtAxis, fmt1 } from '../../lib/data.js';
+import { data, rankedModels, AXIS_ORDER, axisMeta, fmtAxis, fmt1, SMALL_TIP } from '../../lib/data.js';
 
 export function getStaticPaths() {
   return rankedModels.map((model, i) => ({
@@ -15,11 +15,23 @@ export function getStaticPaths() {
 
 const { model, rank } = Astro.props;
 
+const barBand = (score) => (score >= 16 ? 'hi' : score >= 8 ? 'mid' : 'low');
+
 // Per-suite rows in canonical suite order
 const suiteRows = data.suites
   .filter((s) => model.suites[s.id])
   .map((s) => {
     const r = model.suites[s.id];
+    const perTest = r.per_test ?? [];
+    // category rollup: mean score per category, in first-seen order
+    const catOrder = [];
+    const catAcc = {};
+    for (const t of perTest) {
+      if (!catAcc[t.category]) { catAcc[t.category] = { sum: 0, n: 0 }; catOrder.push(t.category); }
+      catAcc[t.category].sum += t.score;
+      catAcc[t.category].n += 1;
+    }
+    const rollup = catOrder.map((c) => ({ category: c, mean: catAcc[c].sum / catAcc[c].n }));
     return {
       id: s.id,
       name: s.name,
@@ -29,6 +41,9 @@ const suiteRows = data.suites
       testsRun: r.tests_run,
       testsTotal: r.tests_total,
       tokS: r.avg_tok_s,
+      runDate: r.run_date ?? null,
+      perTest,
+      rollup: rollup.length > 1 ? rollup : [],
     };
   });
 
@@ -48,7 +63,7 @@ const statusLabel = statusLabels[model.status] ?? model.status;
 >
   <div class="model-head">
     <a class="back" href="/">← Leaderboard</a>
-    <h1>{model.name}</h1>
+    <h1>{model.name}{model.cls === 'small' && <span class="chip chip-small" title={SMALL_TIP}>SMALL</span>}</h1>
     <div class="sub">
       <span class={`status ${model.status}`}>{statusLabel}</span>
       {model.axes_scored === 8 && <span class="ran-badge" title="Scored on all eight axes">RAN THE GAUNTLET</span>}
@@ -67,7 +82,7 @@ const statusLabel = statusLabels[model.status] ?? model.status;
           <div style="text-align:center;">
             <div style="font-family:var(--display);font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.08em;" title={axisMeta[key].name}>{axisMeta[key].letter}</div>
             {model.axes[key] != null
-              ? <div class="num" style="font-size:13.5px;font-weight:600;color:var(--text-dim);font-variant-numeric:tabular-nums;">{fmtAxis(model.axes[key])}</div>
+              ? <div class="num" style="font-size:13.5px;font-weight:600;color:var(--text-dim);">{fmtAxis(model.axes[key])}</div>
               : key === 't'
                 ? <div style="font-size:11px;color:var(--muted);font-style:italic;" title="fewer than 15 observed tests">n/d</div>
                 : <div class="na" style="font-size:13.5px;">—</div>}
@@ -85,6 +100,7 @@ const statusLabel = statusLabels[model.status] ?? model.status;
           <dt>Size on disk</dt><dd>{model.size_gb} GB</dd>
           <dt>Quantization</dt><dd>{cleanQuant(model.quant, model.format)}</dd>
           <dt>Format</dt><dd>{model.format}</dd>
+          <dt>Class</dt><dd>{model.cls === 'small' ? 'Small (under 8B total parameters — phone/edge class)' : 'Standard'}</dd>
           <dt>Reasoning (CoT)</dt><dd>{model.is_cot ? 'Yes — emits reasoning tokens' : 'No'}</dd>
           {model.base_org && (<><dt>Base org</dt><dd>{model.base_org}</dd></>)}
           <dt>Internal ID</dt><dd>{model.internal_id}</dd>
@@ -100,35 +116,86 @@ const statusLabel = statusLabels[model.status] ?? model.status;
       <div class="panel">
         <h2>Suite results</h2>
         {suiteRows.length > 0 ? (
-          <div style="overflow-x:auto;">
-            <table class="suites">
-              <thead>
-                <tr>
-                  <th>Suite</th>
-                  <th>Score</th>
-                  <th>Avg / 20</th>
-                  <th>Tests</th>
-                  <th>tok/s</th>
-                </tr>
-              </thead>
-              <tbody>
-                {suiteRows.map((row) => (
-                  <tr>
-                    <td>{row.name} <span class="chip" style="margin-left:4px;">{row.id}</span></td>
-                    <td class="num">{fmt1(row.scoreTotal)} / {row.maxTotal}</td>
-                    <td class="num">{fmt1(row.scoreAvg)}</td>
-                    <td class="num">{row.testsRun}/{row.testsTotal}</td>
-                    <td class="num">{row.tokS != null ? fmt1(row.tokS) : '—'}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div class="suite-acc-wrap">
+            <div class="suite-acc">
+              <div class="acc-head">
+                <span></span>
+                <span>Suite</span>
+                <span>Score</span>
+                <span>Avg / 20</span>
+                <span>Tests</span>
+                <span>tok/s</span>
+                <span>Run</span>
+              </div>
+              {suiteRows.map((row) =>
+                row.perTest.length > 0 ? (
+                  <details>
+                    <summary class="acc-row" title="Per-test breakdown">
+                      <span class="caret" aria-hidden="true">▶</span>
+                      <span class="suite-name">{row.name} <span class="chip" style="margin-left:4px;">{row.id}</span></span>
+                      <span class="cell-num">{fmt1(row.scoreTotal)} / {row.maxTotal}</span>
+                      <span class="cell-num">{fmt1(row.scoreAvg)}</span>
+                      <span class="cell-num">{row.testsRun}/{row.testsTotal}</span>
+                      <span class="cell-num">{row.tokS != null ? fmt1(row.tokS) : '—'}</span>
+                      <span class="run-date">{row.runDate ? `run ${row.runDate}` : '—'}</span>
+                    </summary>
+                    <div class="ptest-panel">
+                      <table class="ptest">
+                        <thead>
+                          <tr>
+                            <th>Test</th>
+                            <th>Category</th>
+                            <th>Score</th>
+                            <th aria-hidden="true"></th>
+                            <th>tok/s</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {row.perTest.map((t) => (
+                            <tr>
+                              <td class="tid">{t.id}</td>
+                              <td class="cat">{t.category}</td>
+                              <td class="score num">{fmt1(t.score)}/20</td>
+                              <td>
+                                <span class="tbar" role="img" aria-label={`${fmt1(t.score)} of 20`}>
+                                  <span class={`fill ${barBand(t.score)}`} style={`width:${Math.max(2, (t.score / 20) * 100)}%`}></span>
+                                </span>
+                              </td>
+                              <td class="toks num">{t.tok_s != null ? fmt1(t.tok_s) : '—'}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                      {row.rollup.length > 0 && (
+                        <p class="cat-rollup">
+                          <span style="text-transform:uppercase;letter-spacing:.08em;font-family:var(--display);font-size:10.5px;color:#64748b;">Category mean</span>
+                          {row.rollup.map((c) => (
+                            <span class="cr">{c.category} <b>{fmt1(c.mean)}</b></span>
+                          ))}
+                        </p>
+                      )}
+                    </div>
+                  </details>
+                ) : (
+                  <div class="acc-row">
+                    <span class="caret-spacer"></span>
+                    <span class="suite-name">{row.name} <span class="chip" style="margin-left:4px;">{row.id}</span></span>
+                    <span class="cell-num">{fmt1(row.scoreTotal)} / {row.maxTotal}</span>
+                    <span class="cell-num">{fmt1(row.scoreAvg)}</span>
+                    <span class="cell-num">{row.testsRun}/{row.testsTotal}</span>
+                    <span class="cell-num">{row.tokS != null ? fmt1(row.tokS) : '—'}</span>
+                    <span class="run-date">{row.runDate ? `run ${row.runDate}` : '—'}</span>
+                  </div>
+                )
+              )}
+            </div>
           </div>
         ) : (
           <p style="color:var(--muted);font-size:13.5px;margin:0;">No suite results recorded yet.</p>
         )}
         <p style="font-size:12px;color:var(--muted);margin:12px 0 0;">
           Each test is LLM-judged 0–20 against a fixed rubric; suite max = tests × 20.
+          Rows with a <span class="caret" style="font-size:9px;">▶</span> expand to the per-test breakdown.
           Where fewer tests ran than the suite total, unrun tests count as zero toward the axis score.
           See <a href="/gauntlet">methodology</a>.
         </p>

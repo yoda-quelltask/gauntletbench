@@ -5,23 +5,56 @@ import Base from '../layouts/Base.astro';
 import Radar from '../components/Radar.astro';
 import Progress from '../components/Progress.astro';
 import AxisCell from '../components/AxisCell.astro';
-import { data, rankedModels, AXIS_ORDER, axisMeta, fmt1 } from '../lib/data.js';
+import { data, rankedModels, AXIS_ORDER, axisMeta, fmt1, siteStats, SMALL_TIP } from '../lib/data.js';
 
 const podium = rankedModels.slice(0, 3);
 const podiumClass = ['first', 'second', 'third'];
+
+// hero background motif: 8-spoke radar rings
+const spokes = Array.from({ length: 8 }, (_, i) => (Math.PI / 180) * (-90 + i * 45));
+const ring = (r) => spokes.map((a) => `${(260 + Math.cos(a) * r).toFixed(1)},${(260 + Math.sin(a) * r).toFixed(1)}`).join(' ');
 ---
 <Base
   title="GAUNTLET Bench"
   description="Models run the gauntlet. Local-LLM leaderboard: agentic, live, verified — every score measured on one controlled host."
 >
   <section class="hero">
-    <p class="kicker">Local-LLM proving ground</p>
-    <h1>Proving local agents before they act.</h1>
-    <p class="brand-statement">
-      GAUNTLET Bench runs local models through real workloads — agentic, live, verified —
-      and publishes the evidence.
-    </p>
-    <p class="host-line">All scores measured on {data.host.hw}, {data.host.runner}</p>
+    <svg class="hero-bg" viewBox="0 0 520 520" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="hero-fade" cx="50%" cy="50%" r="50%">
+          <stop offset="55%" stop-color="#2563EB" stop-opacity="0.16" />
+          <stop offset="100%" stop-color="#2563EB" stop-opacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="260" cy="260" r="240" fill="url(#hero-fade)" />
+      {[60, 120, 180, 240].map((r) => (
+        <polygon points={ring(r)} fill="none" stroke="#2563EB" stroke-opacity="0.14" stroke-width="1" />
+      ))}
+      {spokes.map((a) => (
+        <line x1="260" y1="260"
+          x2={(260 + Math.cos(a) * 240).toFixed(1)} y2={(260 + Math.sin(a) * 240).toFixed(1)}
+          stroke="#2563EB" stroke-opacity="0.1" stroke-width="1" />
+      ))}
+      {spokes.map((a) => (
+        <circle cx={(260 + Math.cos(a) * 240).toFixed(1)} cy={(260 + Math.sin(a) * 240).toFixed(1)}
+          r="3" fill="#2563EB" fill-opacity="0.28" />
+      ))}
+      <polygon points={ring(196)} fill="rgba(37,99,235,0.05)" stroke="#22C55E" stroke-opacity="0.12" stroke-width="1.5" />
+    </svg>
+    <div class="hero-content">
+      <p class="kicker">Local-LLM proving ground</p>
+      <h1>Proving local agents before&nbsp;they&nbsp;act.</h1>
+      <p class="brand-statement">
+        GAUNTLET Bench runs local models through <strong>real workloads</strong> —
+        agentic, live, verified — and publishes the evidence.
+      </p>
+      <div class="hero-stats" aria-label="Site statistics">
+        <span class="stat-chip"><span class="n">{siteStats.models}</span><span class="l">models</span></span>
+        <span class="stat-chip"><span class="n">{siteStats.suites}</span><span class="l">suites</span></span>
+        <span class="stat-chip"><span class="n">{siteStats.perTestResults.toLocaleString('en-US')}</span><span class="l">per-test results</span></span>
+      </div>
+      <p class="host-line">All scores measured on {data.host.hw}, {data.host.runner}</p>
+    </div>
   </section>
 
   <section aria-label="Top three models">
@@ -29,9 +62,12 @@ const podiumClass = ['first', 'second', 'third'];
     <div class="podium">
       {podium.map((m, i) => (
         <article class={`podium-card ${podiumClass[i]}`}>
-          <span class="podium-rank">#{i + 1}</span>
-          <Radar axes={m.axes} size={180} />
-          <h2 class="podium-name"><a href={`/models/${m.slug}/`}>{m.name}</a></h2>
+          <span class="podium-rank">{i + 1}</span>
+          <Radar axes={m.axes} size={i === 0 ? 200 : 180} />
+          <h2 class="podium-name">
+            <a href={`/models/${m.slug}/`}>{m.name}</a>
+            {m.cls === 'small' && <span class="chip chip-small" title={SMALL_TIP}>SMALL</span>}
+          </h2>
           <p class="podium-meta">{m.params} · {cleanQuant(m.quant, m.format)} {m.format}</p>
           <div class="podium-stats">
             <Progress model={m} />
@@ -64,6 +100,7 @@ const podiumClass = ['first', 'second', 'third'];
         <tbody>
           {rankedModels.map((m, i) => (
             <tr
+              class={m.cls === 'small' ? 'small-row' : undefined}
               data-rank={i + 1}
               data-name={m.name.toLowerCase()}
               data-params={m.params.toLowerCase()}
@@ -73,7 +110,10 @@ const podiumClass = ['first', 'second', 'third'];
               data-toks={m.mean_tok_s ?? -1}
             >
               <td class="rank">{i + 1}</td>
-              <td class="model"><a href={`/models/${m.slug}/`}>{m.name}</a></td>
+              <td class="model">
+                <a href={`/models/${m.slug}/`}>{m.name}</a>
+                {m.cls === 'small' && <span class="chip chip-small" title={SMALL_TIP}>SMALL</span>}
+              </td>
               <td class="dim">{m.params}</td>
               <td class="dim">{cleanQuant(m.quant, m.format) && <span class="chip">{cleanQuant(m.quant, m.format)}</span>} <span class="chip">{m.format}</span></td>
               {AXIS_ORDER.map((key) => (
@@ -86,7 +126,9 @@ const podiumClass = ['first', 'second', 'third'];
         </tbody>
       </table>
     </div>
-    <p style="font-size:12.5px;color:var(--muted);margin-top:10px;">
+    <p class="board-legend">
+      <span class="swatch" aria-hidden="true"></span><span class="chip chip-small" title={SMALL_TIP}>SMALL</span>
+      = under 8B total parameters (phone/edge class) — scored on the same suites, ranked in the same list; compare within class.<br />
       Axes are 0–100. <strong style="color:var(--text-dim)">—</strong> = suite not yet run for that model.
       <em>n/d</em> = Thinking axis needs ≥15 observed tests to score (see <a href="/gauntlet#axis-t">methodology</a>).
       Default order: GAUNTLET progress, then Generalist score.
@@ -109,7 +151,7 @@ const podiumClass = ['first', 'second', 'third'];
           } else {
             dir = type === 'num' ? 'desc' : 'asc';
           }
-                    headers.forEach((h) => { h.classList.remove('sorted'); delete h.dataset.dir; });
+          headers.forEach((h) => { h.classList.remove('sorted'); delete h.dataset.dir; });
           th.classList.add('sorted');
           th.dataset.dir = dir;
           const arrow = th.querySelector('.arrow');

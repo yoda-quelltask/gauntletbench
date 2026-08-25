@@ -17,11 +17,11 @@ const fullTitle = title === 'GAUNTLET Bench' ? title : `${title} · GAUNTLET Ben
 
 const navItems = [
   { label: 'Leaderboard', href: '/' },
-  { label: 'Methodology', href: '/gauntlet' },
   { label: 'Rounds', href: '/rounds' },
   { label: 'Arena', href: '/arena' },
-  { label: 'Contribute', href: '/contribute' },
-  { label: 'About', href: '/about' },
+  { label: 'Education', href: '/education' },
+  { label: 'Lab', href: '/lab' },
+  { label: 'Methodology', href: '/gauntlet' },
 ];
 const path = Astro.url.pathname;
 const isActive = (href: string) =>
@@ -64,6 +64,10 @@ const isActive = (href: string) =>
           </svg>
           GAUNTLET&nbsp;<span class="bench">Bench</span>
         </a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation menu" />
+        <label for="nav-toggle" class="nav-burger" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </label>
         <nav class="nav-links" aria-label="Main">
           {navItems.map((item) => (
             <a href={item.href} class={isActive(item.href) ? 'active' : undefined}>{item.label}</a>
@@ -76,12 +80,40 @@ const isActive = (href: string) =>
     </main>
     <footer class="site-footer">
       <div class="footer-inner">
-        <span>Built from the GAUNTLET data pipeline · data generated {generatedAt}</span>
-        <span>
-          All scores measured on {data.host.hw}, {data.host.runner} ·
-          <a href={GITHUB_URL} rel="noopener">GitHub</a> ·
-          <a href="/rss.xml">RSS</a>
-        </span>
+        <div class="footer-brand">
+          <span class="footer-mark">
+            <svg viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M16 2l11 4.2v8.6c0 7.1-4.6 12.3-11 15.2C9.6 27.1 5 21.9 5 14.8V6.2L16 2z" fill="none" stroke="#2563EB" stroke-width="2.2" stroke-linejoin="round"/>
+              <circle cx="16" cy="9.5" r="1.8" fill="#22C55E"/>
+            </svg>
+            GAUNTLET Bench
+          </span>
+          <p>
+            Models run the gauntlet. Local-LLM proving ground: agentic, live, verified —
+            every score measured on {data.host.hw}, {data.host.runner}.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h3>Sections</h3>
+          <ul>
+            <li><a href="/">Leaderboard</a></li>
+            <li><a href="/rounds/">Rounds</a></li>
+            <li><a href="/arena/">Arena</a></li>
+            <li><a href="/education/">Education</a></li>
+            <li><a href="/lab/">Lab</a></li>
+            <li><a href="/gauntlet/">Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Meta</h3>
+          <ul>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contribute/">Contribute</a></li>
+            <li><a href={GITHUB_URL} rel="noopener">GitHub</a></li>
+            <li><a href="/rss.xml">RSS</a></li>
+            <li><span class="gen">data generated {generatedAt}</span></li>
+          </ul>
+        </div>
       </div>
     </footer>
   </body>

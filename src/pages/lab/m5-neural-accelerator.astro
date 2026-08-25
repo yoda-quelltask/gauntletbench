@@ -1,0 +1,232 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base
+  title="The M5 Neural Accelerator"
+  description="Apple's per-GPU-core matrix engine speeds up prefill 3-4x but barely moves decode. What that means for local-LLM benchmarks, and how we confirmed the NA-aware MLX engine serves our runs."
+>
+  <div class="page-head">
+    <p class="kicker">Lab · Hardware</p>
+    <h1>The M5 Neural Accelerator</h1>
+    <p class="lede">
+      Apple put a dedicated matrix engine in every M5 GPU core. The speedup is real &mdash;
+      and lopsided. This is our running record of what it actually does to local-LLM inference
+      numbers, and how it shapes the way we read our own.
+    </p>
+  </div>
+
+  <p class="lab-status">Ongoing investigation &middot; started 2026-08-22 &middot; lab notebook &mdash; dated sections, updated as the picture changes</p>
+
+  <section class="lab-section">
+    <h2>What it is <span class="sec-date">2026-08-22</span></h2>
+    <p>
+      With the M5 generation (M5, M5 Pro, M5 Max), Apple redesigned the GPU so that
+      <strong>every core carries a dedicated Neural Accelerator</strong> &mdash; an on-die
+      matrix engine for the dense matmuls transformer inference lives on, analogous to a
+      discrete GPU&rsquo;s tensor cores. Prior Apple GPUs ran matmul on general-purpose SIMD
+      units; this is new, purpose-built silicon.
+    </p>
+    <p>
+      It&rsquo;s exposed to developers through <strong>Metal 4&rsquo;s Tensor Operations
+      (TensorOps)</strong> and Metal Performance Primitives, and Apple updated
+      <strong>MLX</strong> &mdash; their own array framework &mdash; to use these directly.
+      One footnote matters operationally: MLX only engages the Neural Accelerators on
+      <strong>macOS 26.2 or later</strong>. This is a framework-level capability, not any one
+      app&rsquo;s trick &mdash; anything built on a recent-enough MLX, running on 26.2+,
+      should benefit.
+    </p>
+  </section>
+
+  <section class="lab-section">
+    <h2>The speedup is lopsided &mdash; and that&rsquo;s the whole story <span class="sec-date">2026-08-22</span></h2>
+    <p>
+      Apple&rsquo;s own benchmark (base M5 vs M4) shows the Neural Accelerator&rsquo;s benefit
+      is <strong>almost entirely a prefill/time-to-first-token win, not a decode-throughput
+      win</strong>:
+    </p>
+    <div class="table-wrap">
+      <table class="lab-table">
+        <thead>
+          <tr><th>Metric</th><th>Speedup (M5 vs M4)</th><th>Why</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Time-to-first-token (TTFT)</td>
+            <td class="num">3.3&times; &ndash; 4.06&times;</td>
+            <td>Prefill is compute-bound &mdash; exactly what a matmul accelerator helps.</td>
+          </tr>
+          <tr>
+            <td>Generation speed (tok/s)</td>
+            <td class="num">1.19&times; &ndash; 1.27&times;</td>
+            <td>Decode is memory-bandwidth-bound, not compute-bound &mdash; a matmul engine
+            can&rsquo;t fix a bandwidth ceiling. The 19&ndash;27% gain tracks almost exactly
+            with M5&rsquo;s 28% memory-bandwidth increase over M4 (153 vs 120&nbsp;GB/s),
+            suggesting bandwidth, not the accelerator, is doing most of that work.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      That attribution isn&rsquo;t just ours: an independent guide reached the same conclusion
+      separately &mdash; decode gains on M5 &ldquo;track almost linearly with the higher memory
+      bandwidth.&rdquo; Two independent sources landing on the same explanation is a good
+      accuracy signal.
+    </p>
+    <p class="callout-inline">
+      <strong>The implication for benchmarking:</strong> if you want to see the Neural
+      Accelerator&rsquo;s real effect, <strong>TTFT is the metric to watch, not tok/s</strong>.
+      Tok/s-centric comparisons &mdash; which is most of what the local-LLM community publishes
+      &mdash; are looking mostly at the metric the NA barely moves. Our own throughput axis
+      is measured, and this finding is why we treat prefill and decode as separate stories
+      rather than folding them into one speed number.
+    </p>
+  </section>
+
+  <section class="lab-section">
+    <h2>Confirmed: our MLX runs go through the NA-aware engine <span class="sec-date">2026-08-22</span></h2>
+    <p>
+      The bench host is an Apple M5 Max running LM Studio, on a macOS build above the 26.2
+      floor. LM Studio ships two separate MLX runtime packages: a generic MLX build, and an
+      <strong>&ldquo;Apple M5&rdquo; build with explicit M5 Neural Accelerator support</strong>.
+      We verified in the runtime manager that the M5-specific build is the one selected and
+      active for the MLX slot &mdash; meaning <strong>every MLX-format run this bench has
+      published was served through the NA-aware engine</strong>.
+    </p>
+    <p>
+      A second, independent confirmation comes from the engine&rsquo;s own internal naming.
+      The runtime listing identifies the selected MLX engine as
+      <code>mlx-llm-mac-arm64-apple-metal-<strong>nax</strong>-advsimd@1.11.0</code> &mdash;
+      the <code>nax</code> segment (almost certainly &ldquo;Neural Accelerator
+      eXtension&rdquo; or similar) versus the plain
+      <code>mlx-llm-mac-arm64-apple-metal-advsimd</code> variant that isn&rsquo;t selected.
+      The NA-aware build is active in the engine&rsquo;s own package name, not just a GUI label.
+    </p>
+    <p>
+      There&rsquo;s a structural reason this works without special effort on LM Studio&rsquo;s
+      part: their open-source MLX engine is a thin wrapper directly around Apple&rsquo;s own
+      <code>mlx-lm</code> package, built by the MLX team itself. NA support landed inside
+      MLX/<code>mlx-lm</code>, so the wrapper inherits it whenever the pinned dependency is
+      bumped &mdash; no from-scratch reimplementation involved.
+    </p>
+  </section>
+
+  <section class="lab-section">
+    <h2>Caveats we&rsquo;re carrying <span class="sec-date">2026-08-22</span></h2>
+    <ul>
+      <li>
+        <strong>Apple&rsquo;s numbers are base-M5.</strong> Their benchmark used a base M5
+        (24&nbsp;GB) against M4. The <em>relative</em> TTFT-vs-decode pattern should hold
+        architecturally on M5 Pro/Max, but the exact magnitudes on M5 Max &mdash; a much
+        larger GPU with higher bandwidth &mdash; are untested by Apple&rsquo;s post and
+        unconfirmed by us.
+      </li>
+      <li>
+        <strong>Our historical TTFT data can&rsquo;t answer this retroactively.</strong>
+        Apple&rsquo;s methodology fixed the prompt at 4,096 tokens; our archived runs vary
+        prompt length freely, so their TTFT samples swing with prompt size and can&rsquo;t be
+        read as an NA signal. A controlled fixed-prompt TTFT baseline is on the workbench.
+      </li>
+      <li>
+        <strong>Metric weighting is an open question.</strong> If TTFT is where the
+        hardware&rsquo;s win actually shows up, runtime-and-hardware comparisons that lean on
+        tok/s may under-credit (or miscredit) effects across the board. We&rsquo;re deciding
+        how much weight TTFT deserves in future runtime-comparison writeups.
+      </li>
+    </ul>
+  </section>
+
+  <section class="lab-section">
+    <h2>Sources</h2>
+    <ul class="src-list">
+      <li><a href="https://machinelearning.apple.com/research/exploring-llms-mlx-m5" rel="noopener">Apple ML Research: Exploring LLMs with MLX and the Neural Accelerators in the M5 GPU</a></li>
+      <li><a href="https://www.apple.com/newsroom/2025/10/apple-unleashes-m5-the-next-big-leap-in-ai-performance-for-apple-silicon/" rel="noopener">Apple Newsroom: M5 announcement</a></li>
+      <li><a href="https://www.apple.com/newsroom/2026/03/apple-debuts-m5-pro-and-m5-max-to-supercharge-the-most-demanding-pro-workflows/" rel="noopener">Apple Newsroom: M5 Pro / M5 Max debut</a></li>
+      <li><a href="https://arxiv.org/html/2607.19438v1" rel="noopener">BaseRT: Advancing Best-in-Class LLM Inference with Apple M5 Neural Accelerators (arXiv)</a></li>
+      <li><a href="https://ollama.com/blog/mlx-performance" rel="noopener">Ollama blog: MLX performance / NVFP4</a></li>
+    </ul>
+  </section>
+
+  <p class="lab-back"><a href="/lab/">&larr; Back to the Lab</a></p>
+</Base>
+
+<style>
+  .lab-status {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--muted);
+    margin: 18px 0 0;
+  }
+  .lab-status::before { content: '\25B8 '; color: var(--green); }
+
+  .lab-section { margin: 40px 0 0; max-width: 820px; }
+  .lab-section h2 {
+    font-size: 21px;
+    margin: 0 0 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-soft);
+  }
+  .sec-date {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--muted);
+    margin-left: 10px;
+    vertical-align: 2px;
+  }
+  .lab-section p, .lab-section li { color: var(--text-dim); }
+  .lab-section ul { padding-left: 22px; }
+  .lab-section li { margin: 0 0 10px; }
+  .lab-section code {
+    font-family: var(--mono);
+    font-size: 0.86em;
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1px 6px;
+    color: var(--text);
+  }
+
+  .callout-inline {
+    background: var(--bg-card);
+    border: 1px solid rgba(37, 99, 235, 0.45);
+    border-radius: 12px;
+    padding: 14px 18px;
+  }
+
+  .table-wrap { overflow-x: auto; margin: 18px 0; }
+  .lab-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .lab-table th {
+    text-align: left;
+    font-family: var(--display);
+    font-size: 12.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--bg-raised);
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .lab-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border-soft);
+    color: var(--text-dim);
+    vertical-align: top;
+  }
+  .lab-table tr:last-child td { border-bottom: 0; }
+  .lab-table td.num {
+    font-family: var(--mono);
+    color: var(--green);
+    white-space: nowrap;
+  }
+
+  .src-list { padding-left: 22px; }
+  .lab-back { margin: 40px 0 40px; }
+</style>

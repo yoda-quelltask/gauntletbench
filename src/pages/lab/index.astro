@@ -1,0 +1,118 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const pages = [
+  {
+    href: '/lab/m5-neural-accelerator/',
+    tag: 'Hardware',
+    title: 'The M5 Neural Accelerator',
+    blurb:
+      'Apple put a matrix engine in every GPU core. The speedup is real — and lopsided. Where it actually shows up in inference numbers, why decode barely moves, and how we confirmed our own MLX runs are served by the NA-aware engine.',
+    started: '2026-08-22',
+  },
+  {
+    href: '/lab/runtime-tracking/',
+    tag: 'Transparency',
+    title: 'Runtime Version Tracking',
+    blurb:
+      'A silent engine update between rounds is an invisible confound on every round-over-round comparison. Our policy: auto-update off, engine versions captured per run, deliberate review before any bump. Current engines and the changelog live here.',
+    started: '2026-08-22',
+  },
+];
+---
+<Base
+  title="Lab"
+  description="The bench under the bench: instrumentation, hardware, and runtime findings that shape how GAUNTLET Bench measures."
+>
+  <div class="page-head">
+    <p class="kicker">Instrumentation &amp; controls</p>
+    <h1>Lab</h1>
+    <p class="lede">
+      The bench under the bench: instrumentation, hardware, and runtime findings that shape
+      how we measure &mdash; published because a benchmark that doesn&rsquo;t control its own
+      confounds is just vibes.
+    </p>
+  </div>
+
+  <p class="lab-intro">
+    Scores are only as trustworthy as the machinery that produced them. This section is the
+    running record of what we&rsquo;ve learned about that machinery &mdash; the silicon, the
+    inference engines, the metrics themselves &mdash; and the controls we&rsquo;ve put in place
+    when a finding exposed a gap. Investigations stay open; entries get dated updates as the
+    picture changes.
+  </p>
+
+  <div class="lab-grid">
+    {pages.map((p) => (
+      <a class="lab-card" href={p.href}>
+        <span class="lab-tag">{p.tag}</span>
+        <h2>{p.title}</h2>
+        <p>{p.blurb}</p>
+        <span class="lab-meta">Ongoing &middot; started {p.started}</span>
+      </a>
+    ))}
+  </div>
+
+  <p class="lab-more">
+    More investigations will land here as they mature: memory-pressure telemetry during long
+    runs, prompt-length-controlled TTFT baselines, and effort-setting sensitivity in reasoning
+    models are all on the workbench.
+  </p>
+</Base>
+
+<style>
+  .lab-intro {
+    color: var(--text-dim);
+    max-width: 760px;
+    margin: 22px 0 0;
+  }
+  .lab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 18px;
+    margin: 30px 0 0;
+  }
+  .lab-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 20px 16px;
+    color: inherit;
+    transition: border-color 0.15s ease;
+  }
+  .lab-card:hover {
+    border-color: var(--accent-bright);
+    text-decoration: none;
+  }
+  .lab-tag {
+    align-self: flex-start;
+    font-family: var(--display);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-bright);
+    background: var(--accent-soft);
+    border-radius: 999px;
+    padding: 3px 10px;
+  }
+  .lab-card h2 { font-size: 19px; margin: 4px 0 0; }
+  .lab-card p { margin: 0; color: var(--text-dim); font-size: 14px; }
+  .lab-meta {
+    margin-top: auto;
+    padding-top: 8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .lab-meta::before { content: '\25B8 '; color: var(--green); }
+  .lab-more {
+    color: var(--muted);
+    font-size: 13.5px;
+    max-width: 760px;
+    margin: 30px 0 40px;
+  }
+</style>

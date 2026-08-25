@@ -42,3 +42,59 @@ export const generatedAt = raw.generated_at.slice(0, 16).replace('T', ' ') + ' U
 
 export const GITHUB_URL = 'https://github.com/Yoda-quelltask/gauntletbench';
 export const ISSUES_URL = 'https://github.com/Yoda-quelltask/gauntletbench/issues';
+
+/* ---------- schema v2 additions ---------- */
+
+/** Suite → GAUNTLET axis mapping (formal designation, fixed editorially). */
+export const SUITE_AXIS = {
+  '1a': 'g', '1b': 'a', '1c': 'e', '1d': 'u', '1d2': 'u',
+  '1e': 'g', '1g': 'n', '1g2': 'n', '1h': 'l', '1i': 'l',
+};
+
+const scoringLabel = (s) => (s === 'claude-judge-0-20' ? 'LLM-judged 0–20' : s);
+
+/** One-line formal descriptor, e.g. "Live one-shot builds (runtime-verified) — 4 tests, LLM-judged 0–20". */
+export function suiteDescriptor(suite) {
+  if (!suite) return null;
+  return `${suite.name} — ${suite.test_count} tests, ${scoringLabel(suite.scoring)}`;
+}
+
+/**
+ * Parse a rounds-frontmatter suite string ("1H", "1A/1B", "1I") into
+ * designation objects: suite chip label, display name, axis badge, descriptor.
+ */
+export function parseSuiteDesignation(str) {
+  if (!str) return [];
+  return String(str)
+    .split(/[\/,+\s]+/)
+    .filter(Boolean)
+    .map((tok) => {
+      const id = tok.toLowerCase();
+      const suite = suitesById[id] ?? null;
+      const axisKey = SUITE_AXIS[id] ?? null;
+      return {
+        id,
+        label: tok.toUpperCase(),
+        name: suite?.name ?? null,
+        descriptor: suiteDescriptor(suite),
+        axisKey,
+        axisLetter: axisKey ? axisMeta[axisKey].letter : null,
+        axisName: axisKey ? axisMeta[axisKey].name : null,
+      };
+    });
+}
+
+/** Build-time site stats for the hero. */
+export const siteStats = {
+  models: raw.models.length,
+  suites: raw.suites.length,
+  perTestResults: raw.models.reduce(
+    (n, m) =>
+      n + Object.values(m.suites).reduce((k, c) => k + (c.per_test?.length ?? 0), 0),
+    0
+  ),
+};
+
+/** Tooltip for the small-model class chip. */
+export const SMALL_TIP =
+  'Under 8B total parameters — phone/edge class. Scored on the same suites; compare within class.';

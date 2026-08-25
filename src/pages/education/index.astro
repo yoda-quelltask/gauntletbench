@@ -1,0 +1,69 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const articles = (await getCollection('education')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+const concepts = articles.filter((a) => a.data.cluster === 'concepts');
+const methodology = articles.filter((a) => a.data.cluster === 'methodology');
+---
+<Base
+  title="Education"
+  description="Plain-language guides to how local LLMs work and how GAUNTLET Bench scores them: quantization, file formats, MoE, reasoning stalls, judging, and why scores move."
+>
+  <div class="page-head">
+    <p class="kicker">Field guide</p>
+    <h1>Education</h1>
+    <p class="lede">
+      Everything on this site — the leaderboard, the axes, the round writeups — assumes some
+      vocabulary: quants, MoE, stalls, judges. These guides build that vocabulary from zero,
+      in plain language, using this site&rsquo;s own data as the examples. No hand-waving,
+      no invented numbers.
+    </p>
+  </div>
+
+  <section class="axis-section">
+    <h2>How Local AI Works</h2>
+    <p>
+      The concepts cluster: what a local model actually is, why one model ships as a dozen
+      different files, and why some models think out loud — or think forever.
+    </p>
+    <div class="card-grid">
+      {concepts.map((a) => (
+        <a class="round-card" href={`/education/${a.data.slug ?? a.id}/`}>
+          <span class="date">Part {a.data.order}</span>
+          <h2>{a.data.title}</h2>
+          <p>{a.data.summary}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="axis-section">
+    <h2>How GAUNTLET Scores Models</h2>
+    <p>
+      The methodology cluster: what the eight axes measure, what a test actually looks like,
+      how to read a score honestly — including the ways scores can mislead — and why the same
+      model can score differently on different days.
+    </p>
+    <div class="card-grid">
+      {methodology.map((a) => (
+        <a class="round-card" href={`/education/${a.data.slug ?? a.id}/`}>
+          <span class="date">Part {a.data.order}</span>
+          <h2>{a.data.title}</h2>
+          <p>{a.data.summary}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="callout">
+    <h2>Where to go next</h2>
+    <p>
+      For the formal scoring rules, see the <a href="/gauntlet">methodology page</a>. For the
+      evidence behind every number cited in these guides, see the <a href="/rounds/">round
+      writeups</a>. And the <a href="/">leaderboard</a> is where it all lands.
+    </p>
+  </section>
+</Base>

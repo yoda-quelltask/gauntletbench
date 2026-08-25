@@ -13,4 +13,16 @@ const rounds = defineCollection({
   }),
 });
 
-export const collections = { rounds };
+const education = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/education' }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string().optional(),
+    cluster: z.enum(['concepts', 'methodology']),
+    order: z.number(),
+    summary: z.string(),
+    updated: z.coerce.date(),
+  }),
+});
+
+export const collections = { rounds, education };

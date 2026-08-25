@@ -37,6 +37,9 @@ const poly = scored
 
 const fs = Math.max(10, Math.round(size / 16));
 const hasPending = pts.some((p) => p.v == null);
+const gid = 'rg' + size + '-' + scored.map((p) => String(p.v).replace('.', '')).join('');
+const showRingLabels = size >= 240;
+const ringFs = Math.max(8, Math.round(size / 34));
 ---
 <svg
   viewBox={`0 0 ${size} ${size}`}
@@ -46,6 +49,12 @@ const hasPending = pts.some((p) => p.v == null);
   role="img"
   aria-label={`GAUNTLET radar: ${scored.map((p) => `${p.name} ${fmtAxis(p.v)}`).join(', ')}${hasPending ? '; unscored axes shown as pending' : ''}`}
 >
+  <defs>
+    <radialGradient id={gid} cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.42" />
+      <stop offset="100%" stop-color="#2563EB" stop-opacity="0.18" />
+    </radialGradient>
+  </defs>
   {[0.25, 0.5, 0.75, 1].map((f) => <polygon points={ringPts(f)} class="grid" />)}
   {pts.map((p) => (
     <line
@@ -55,7 +64,7 @@ const hasPending = pts.some((p) => p.v == null);
     />
   ))}
   {scored.length >= 3
-    ? <polygon points={poly} class="shape" />
+    ? <polygon points={poly} class="shape" style={`fill:url(#${gid})`} />
     : <polyline points={poly} class="shape" />}
   {scored.map((p) => (
     <circle
@@ -72,6 +81,16 @@ const hasPending = pts.some((p) => p.v == null);
       r={size >= 260 ? 4 : 3}
       class="dot pending"
     />
+  ))}
+  {showRingLabels && [25, 50, 75, 100].map((val) => (
+    <text
+      x={(cx + 5).toFixed(1)}
+      y={(cy - r * (val / 100) + (val === 100 ? 9 : 3)).toFixed(1)}
+      class="ring-lbl"
+      font-size={ringFs}
+      text-anchor="start"
+      aria-hidden="true"
+    >{val}</text>
   ))}
   {pts.map((p) => (
     <text
