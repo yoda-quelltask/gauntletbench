@@ -1,6 +1,6 @@
 {
  "schema_version": 2,
- "generated_at": "2026-08-27T06:34:42Z",
+ "generated_at": "2026-08-28T08:29:00Z",
  "host": {
   "name": "MacBook Pro",
   "hw": "Apple M5 Max, 128 GB unified memory",
@@ -5728,6 +5728,40 @@
       }
      ],
      "run_date": "2026-08-14"
+    },
+    "1h": {
+     "score_avg": 12.2,
+     "score_total": 48.8,
+     "tests_run": 4,
+     "tests_total": 4,
+     "avg_tok_s": 15.6,
+     "per_test": [
+      {
+       "id": "H1",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 15,
+       "tok_s": 16.9
+      },
+      {
+       "id": "H2",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 12,
+       "tok_s": 15.4
+      },
+      {
+       "id": "H3",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 10,
+       "tok_s": 15.0
+      },
+      {
+       "id": "H4",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 12,
+       "tok_s": 15.2
+      }
+     ],
+     "run_date": "2026-08-28"
     }
    },
    "thinking": {
@@ -5738,18 +5772,18 @@
     "mean_reasoning_tokens": 0.0,
     "max_reasoning_tokens": 0
    },
-   "mean_tok_s": 12.9,
+   "mean_tok_s": 13.2,
    "axes": {
     "g": 79.0,
     "a": 92.5,
     "u": 78.7,
     "n": 80.0,
     "t": 100.0,
-    "l": null,
+    "l": 61.0,
     "e": 70.0,
-    "tp": 5.4
+    "tp": 5.5
    },
-   "axes_scored": 7
+   "axes_scored": 8
   },
   {
    "name": "Devstral Small 2 24B 6bit MLX",
