@@ -1,6 +1,6 @@
 {
  "schema_version": 2,
- "generated_at": "2026-08-28T08:29:00Z",
+ "generated_at": "2026-08-29T02:25:29Z",
  "host": {
   "name": "MacBook Pro",
   "hw": "Apple M5 Max, 128 GB unified memory",
@@ -5945,6 +5945,52 @@
       }
      ],
      "run_date": "2026-08-06"
+    },
+    "1c": {
+     "score_avg": 17.5,
+     "score_total": 105.0,
+     "tests_run": 6,
+     "tests_total": 6,
+     "avg_tok_s": null,
+     "per_test": [
+      {
+       "id": "K1",
+       "category": "Coding \u2014 Concurrency",
+       "score": 17,
+       "tok_s": 25.7
+      },
+      {
+       "id": "K2",
+       "category": "Coding \u2014 Algorithms",
+       "score": 20,
+       "tok_s": 24.6
+      },
+      {
+       "id": "K3",
+       "category": "Coding \u2014 Security Review",
+       "score": 15,
+       "tok_s": 24.6
+      },
+      {
+       "id": "K4",
+       "category": "Coding \u2014 Performance",
+       "score": 15,
+       "tok_s": 19.0
+      },
+      {
+       "id": "K5",
+       "category": "Coding \u2014 Refactoring Under Constraints",
+       "score": 18,
+       "tok_s": 16.7
+      },
+      {
+       "id": "K6",
+       "category": "Coding \u2014 Test Writing",
+       "score": 20,
+       "tok_s": 17.4
+      }
+     ],
+     "run_date": "2026-08-28"
     }
    },
    "thinking": {
@@ -5963,10 +6009,10 @@
     "n": null,
     "t": 100.0,
     "l": null,
-    "e": null,
+    "e": 87.5,
     "tp": 8.5
    },
-   "axes_scored": 4
+   "axes_scored": 5
   },
   {
    "name": "Gemma-4 E4B 7.5B Q4_K_M GGUF",
@@ -6652,6 +6698,175 @@
    "axes_scored": 2
   },
   {
+   "name": "Qwen3.8-27B MLX 6bit (lmstudio-community)",
+   "params": "27B dense",
+   "arch": "qwen3_5",
+   "size_gb": 21.0,
+   "quant": "6bit",
+   "format": "MLX",
+   "is_cot": true,
+   "status": "tested",
+   "base_org": null,
+   "model_card_url": "https://huggingface.co/lmstudio-community/Qwen3.8-27B-MLX-6bit",
+   "slug": "qwen3.8-27b-mlx-6bit-lmstudio-community",
+   "internal_id": "M25f",
+   "cls": "standard",
+   "suites": {
+    "1a": {
+     "score_avg": 13.46,
+     "score_total": 175.0,
+     "tests_run": 13,
+     "tests_total": 13,
+     "avg_tok_s": 13.0,
+     "per_test": [
+      {
+       "id": "A1",
+       "category": "Dev/Ops Scripting",
+       "score": 20,
+       "tok_s": 18.2
+      },
+      {
+       "id": "A2",
+       "category": "Dev/Ops Scripting",
+       "score": 20,
+       "tok_s": 14.2
+      },
+      {
+       "id": "A3",
+       "category": "Dev/Ops Scripting",
+       "score": 0
+      },
+      {
+       "id": "A4",
+       "category": "Dev/Ops Scripting",
+       "score": 18,
+       "tok_s": 12.3
+      },
+      {
+       "id": "A5",
+       "category": "Dev/Ops Scripting",
+       "score": 20,
+       "tok_s": 12.2
+      },
+      {
+       "id": "A6",
+       "category": "Dev/Ops Scripting",
+       "score": 20,
+       "tok_s": 12.3
+      },
+      {
+       "id": "B1",
+       "category": "Document Processing",
+       "score": 20,
+       "tok_s": 12.6
+      },
+      {
+       "id": "B2",
+       "category": "Document Processing",
+       "score": 20,
+       "tok_s": 12.4
+      },
+      {
+       "id": "B3",
+       "category": "Document Processing",
+       "score": 0
+      },
+      {
+       "id": "C1",
+       "category": "Content Production",
+       "score": 0
+      },
+      {
+       "id": "C2",
+       "category": "Content Production",
+       "score": 18,
+       "tok_s": 10.9
+      },
+      {
+       "id": "C3",
+       "category": "Content Production",
+       "score": 0
+      },
+      {
+       "id": "C4",
+       "category": "Content Production",
+       "score": 19,
+       "tok_s": 11.9
+      }
+     ],
+     "run_date": "2026-08-28"
+    },
+    "1b": {
+     "score_avg": 15.0,
+     "score_total": 120.0,
+     "tests_run": 8,
+     "tests_total": 8,
+     "avg_tok_s": 17.8,
+     "per_test": [
+      {
+       "id": "WA1",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 19.2
+      },
+      {
+       "id": "WA2",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 20.7
+      },
+      {
+       "id": "WA3",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 20.0
+      },
+      {
+       "id": "WA4",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 18.7
+      },
+      {
+       "id": "WA5",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 0
+      },
+      {
+       "id": "WB1",
+       "category": "Agent Robustness & State Management",
+       "score": 20,
+       "tok_s": 13.9
+      },
+      {
+       "id": "WB2",
+       "category": "Agent Robustness & State Management",
+       "score": 20,
+       "tok_s": 14.0
+      },
+      {
+       "id": "WB3",
+       "category": "Agent Robustness & State Management",
+       "score": 0
+      }
+     ],
+     "run_date": "2026-08-20"
+    }
+   },
+   "mean_tok_s": 15.4,
+   "axes": {
+    "g": 67.3,
+    "a": 75.0,
+    "u": null,
+    "n": null,
+    "t": null,
+    "l": null,
+    "e": null,
+    "tp": 6.4
+   },
+   "axes_scored": 3
+  },
+  {
    "name": "GPT-OSS 120B",
    "params": "120B",
    "arch": "gpt_oss",
@@ -7327,22 +7542,23 @@
    "cls": "standard",
    "suites": {
     "1a": {
-     "score_avg": 12.1,
-     "score_total": 157.3,
+     "score_avg": 12.0,
+     "score_total": 156.0,
      "tests_run": 13,
      "tests_total": 13,
-     "avg_tok_s": 15.0,
+     "avg_tok_s": 13.2,
      "per_test": [
       {
        "id": "A1",
        "category": "Dev/Ops Scripting",
-       "score": 0
+       "score": 20,
+       "tok_s": 12.9
       },
       {
        "id": "A2",
        "category": "Dev/Ops Scripting",
        "score": 20,
-       "tok_s": 16.3
+       "tok_s": 12.7
       },
       {
        "id": "A3",
@@ -7352,32 +7568,32 @@
       {
        "id": "A4",
        "category": "Dev/Ops Scripting",
-       "score": 19,
-       "tok_s": 14.5
+       "score": 18,
+       "tok_s": 13.6
       },
       {
        "id": "A5",
        "category": "Dev/Ops Scripting",
        "score": 20,
-       "tok_s": 15.3
+       "tok_s": 13.5
       },
       {
        "id": "A6",
        "category": "Dev/Ops Scripting",
        "score": 20,
-       "tok_s": 15.7
+       "tok_s": 13.7
       },
       {
        "id": "B1",
        "category": "Document Processing",
        "score": 20,
-       "tok_s": 15.4
+       "tok_s": 13.5
       },
       {
        "id": "B2",
        "category": "Document Processing",
        "score": 20,
-       "tok_s": 15.0
+       "tok_s": 13.4
       },
       {
        "id": "B3",
@@ -7387,14 +7603,13 @@
       {
        "id": "C1",
        "category": "Content Production",
-       "score": 20,
-       "tok_s": 14.0
+       "score": 0
       },
       {
        "id": "C2",
        "category": "Content Production",
        "score": 18,
-       "tok_s": 13.5
+       "tok_s": 12.2
       },
       {
        "id": "C3",
@@ -7407,7 +7622,7 @@
        "score": 0
       }
      ],
-     "run_date": "2026-08-20"
+     "run_date": "2026-08-28"
     },
     "1b": {
      "score_avg": 17.5,
@@ -7467,16 +7682,16 @@
      "run_date": "2026-08-20"
     }
    },
-   "mean_tok_s": 15.4,
+   "mean_tok_s": 14.5,
    "axes": {
-    "g": 60.5,
+    "g": 60.0,
     "a": 87.5,
     "u": null,
     "n": null,
     "t": null,
     "l": null,
     "e": null,
-    "tp": 6.4
+    "tp": 6.1
    },
    "axes_scored": 3
   },
@@ -7704,173 +7919,6 @@
     "tp": 14.1
    },
    "axes_scored": 2
-  },
-  {
-   "name": "Qwen3.8-27B MLX 6bit (lmstudio-community)",
-   "params": "27B dense",
-   "arch": "qwen3_5",
-   "size_gb": 21.0,
-   "quant": "6bit",
-   "format": "MLX",
-   "is_cot": true,
-   "status": "tested",
-   "base_org": null,
-   "model_card_url": "https://huggingface.co/lmstudio-community/Qwen3.8-27B-MLX-6bit",
-   "slug": "qwen3.8-27b-mlx-6bit-lmstudio-community",
-   "internal_id": "M25f",
-   "cls": "standard",
-   "suites": {
-    "1a": {
-     "score_avg": 10.38,
-     "score_total": 134.9,
-     "tests_run": 13,
-     "tests_total": 13,
-     "avg_tok_s": 14.1,
-     "per_test": [
-      {
-       "id": "A1",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 15.4
-      },
-      {
-       "id": "A2",
-       "category": "Dev/Ops Scripting",
-       "score": 0
-      },
-      {
-       "id": "A3",
-       "category": "Dev/Ops Scripting",
-       "score": 0
-      },
-      {
-       "id": "A4",
-       "category": "Dev/Ops Scripting",
-       "score": 18,
-       "tok_s": 14.1
-      },
-      {
-       "id": "A5",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 13.8
-      },
-      {
-       "id": "A6",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 14.2
-      },
-      {
-       "id": "B1",
-       "category": "Document Processing",
-       "score": 0
-      },
-      {
-       "id": "B2",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 13.6
-      },
-      {
-       "id": "B3",
-       "category": "Document Processing",
-       "score": 0
-      },
-      {
-       "id": "C1",
-       "category": "Content Production",
-       "score": 0
-      },
-      {
-       "id": "C2",
-       "category": "Content Production",
-       "score": 18,
-       "tok_s": 13.1
-      },
-      {
-       "id": "C3",
-       "category": "Content Production",
-       "score": 0
-      },
-      {
-       "id": "C4",
-       "category": "Content Production",
-       "score": 19,
-       "tok_s": 14.4
-      }
-     ],
-     "run_date": "2026-08-20"
-    },
-    "1b": {
-     "score_avg": 15.0,
-     "score_total": 120.0,
-     "tests_run": 8,
-     "tests_total": 8,
-     "avg_tok_s": 17.8,
-     "per_test": [
-      {
-       "id": "WA1",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 19.2
-      },
-      {
-       "id": "WA2",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 20.7
-      },
-      {
-       "id": "WA3",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 20.0
-      },
-      {
-       "id": "WA4",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 18.7
-      },
-      {
-       "id": "WA5",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 0
-      },
-      {
-       "id": "WB1",
-       "category": "Agent Robustness & State Management",
-       "score": 20,
-       "tok_s": 13.9
-      },
-      {
-       "id": "WB2",
-       "category": "Agent Robustness & State Management",
-       "score": 20,
-       "tok_s": 14.0
-      },
-      {
-       "id": "WB3",
-       "category": "Agent Robustness & State Management",
-       "score": 0
-      }
-     ],
-     "run_date": "2026-08-20"
-    }
-   },
-   "mean_tok_s": 15.9,
-   "axes": {
-    "g": 51.9,
-    "a": 75.0,
-    "u": null,
-    "n": null,
-    "t": null,
-    "l": null,
-    "e": null,
-    "tp": 6.7
-   },
-   "axes_scored": 3
   },
   {
    "name": "GPT-OSS Safeguard 20B MLX",
@@ -8272,6 +8320,42 @@
     "tp": 100.0
    },
    "axes_scored": 3
+  },
+  {
+   "name": "Qwen3.8-27B Uncensored HauhauCS Aggressive Q5_K_P GGUF",
+   "params": "27B dense",
+   "arch": "qwen3_5",
+   "size_gb": 18.83,
+   "quant": "Q5_K_P",
+   "format": "GGUF",
+   "is_cot": true,
+   "status": "untested",
+   "base_org": null,
+   "model_card_url": "https://huggingface.co/HauhauCS/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF",
+   "slug": "qwen3.8-27b-uncensored-hauhaucs-aggressive-q5-k-p-gguf",
+   "internal_id": "M29",
+   "cls": "standard",
+   "suites": {
+    "1a": {
+     "score_avg": 4.83,
+     "score_total": 62.8,
+     "tests_run": 13,
+     "tests_total": 13,
+     "avg_tok_s": 13.0
+    }
+   },
+   "mean_tok_s": 13.0,
+   "axes": {
+    "g": 24.2,
+    "a": null,
+    "u": null,
+    "n": null,
+    "t": null,
+    "l": null,
+    "e": null,
+    "tp": 5.4
+   },
+   "axes_scored": 2
   },
   {
    "name": "Qwen3-VL 30B-A3B Instruct 4bit MLX",
