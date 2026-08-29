@@ -1,6 +1,6 @@
 {
  "schema_version": 2,
- "generated_at": "2026-08-29T02:25:29Z",
+ "generated_at": "2026-08-29T13:27:51Z",
  "host": {
   "name": "MacBook Pro",
   "hw": "Apple M5 Max, 128 GB unified memory",
@@ -206,7 +206,7 @@
    "quant": "Q6_K",
    "format": "GGUF",
    "is_cot": true,
-   "status": "daily-driver-trial",
+   "status": "keeper",
    "base_org": null,
    "model_card_url": "https://huggingface.co/Qwen/Qwen3.8-27B",
    "slug": "qwen3.8-27b-q6-k-gguf",
