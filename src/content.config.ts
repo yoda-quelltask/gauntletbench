@@ -25,4 +25,18 @@ const education = defineCollection({
   }),
 });
 
-export const collections = { rounds, education };
+const articles = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/articles' }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string().optional(),
+    date: z.coerce.date(),
+    summary: z.string(),
+    // draft:true keeps an outline in the repo and off the site, so a piece can
+    // be reviewed in a diff before it is prose.
+    draft: z.boolean().default(false),
+    tags: z.array(z.string()).default([]),
+  }),
+});
+
+export const collections = { rounds, education, articles };
