@@ -1,6 +1,6 @@
 {
  "schema_version": 2,
- "generated_at": "2026-08-29T13:27:51Z",
+ "generated_at": "2026-08-31T07:29:04Z",
  "host": {
   "name": "MacBook Pro",
   "hw": "Apple M5 Max, 128 GB unified memory",
@@ -6116,6 +6116,34 @@
       }
      ],
      "run_date": "2026-06-21"
+    },
+    "1g2": {
+     "score_avg": 3.3,
+     "score_total": 9.9,
+     "tests_run": 3,
+     "tests_total": 3,
+     "avg_tok_s": 24.6,
+     "per_test": [
+      {
+       "id": "L7",
+       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
+       "score": 4,
+       "tok_s": 50.9
+      },
+      {
+       "id": "L8",
+       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
+       "score": 4,
+       "tok_s": 14.6
+      },
+      {
+       "id": "L9",
+       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
+       "score": 2,
+       "tok_s": 8.4
+      }
+     ],
+     "run_date": "2026-08-31"
     }
    },
    "thinking": {
@@ -6126,18 +6154,18 @@
     "mean_reasoning_tokens": 860.5,
     "max_reasoning_tokens": 2100
    },
-   "mean_tok_s": 89.4,
+   "mean_tok_s": 57.0,
    "axes": {
     "g": 78.0,
     "a": null,
     "u": null,
-    "n": null,
+    "n": 16.5,
     "t": null,
     "l": null,
     "e": null,
-    "tp": 37.4
+    "tp": 23.8
    },
-   "axes_scored": 2
+   "axes_scored": 3
   },
   {
    "name": "Muse-Glimmer 30B (GGUF, kquant 17GB)",
@@ -6990,6 +7018,34 @@
       }
      ],
      "run_date": "2026-08-02"
+    },
+    "1g2": {
+     "score_avg": 12.3,
+     "score_total": 36.9,
+     "tests_run": 3,
+     "tests_total": 3,
+     "avg_tok_s": 7.9,
+     "per_test": [
+      {
+       "id": "L7",
+       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
+       "score": 20,
+       "tok_s": 12.8
+      },
+      {
+       "id": "L8",
+       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
+       "score": 14,
+       "tok_s": 8.5
+      },
+      {
+       "id": "L9",
+       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
+       "score": 3,
+       "tok_s": 2.3
+      }
+     ],
+     "run_date": "2026-08-31"
     }
    },
    "thinking": {
@@ -7000,18 +7056,18 @@
     "mean_reasoning_tokens": 0.0,
     "max_reasoning_tokens": 0
    },
-   "mean_tok_s": 45.9,
+   "mean_tok_s": 33.2,
    "axes": {
     "g": 65.8,
     "a": null,
     "u": null,
-    "n": null,
+    "n": 61.5,
     "t": 100.0,
     "l": null,
     "e": null,
-    "tp": 19.2
+    "tp": 13.9
    },
-   "axes_scored": 3
+   "axes_scored": 4
   },
   {
    "name": "GPT-OSS 120B Fable-5 Distilled",
