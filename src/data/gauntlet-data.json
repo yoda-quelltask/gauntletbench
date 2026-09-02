@@ -1,6 +1,6 @@
 {
  "schema_version": 2,
- "generated_at": "2026-08-31T07:29:04Z",
+ "generated_at": "2026-09-02T07:21:39Z",
  "host": {
   "name": "MacBook Pro",
   "hw": "Apple M5 Max, 128 GB unified memory",
@@ -3741,6 +3741,34 @@
       }
      ],
      "run_date": "2026-08-02"
+    },
+    "1g2": {
+     "score_avg": 4.3,
+     "score_total": 12.9,
+     "tests_run": 3,
+     "tests_total": 3,
+     "avg_tok_s": 18.4,
+     "per_test": [
+      {
+       "id": "L7",
+       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
+       "score": 5,
+       "tok_s": 28.8
+      },
+      {
+       "id": "L8",
+       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
+       "score": 4,
+       "tok_s": 16.8
+      },
+      {
+       "id": "L9",
+       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
+       "score": 4,
+       "tok_s": 9.5
+      }
+     ],
+     "run_date": "2026-09-02"
     }
    },
    "thinking": {
@@ -3751,18 +3779,18 @@
     "mean_reasoning_tokens": 0.0,
     "max_reasoning_tokens": 0
    },
-   "mean_tok_s": 67.3,
+   "mean_tok_s": 57.5,
    "axes": {
     "g": 89.0,
     "a": 95.0,
     "u": null,
-    "n": null,
+    "n": 21.5,
     "t": 100.0,
     "l": null,
     "e": 71.5,
-    "tp": 28.2
+    "tp": 24.1
    },
-   "axes_scored": 5
+   "axes_scored": 6
   },
   {
    "name": "Qwen3.6-27B Fable-Fusion-711 Uncensored Heretic NEO-MAX Q8_0 GGUF",
@@ -7046,6 +7074,40 @@
       }
      ],
      "run_date": "2026-08-31"
+    },
+    "1h": {
+     "score_avg": 16.2,
+     "score_total": 64.8,
+     "tests_run": 4,
+     "tests_total": 4,
+     "avg_tok_s": 52.7,
+     "per_test": [
+      {
+       "id": "H1",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 17,
+       "tok_s": 61.8
+      },
+      {
+       "id": "H2",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 15,
+       "tok_s": 43.0
+      },
+      {
+       "id": "H3",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 18,
+       "tok_s": 63.9
+      },
+      {
+       "id": "H4",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 16,
+       "tok_s": 27.7
+      }
+     ],
+     "run_date": "2026-09-02"
     }
    },
    "thinking": {
@@ -7056,18 +7118,18 @@
     "mean_reasoning_tokens": 0.0,
     "max_reasoning_tokens": 0
    },
-   "mean_tok_s": 33.2,
+   "mean_tok_s": 38.1,
    "axes": {
     "g": 65.8,
     "a": null,
     "u": null,
     "n": 61.5,
     "t": 100.0,
-    "l": null,
+    "l": 81.0,
     "e": null,
-    "tp": 13.9
+    "tp": 15.9
    },
-   "axes_scored": 4
+   "axes_scored": 5
   },
   {
    "name": "GPT-OSS 120B Fable-5 Distilled",
