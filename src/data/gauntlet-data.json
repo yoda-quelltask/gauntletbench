@@ -1,6 +1,6 @@
 {
  "schema_version": 2,
- "generated_at": "2026-09-02T07:21:39Z",
+ "generated_at": "2026-09-02T22:29:43Z",
  "host": {
   "name": "MacBook Pro",
   "hw": "Apple M5 Max, 128 GB unified memory",
@@ -218,7 +218,7 @@
      "score_total": 257.4,
      "tests_run": 13,
      "tests_total": 13,
-     "avg_tok_s": 18.2,
+     "avg_tok_s": 17.3,
      "per_test": [
       {
        "id": "A1",
@@ -464,8 +464,8 @@
      "run_date": "2026-08-15"
     },
     "1d2": {
-     "score_avg": 15.25,
-     "score_total": 61.0,
+     "score_avg": 15.2,
+     "score_total": 60.8,
      "tests_run": 4,
      "tests_total": 4,
      "avg_tok_s": 13.9,
@@ -746,12 +746,12 @@
    "axes": {
     "g": 99.0,
     "a": 100.0,
-    "u": 90.1,
+    "u": 90.0,
     "n": 89.3,
     "t": 96.5,
     "l": 75.8,
     "e": 98.5,
-    "tp": 5.8
+    "tp": 5.7
    },
    "axes_scored": 8
   },
@@ -775,7 +775,7 @@
      "score_total": 248.3,
      "tests_run": 13,
      "tests_total": 13,
-     "avg_tok_s": 78.1,
+     "avg_tok_s": 66.1,
      "per_test": [
       {
        "id": "A1",
@@ -1059,7 +1059,7 @@
      "score_total": 111.0,
      "tests_run": 6,
      "tests_total": 6,
-     "avg_tok_s": 80.9,
+     "avg_tok_s": 80.3,
      "per_test": [
       {
        "id": "E1",
@@ -1299,7 +1299,7 @@
     "mean_reasoning_tokens": 3860.4,
     "max_reasoning_tokens": 16381
    },
-   "mean_tok_s": 67.2,
+   "mean_tok_s": 66.0,
    "axes": {
     "g": 95.5,
     "a": 98.0,
@@ -1308,7 +1308,7 @@
     "t": 88.0,
     "l": 57.0,
     "e": 91.0,
-    "tp": 28.1
+    "tp": 27.6
    },
    "axes_scored": 8
   },
@@ -1762,6 +1762,182 @@
    "axes_scored": 7
   },
   {
+   "name": "Qwen3.6-35B-A3B Unsloth Dynamic UD-Q8_K_XL MLX (Brooooooklyn)",
+   "params": "35B total / 3B active per token",
+   "arch": "qwen3_5_moe",
+   "size_gb": 38.06,
+   "quant": "UD-Q8_K_XL mixed-precision MLX",
+   "format": "MLX",
+   "is_cot": true,
+   "status": "keeper",
+   "base_org": null,
+   "model_card_url": "https://huggingface.co/Brooooooklyn/Qwen3.6-35B-A3B-UD-Q8_K_XL-mlx",
+   "slug": "qwen3.6-35b-a3b-unsloth-dynamic-ud-q8-k-xl-mlx-brooooooklyn",
+   "internal_id": "M9b",
+   "cls": "standard",
+   "suites": {
+    "1a": {
+     "score_avg": 19.0,
+     "score_total": 247.0,
+     "tests_run": 13,
+     "tests_total": 13,
+     "avg_tok_s": 79.6
+    },
+    "1b": {
+     "score_avg": 19.0,
+     "score_total": 152.0,
+     "tests_run": 8,
+     "tests_total": 8,
+     "avg_tok_s": 81.3,
+     "per_test": [
+      {
+       "id": "WA1",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 49.1
+      },
+      {
+       "id": "WA2",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 84.4
+      },
+      {
+       "id": "WA3",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 73.1
+      },
+      {
+       "id": "WA4",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 76.9
+      },
+      {
+       "id": "WA5",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 90.9
+      },
+      {
+       "id": "WB1",
+       "category": "Agent Robustness & State Management",
+       "score": 20,
+       "tok_s": 91.3
+      },
+      {
+       "id": "WB2",
+       "category": "Agent Robustness & State Management",
+       "score": 20,
+       "tok_s": 91.1
+      },
+      {
+       "id": "WB3",
+       "category": "Agent Robustness & State Management",
+       "score": 12,
+       "tok_s": 93.4
+      }
+     ],
+     "run_date": "2026-07-28"
+    },
+    "1g": {
+     "score_avg": 20,
+     "score_total": 120,
+     "tests_run": 6,
+     "tests_total": 6,
+     "avg_tok_s": 59.8,
+     "per_test": [
+      {
+       "id": "L1",
+       "category": "Long-Context \u2014 Needle Retrieval",
+       "score": 20,
+       "tok_s": 56.2
+      },
+      {
+       "id": "L2",
+       "category": "Long-Context \u2014 Grounded QA with Distractors",
+       "score": 20,
+       "tok_s": 70.1
+      },
+      {
+       "id": "L3",
+       "category": "Long-Context \u2014 Ops Log Reasoning",
+       "score": 20,
+       "tok_s": 63.3
+      },
+      {
+       "id": "L4",
+       "category": "Long-Context \u2014 Faithful Summarization",
+       "score": 20,
+       "tok_s": 69.9
+      },
+      {
+       "id": "L5",
+       "category": "Long-Context \u2014 Instruction Retention",
+       "score": 20,
+       "tok_s": 65.9
+      },
+      {
+       "id": "L6",
+       "category": "Long-Context \u2014 Full-Haystack QA",
+       "score": 20,
+       "tok_s": 33.3
+      }
+     ],
+     "run_date": "2026-08-06"
+    },
+    "1g2": {
+     "score_avg": 14.7,
+     "score_total": 44.1,
+     "tests_run": 3,
+     "tests_total": 3,
+     "avg_tok_s": 49.5,
+     "per_test": [
+      {
+       "id": "L7",
+       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
+       "score": 20,
+       "tok_s": 60.5
+      },
+      {
+       "id": "L8",
+       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
+       "score": 20,
+       "tok_s": 44.4
+      },
+      {
+       "id": "L9",
+       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
+       "score": 4,
+       "tok_s": 43.7
+      }
+     ],
+     "run_date": "2026-08-14"
+    }
+   },
+   "thinking": {
+    "tests_seen": 30,
+    "stalls": 0,
+    "runaways": 0,
+    "stall_rate": 0.0,
+    "mean_reasoning_tokens": 2239.6,
+    "max_reasoning_tokens": 6384
+   },
+   "mean_tok_s": 67.5,
+   "axes": {
+    "g": 95.0,
+    "a": 95.0,
+    "u": null,
+    "n": 91.2,
+    "t": 100.0,
+    "l": null,
+    "e": null,
+    "tp": 28.2
+   },
+   "axes_scored": 5
+  },
+  {
    "name": "Qwen3.8-27B Q4_K_M GGUF",
    "params": "27B dense",
    "arch": "qwen3_5",
@@ -2128,263 +2304,6 @@
    "axes_scored": 4
   },
   {
-   "name": "Qwen3.6-35B-A3B Unsloth Dynamic UD-Q8_K_XL MLX (Brooooooklyn)",
-   "params": "35B total / 3B active per token",
-   "arch": "qwen3_5_moe",
-   "size_gb": 38.06,
-   "quant": "UD-Q8_K_XL mixed-precision MLX",
-   "format": "MLX",
-   "is_cot": true,
-   "status": "keeper",
-   "base_org": null,
-   "model_card_url": "https://huggingface.co/Brooooooklyn/Qwen3.6-35B-A3B-UD-Q8_K_XL-mlx",
-   "slug": "qwen3.6-35b-a3b-unsloth-dynamic-ud-q8-k-xl-mlx-brooooooklyn",
-   "internal_id": "M9b",
-   "cls": "standard",
-   "suites": {
-    "1a": {
-     "score_avg": 18.7,
-     "score_total": 243.1,
-     "tests_run": 13,
-     "tests_total": 13,
-     "avg_tok_s": 83.1,
-     "per_test": [
-      {
-       "id": "A1",
-       "category": "Dev/Ops Scripting",
-       "score": 10,
-       "tok_s": 80.1
-      },
-      {
-       "id": "A2",
-       "category": "Dev/Ops Scripting",
-       "score": 18,
-       "tok_s": 80.1
-      },
-      {
-       "id": "A3",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 80.1
-      },
-      {
-       "id": "A4",
-       "category": "Dev/Ops Scripting",
-       "score": 19,
-       "tok_s": 82.3
-      },
-      {
-       "id": "A5",
-       "category": "Dev/Ops Scripting",
-       "score": 19,
-       "tok_s": 81.0
-      },
-      {
-       "id": "A6",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 81.2
-      },
-      {
-       "id": "B1",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 78.8
-      },
-      {
-       "id": "B2",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 76.5
-      },
-      {
-       "id": "B3",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 74.9
-      },
-      {
-       "id": "C1",
-       "category": "Content Production",
-       "score": 20,
-       "tok_s": 74.6
-      },
-      {
-       "id": "C2",
-       "category": "Content Production",
-       "score": 18,
-       "tok_s": 74.1
-      },
-      {
-       "id": "C3",
-       "category": "Content Production",
-       "score": 20,
-       "tok_s": 74.0
-      },
-      {
-       "id": "C4",
-       "category": "Content Production",
-       "score": 20,
-       "tok_s": 77.1
-      }
-     ],
-     "run_date": "2026-06-21"
-    },
-    "1b": {
-     "score_avg": 19.0,
-     "score_total": 152.0,
-     "tests_run": 8,
-     "tests_total": 8,
-     "avg_tok_s": 81.3,
-     "per_test": [
-      {
-       "id": "WA1",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 49.1
-      },
-      {
-       "id": "WA2",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 84.4
-      },
-      {
-       "id": "WA3",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 73.1
-      },
-      {
-       "id": "WA4",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 76.9
-      },
-      {
-       "id": "WA5",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 90.9
-      },
-      {
-       "id": "WB1",
-       "category": "Agent Robustness & State Management",
-       "score": 20,
-       "tok_s": 91.3
-      },
-      {
-       "id": "WB2",
-       "category": "Agent Robustness & State Management",
-       "score": 20,
-       "tok_s": 91.1
-      },
-      {
-       "id": "WB3",
-       "category": "Agent Robustness & State Management",
-       "score": 12,
-       "tok_s": 93.4
-      }
-     ],
-     "run_date": "2026-07-28"
-    },
-    "1g": {
-     "score_avg": 20,
-     "score_total": 120,
-     "tests_run": 6,
-     "tests_total": 6,
-     "avg_tok_s": 59.8,
-     "per_test": [
-      {
-       "id": "L1",
-       "category": "Long-Context \u2014 Needle Retrieval",
-       "score": 20,
-       "tok_s": 56.2
-      },
-      {
-       "id": "L2",
-       "category": "Long-Context \u2014 Grounded QA with Distractors",
-       "score": 20,
-       "tok_s": 70.1
-      },
-      {
-       "id": "L3",
-       "category": "Long-Context \u2014 Ops Log Reasoning",
-       "score": 20,
-       "tok_s": 63.3
-      },
-      {
-       "id": "L4",
-       "category": "Long-Context \u2014 Faithful Summarization",
-       "score": 20,
-       "tok_s": 69.9
-      },
-      {
-       "id": "L5",
-       "category": "Long-Context \u2014 Instruction Retention",
-       "score": 20,
-       "tok_s": 65.9
-      },
-      {
-       "id": "L6",
-       "category": "Long-Context \u2014 Full-Haystack QA",
-       "score": 20,
-       "tok_s": 33.3
-      }
-     ],
-     "run_date": "2026-08-06"
-    },
-    "1g2": {
-     "score_avg": 14.7,
-     "score_total": 44.1,
-     "tests_run": 3,
-     "tests_total": 3,
-     "avg_tok_s": 49.5,
-     "per_test": [
-      {
-       "id": "L7",
-       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
-       "score": 20,
-       "tok_s": 60.5
-      },
-      {
-       "id": "L8",
-       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
-       "score": 20,
-       "tok_s": 44.4
-      },
-      {
-       "id": "L9",
-       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
-       "score": 4,
-       "tok_s": 43.7
-      }
-     ],
-     "run_date": "2026-08-14"
-    }
-   },
-   "thinking": {
-    "tests_seen": 30,
-    "stalls": 0,
-    "runaways": 0,
-    "stall_rate": 0.0,
-    "mean_reasoning_tokens": 2239.6,
-    "max_reasoning_tokens": 6384
-   },
-   "mean_tok_s": 68.4,
-   "axes": {
-    "g": 93.5,
-    "a": 95.0,
-    "u": null,
-    "n": 91.2,
-    "t": 100.0,
-    "l": null,
-    "e": null,
-    "tp": 28.6
-   },
-   "axes_scored": 5
-  },
-  {
    "name": "Qwen3.6-35B-A3B 4bit MLX",
    "params": "35B total / 3B active per token",
    "arch": "qwen3_5_moe",
@@ -2400,11 +2319,11 @@
    "cls": "standard",
    "suites": {
     "1a": {
-     "score_avg": 18.6,
-     "score_total": 241.8,
+     "score_avg": 18.7,
+     "score_total": 243.1,
      "tests_run": 13,
      "tests_total": 13,
-     "avg_tok_s": 119.9,
+     "avg_tok_s": 112.0,
      "per_test": [
       {
        "id": "A1",
@@ -2662,16 +2581,16 @@
     "mean_reasoning_tokens": 2471.2,
     "max_reasoning_tokens": 16377
    },
-   "mean_tok_s": 93.5,
+   "mean_tok_s": 92.0,
    "axes": {
-    "g": 93.0,
+    "g": 93.5,
     "a": 87.5,
     "u": null,
     "n": 91.2,
     "t": 97.1,
     "l": 94.0,
     "e": null,
-    "tp": 39.1
+    "tp": 38.5
    },
    "axes_scored": 6
   },
@@ -2695,7 +2614,7 @@
      "score_total": 240.5,
      "tests_run": 13,
      "tests_total": 13,
-     "avg_tok_s": 53.6,
+     "avg_tok_s": 51.8,
      "per_test": [
       {
        "id": "A1",
@@ -2919,7 +2838,7 @@
     "mean_reasoning_tokens": 2042.7,
     "max_reasoning_tokens": 9288
    },
-   "mean_tok_s": 39.4,
+   "mean_tok_s": 38.9,
    "axes": {
     "g": 92.5,
     "a": 95.0,
@@ -2928,7 +2847,7 @@
     "t": 100.0,
     "l": null,
     "e": null,
-    "tp": 16.5
+    "tp": 16.3
    },
    "axes_scored": 5
   },
@@ -2948,8 +2867,8 @@
    "cls": "standard",
    "suites": {
     "1a": {
-     "score_avg": 18.2,
-     "score_total": 236.6,
+     "score_avg": 18.1,
+     "score_total": 235.3,
      "tests_run": 13,
      "tests_total": 13,
      "avg_tok_s": 15.2,
@@ -3478,7 +3397,7 @@
    },
    "mean_tok_s": 13.4,
    "axes": {
-    "g": 91.0,
+    "g": 90.5,
     "a": 100.0,
     "u": 93.2,
     "n": 99.0,
@@ -3488,309 +3407,6 @@
     "tp": 5.6
    },
    "axes_scored": 8
-  },
-  {
-   "name": "Qwen3-Coder-Next 80B 4bit MLX",
-   "params": "80B",
-   "arch": "qwen3_next",
-   "size_gb": 44.86,
-   "quant": "4bit",
-   "format": "MLX",
-   "is_cot": false,
-   "status": "keeper",
-   "base_org": null,
-   "model_card_url": "https://lmstudio.ai/models/qwen/qwen3-coder-next",
-   "slug": "qwen3-coder-next-80b-4bit-mlx",
-   "internal_id": "M6",
-   "cls": "standard",
-   "suites": {
-    "1a": {
-     "score_avg": 17.8,
-     "score_total": 231.4,
-     "tests_run": 13,
-     "tests_total": 13,
-     "avg_tok_s": 77.0,
-     "per_test": [
-      {
-       "id": "A1",
-       "category": "Dev/Ops Scripting",
-       "score": 8,
-       "tok_s": 79.0
-      },
-      {
-       "id": "A2",
-       "category": "Dev/Ops Scripting",
-       "score": 16,
-       "tok_s": 78.1
-      },
-      {
-       "id": "A3",
-       "category": "Dev/Ops Scripting",
-       "score": 18,
-       "tok_s": 78.2
-      },
-      {
-       "id": "A4",
-       "category": "Dev/Ops Scripting",
-       "score": 19,
-       "tok_s": 72.9
-      },
-      {
-       "id": "A5",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 79.9
-      },
-      {
-       "id": "A6",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 78.7
-      },
-      {
-       "id": "B1",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 73.4
-      },
-      {
-       "id": "B2",
-       "category": "Document Processing",
-       "score": 18,
-       "tok_s": 73.8
-      },
-      {
-       "id": "B3",
-       "category": "Document Processing",
-       "score": 18,
-       "tok_s": 78.2
-      },
-      {
-       "id": "C1",
-       "category": "Content Production",
-       "score": 19,
-       "tok_s": 80.7
-      },
-      {
-       "id": "C2",
-       "category": "Content Production",
-       "score": 18,
-       "tok_s": 77.8
-      },
-      {
-       "id": "C3",
-       "category": "Content Production",
-       "score": 18,
-       "tok_s": 83.2
-      },
-      {
-       "id": "C4",
-       "category": "Content Production",
-       "score": 19,
-       "tok_s": 76.7
-      }
-     ],
-     "run_date": "2026-06-21"
-    },
-    "1b": {
-     "score_avg": 19.0,
-     "score_total": 152.0,
-     "tests_run": 8,
-     "tests_total": 8,
-     "avg_tok_s": 46.1,
-     "per_test": [
-      {
-       "id": "WA1",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 4.6
-      },
-      {
-       "id": "WA2",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 31.4
-      },
-      {
-       "id": "WA3",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 35.8
-      },
-      {
-       "id": "WA4",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 26.0
-      },
-      {
-       "id": "WA5",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 61.6
-      },
-      {
-       "id": "WB1",
-       "category": "Agent Robustness & State Management",
-       "score": 20,
-       "tok_s": 81.7
-      },
-      {
-       "id": "WB2",
-       "category": "Agent Robustness & State Management",
-       "score": 20,
-       "tok_s": 79.0
-      },
-      {
-       "id": "WB3",
-       "category": "Agent Robustness & State Management",
-       "score": 12,
-       "tok_s": 49.1
-      }
-     ],
-     "run_date": "2026-07-28"
-    },
-    "1c": {
-     "score_avg": 14.3,
-     "score_total": 85.8,
-     "tests_run": 6,
-     "tests_total": 6,
-     "avg_tok_s": 69.3,
-     "per_test": [
-      {
-       "id": "K1",
-       "category": "Coding \u2014 Concurrency",
-       "score": 14,
-       "tok_s": 62.5
-      },
-      {
-       "id": "K2",
-       "category": "Coding \u2014 Algorithms",
-       "score": 19,
-       "tok_s": 67.0
-      },
-      {
-       "id": "K3",
-       "category": "Coding \u2014 Security Review",
-       "score": 9,
-       "tok_s": 70.8
-      },
-      {
-       "id": "K4",
-       "category": "Coding \u2014 Performance",
-       "score": 14,
-       "tok_s": 71.4
-      },
-      {
-       "id": "K5",
-       "category": "Coding \u2014 Refactoring Under Constraints",
-       "score": 18,
-       "tok_s": 74.9
-      },
-      {
-       "id": "K6",
-       "category": "Coding \u2014 Test Writing",
-       "score": 12,
-       "tok_s": 69.2
-      }
-     ],
-     "run_date": "2026-08-02"
-    },
-    "1e": {
-     "score_avg": 18.2,
-     "score_total": 109.2,
-     "tests_run": 6,
-     "tests_total": 6,
-     "avg_tok_s": 76.9,
-     "per_test": [
-      {
-       "id": "E1",
-       "category": "SOW & Requirements Decomposition",
-       "score": 20,
-       "tok_s": 81.9
-      },
-      {
-       "id": "E2",
-       "category": "SOW & Requirements Decomposition",
-       "score": 16,
-       "tok_s": 67.2
-      },
-      {
-       "id": "E3",
-       "category": "Executive & Proposal Content",
-       "score": 19,
-       "tok_s": 84.4
-      },
-      {
-       "id": "E4",
-       "category": "Executive & Proposal Content",
-       "score": 17,
-       "tok_s": 78.5
-      },
-      {
-       "id": "E5",
-       "category": "Executive & Proposal Content",
-       "score": 18,
-       "tok_s": 73.1
-      },
-      {
-       "id": "E6",
-       "category": "Executive & Proposal Content",
-       "score": 19,
-       "tok_s": 76.5
-      }
-     ],
-     "run_date": "2026-08-02"
-    },
-    "1g2": {
-     "score_avg": 4.3,
-     "score_total": 12.9,
-     "tests_run": 3,
-     "tests_total": 3,
-     "avg_tok_s": 18.4,
-     "per_test": [
-      {
-       "id": "L7",
-       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
-       "score": 5,
-       "tok_s": 28.8
-      },
-      {
-       "id": "L8",
-       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
-       "score": 4,
-       "tok_s": 16.8
-      },
-      {
-       "id": "L9",
-       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
-       "score": 4,
-       "tok_s": 9.5
-      }
-     ],
-     "run_date": "2026-09-02"
-    }
-   },
-   "thinking": {
-    "tests_seen": 46,
-    "stalls": 0,
-    "runaways": 0,
-    "stall_rate": 0.0,
-    "mean_reasoning_tokens": 0.0,
-    "max_reasoning_tokens": 0
-   },
-   "mean_tok_s": 57.5,
-   "axes": {
-    "g": 89.0,
-    "a": 95.0,
-    "u": null,
-    "n": 21.5,
-    "t": 100.0,
-    "l": null,
-    "e": 71.5,
-    "tp": 24.1
-   },
-   "axes_scored": 6
   },
   {
    "name": "Qwen3.6-27B Fable-Fusion-711 Uncensored Heretic NEO-MAX Q8_0 GGUF",
@@ -3808,8 +3424,8 @@
    "cls": "standard",
    "suites": {
     "1a": {
-     "score_avg": 17.8,
-     "score_total": 231.4,
+     "score_avg": 18.0,
+     "score_total": 234.0,
      "tests_run": 13,
      "tests_total": 13,
      "avg_tok_s": 12.8,
@@ -4130,7 +3746,7 @@
    },
    "mean_tok_s": 11.0,
    "axes": {
-    "g": 89.0,
+    "g": 90.0,
     "a": 99.5,
     "u": null,
     "n": 90.5,
@@ -4138,6 +3754,309 @@
     "l": null,
     "e": 89.0,
     "tp": 4.6
+   },
+   "axes_scored": 6
+  },
+  {
+   "name": "Qwen3-Coder-Next 80B 4bit MLX",
+   "params": "80B",
+   "arch": "qwen3_next",
+   "size_gb": 44.86,
+   "quant": "4bit",
+   "format": "MLX",
+   "is_cot": false,
+   "status": "keeper",
+   "base_org": null,
+   "model_card_url": "https://lmstudio.ai/models/qwen/qwen3-coder-next",
+   "slug": "qwen3-coder-next-80b-4bit-mlx",
+   "internal_id": "M6",
+   "cls": "standard",
+   "suites": {
+    "1a": {
+     "score_avg": 17.8,
+     "score_total": 231.4,
+     "tests_run": 13,
+     "tests_total": 13,
+     "avg_tok_s": 73.1,
+     "per_test": [
+      {
+       "id": "A1",
+       "category": "Dev/Ops Scripting",
+       "score": 8,
+       "tok_s": 79.0
+      },
+      {
+       "id": "A2",
+       "category": "Dev/Ops Scripting",
+       "score": 16,
+       "tok_s": 78.1
+      },
+      {
+       "id": "A3",
+       "category": "Dev/Ops Scripting",
+       "score": 18,
+       "tok_s": 78.2
+      },
+      {
+       "id": "A4",
+       "category": "Dev/Ops Scripting",
+       "score": 19,
+       "tok_s": 72.9
+      },
+      {
+       "id": "A5",
+       "category": "Dev/Ops Scripting",
+       "score": 20,
+       "tok_s": 79.9
+      },
+      {
+       "id": "A6",
+       "category": "Dev/Ops Scripting",
+       "score": 20,
+       "tok_s": 78.7
+      },
+      {
+       "id": "B1",
+       "category": "Document Processing",
+       "score": 20,
+       "tok_s": 73.4
+      },
+      {
+       "id": "B2",
+       "category": "Document Processing",
+       "score": 18,
+       "tok_s": 73.8
+      },
+      {
+       "id": "B3",
+       "category": "Document Processing",
+       "score": 18,
+       "tok_s": 78.2
+      },
+      {
+       "id": "C1",
+       "category": "Content Production",
+       "score": 19,
+       "tok_s": 80.7
+      },
+      {
+       "id": "C2",
+       "category": "Content Production",
+       "score": 18,
+       "tok_s": 77.8
+      },
+      {
+       "id": "C3",
+       "category": "Content Production",
+       "score": 18,
+       "tok_s": 83.2
+      },
+      {
+       "id": "C4",
+       "category": "Content Production",
+       "score": 19,
+       "tok_s": 76.7
+      }
+     ],
+     "run_date": "2026-06-21"
+    },
+    "1b": {
+     "score_avg": 19.0,
+     "score_total": 152.0,
+     "tests_run": 8,
+     "tests_total": 8,
+     "avg_tok_s": 46.1,
+     "per_test": [
+      {
+       "id": "WA1",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 4.6
+      },
+      {
+       "id": "WA2",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 31.4
+      },
+      {
+       "id": "WA3",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 35.8
+      },
+      {
+       "id": "WA4",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 26.0
+      },
+      {
+       "id": "WA5",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 61.6
+      },
+      {
+       "id": "WB1",
+       "category": "Agent Robustness & State Management",
+       "score": 20,
+       "tok_s": 81.7
+      },
+      {
+       "id": "WB2",
+       "category": "Agent Robustness & State Management",
+       "score": 20,
+       "tok_s": 79.0
+      },
+      {
+       "id": "WB3",
+       "category": "Agent Robustness & State Management",
+       "score": 12,
+       "tok_s": 49.1
+      }
+     ],
+     "run_date": "2026-07-28"
+    },
+    "1c": {
+     "score_avg": 14.3,
+     "score_total": 85.8,
+     "tests_run": 6,
+     "tests_total": 6,
+     "avg_tok_s": 69.3,
+     "per_test": [
+      {
+       "id": "K1",
+       "category": "Coding \u2014 Concurrency",
+       "score": 14,
+       "tok_s": 62.5
+      },
+      {
+       "id": "K2",
+       "category": "Coding \u2014 Algorithms",
+       "score": 19,
+       "tok_s": 67.0
+      },
+      {
+       "id": "K3",
+       "category": "Coding \u2014 Security Review",
+       "score": 9,
+       "tok_s": 70.8
+      },
+      {
+       "id": "K4",
+       "category": "Coding \u2014 Performance",
+       "score": 14,
+       "tok_s": 71.4
+      },
+      {
+       "id": "K5",
+       "category": "Coding \u2014 Refactoring Under Constraints",
+       "score": 18,
+       "tok_s": 74.9
+      },
+      {
+       "id": "K6",
+       "category": "Coding \u2014 Test Writing",
+       "score": 12,
+       "tok_s": 69.2
+      }
+     ],
+     "run_date": "2026-08-02"
+    },
+    "1e": {
+     "score_avg": 18.2,
+     "score_total": 109.2,
+     "tests_run": 6,
+     "tests_total": 6,
+     "avg_tok_s": 76.9,
+     "per_test": [
+      {
+       "id": "E1",
+       "category": "SOW & Requirements Decomposition",
+       "score": 20,
+       "tok_s": 81.9
+      },
+      {
+       "id": "E2",
+       "category": "SOW & Requirements Decomposition",
+       "score": 16,
+       "tok_s": 67.2
+      },
+      {
+       "id": "E3",
+       "category": "Executive & Proposal Content",
+       "score": 19,
+       "tok_s": 84.4
+      },
+      {
+       "id": "E4",
+       "category": "Executive & Proposal Content",
+       "score": 17,
+       "tok_s": 78.5
+      },
+      {
+       "id": "E5",
+       "category": "Executive & Proposal Content",
+       "score": 18,
+       "tok_s": 73.1
+      },
+      {
+       "id": "E6",
+       "category": "Executive & Proposal Content",
+       "score": 19,
+       "tok_s": 76.5
+      }
+     ],
+     "run_date": "2026-08-02"
+    },
+    "1g2": {
+     "score_avg": 4.3,
+     "score_total": 12.9,
+     "tests_run": 3,
+     "tests_total": 3,
+     "avg_tok_s": 18.4,
+     "per_test": [
+      {
+       "id": "L7",
+       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
+       "score": 5,
+       "tok_s": 28.8
+      },
+      {
+       "id": "L8",
+       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
+       "score": 4,
+       "tok_s": 16.8
+      },
+      {
+       "id": "L9",
+       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
+       "score": 4,
+       "tok_s": 9.5
+      }
+     ],
+     "run_date": "2026-09-02"
+    }
+   },
+   "thinking": {
+    "tests_seen": 46,
+    "stalls": 0,
+    "runaways": 0,
+    "stall_rate": 0.0,
+    "mean_reasoning_tokens": 0.0,
+    "max_reasoning_tokens": 0
+   },
+   "mean_tok_s": 56.8,
+   "axes": {
+    "g": 89.0,
+    "a": 95.0,
+    "u": null,
+    "n": 21.5,
+    "t": 100.0,
+    "l": null,
+    "e": 71.5,
+    "tp": 23.7
    },
    "axes_scored": 6
   },
@@ -4511,9 +4430,9 @@
    "cls": "standard",
    "suites": {
     "1a": {
-     "score_avg": 17.1,
-     "score_total": 222.3,
-     "tests_run": 13,
+     "score_avg": 18.5,
+     "score_total": 222.0,
+     "tests_run": 12,
      "tests_total": 13,
      "avg_tok_s": 118.9,
      "per_test": [
@@ -4564,11 +4483,6 @@
        "category": "Document Processing",
        "score": 20,
        "tok_s": 121.5
-      },
-      {
-       "id": "B3",
-       "category": "Document Processing",
-       "score": 0
       },
       {
        "id": "C1",
@@ -4658,7 +4572,7 @@
    },
    "mean_tok_s": 115.6,
    "axes": {
-    "g": 85.5,
+    "g": 85.4,
     "a": 98.0,
     "u": null,
     "n": null,
@@ -5979,7 +5893,7 @@
      "score_total": 105.0,
      "tests_run": 6,
      "tests_total": 6,
-     "avg_tok_s": null,
+     "avg_tok_s": 21.3,
      "per_test": [
       {
        "id": "K1",
@@ -6029,7 +5943,7 @@
     "mean_reasoning_tokens": 0.0,
     "max_reasoning_tokens": 0
    },
-   "mean_tok_s": 20.3,
+   "mean_tok_s": 20.6,
    "axes": {
     "g": 78.5,
     "a": 94.5,
@@ -6038,7 +5952,7 @@
     "t": 100.0,
     "l": null,
     "e": 87.5,
-    "tp": 8.5
+    "tp": 8.6
    },
    "axes_scored": 5
   },
@@ -6754,175 +6668,6 @@
    "axes_scored": 2
   },
   {
-   "name": "Qwen3.8-27B MLX 6bit (lmstudio-community)",
-   "params": "27B dense",
-   "arch": "qwen3_5",
-   "size_gb": 21.0,
-   "quant": "6bit",
-   "format": "MLX",
-   "is_cot": true,
-   "status": "tested",
-   "base_org": null,
-   "model_card_url": "https://huggingface.co/lmstudio-community/Qwen3.8-27B-MLX-6bit",
-   "slug": "qwen3.8-27b-mlx-6bit-lmstudio-community",
-   "internal_id": "M25f",
-   "cls": "standard",
-   "suites": {
-    "1a": {
-     "score_avg": 13.46,
-     "score_total": 175.0,
-     "tests_run": 13,
-     "tests_total": 13,
-     "avg_tok_s": 13.0,
-     "per_test": [
-      {
-       "id": "A1",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 18.2
-      },
-      {
-       "id": "A2",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 14.2
-      },
-      {
-       "id": "A3",
-       "category": "Dev/Ops Scripting",
-       "score": 0
-      },
-      {
-       "id": "A4",
-       "category": "Dev/Ops Scripting",
-       "score": 18,
-       "tok_s": 12.3
-      },
-      {
-       "id": "A5",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 12.2
-      },
-      {
-       "id": "A6",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 12.3
-      },
-      {
-       "id": "B1",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 12.6
-      },
-      {
-       "id": "B2",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 12.4
-      },
-      {
-       "id": "B3",
-       "category": "Document Processing",
-       "score": 0
-      },
-      {
-       "id": "C1",
-       "category": "Content Production",
-       "score": 0
-      },
-      {
-       "id": "C2",
-       "category": "Content Production",
-       "score": 18,
-       "tok_s": 10.9
-      },
-      {
-       "id": "C3",
-       "category": "Content Production",
-       "score": 0
-      },
-      {
-       "id": "C4",
-       "category": "Content Production",
-       "score": 19,
-       "tok_s": 11.9
-      }
-     ],
-     "run_date": "2026-08-28"
-    },
-    "1b": {
-     "score_avg": 15.0,
-     "score_total": 120.0,
-     "tests_run": 8,
-     "tests_total": 8,
-     "avg_tok_s": 17.8,
-     "per_test": [
-      {
-       "id": "WA1",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 19.2
-      },
-      {
-       "id": "WA2",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 20.7
-      },
-      {
-       "id": "WA3",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 20.0
-      },
-      {
-       "id": "WA4",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 18.7
-      },
-      {
-       "id": "WA5",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 0
-      },
-      {
-       "id": "WB1",
-       "category": "Agent Robustness & State Management",
-       "score": 20,
-       "tok_s": 13.9
-      },
-      {
-       "id": "WB2",
-       "category": "Agent Robustness & State Management",
-       "score": 20,
-       "tok_s": 14.0
-      },
-      {
-       "id": "WB3",
-       "category": "Agent Robustness & State Management",
-       "score": 0
-      }
-     ],
-     "run_date": "2026-08-20"
-    }
-   },
-   "mean_tok_s": 15.4,
-   "axes": {
-    "g": 67.3,
-    "a": 75.0,
-    "u": null,
-    "n": null,
-    "t": null,
-    "l": null,
-    "e": null,
-    "tp": 6.4
-   },
-   "axes_scored": 3
-  },
-  {
    "name": "GPT-OSS 120B",
    "params": "120B",
    "arch": "gpt_oss",
@@ -7076,11 +6821,11 @@
      "run_date": "2026-08-31"
     },
     "1h": {
-     "score_avg": 16.2,
-     "score_total": 64.8,
+     "score_avg": 16.5,
+     "score_total": 66.0,
      "tests_run": 4,
      "tests_total": 4,
-     "avg_tok_s": 52.7,
+     "avg_tok_s": 49.1,
      "per_test": [
       {
        "id": "H1",
@@ -7118,18 +6863,96 @@
     "mean_reasoning_tokens": 0.0,
     "max_reasoning_tokens": 0
    },
-   "mean_tok_s": 38.1,
+   "mean_tok_s": 37.2,
    "axes": {
     "g": 65.8,
     "a": null,
     "u": null,
     "n": 61.5,
     "t": 100.0,
-    "l": 81.0,
+    "l": 82.5,
     "e": null,
-    "tp": 15.9
+    "tp": 15.5
    },
    "axes_scored": 5
+  },
+  {
+   "name": "GPT-OSS 20B (OpenAI mxfp4)",
+   "params": "20B",
+   "arch": "gpt_oss",
+   "size_gb": 12.1,
+   "quant": "mxfp4",
+   "format": "MLX",
+   "is_cot": false,
+   "status": "keeper",
+   "base_org": null,
+   "model_card_url": "https://lmstudio.ai/models/openai/gpt-oss-20b",
+   "slug": "gpt-oss-20b-openai-mxfp4",
+   "internal_id": "G2",
+   "cls": "standard",
+   "suites": {
+    "1a": {
+     "score_avg": 18.3,
+     "score_total": 164.7,
+     "tests_run": 9,
+     "tests_total": 13,
+     "avg_tok_s": 87.1
+    },
+    "1h": {
+     "score_avg": 13.8,
+     "score_total": 55.2,
+     "tests_run": 4,
+     "tests_total": 4,
+     "avg_tok_s": 117.2,
+     "per_test": [
+      {
+       "id": "H1",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 14,
+       "tok_s": 120.8
+      },
+      {
+       "id": "H2",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 15,
+       "tok_s": 123.0
+      },
+      {
+       "id": "H3",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 13,
+       "tok_s": 116.8
+      },
+      {
+       "id": "H4",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 13,
+       "tok_s": 108.4
+      }
+     ],
+     "run_date": "2026-08-27"
+    }
+   },
+   "thinking": {
+    "tests_seen": 10,
+    "stalls": 0,
+    "runaways": 0,
+    "stall_rate": 0.0,
+    "mean_reasoning_tokens": 0.0,
+    "max_reasoning_tokens": 0
+   },
+   "mean_tok_s": 102.2,
+   "axes": {
+    "g": 63.3,
+    "a": null,
+    "u": null,
+    "n": null,
+    "t": null,
+    "l": 69.0,
+    "e": null,
+    "tp": 42.7
+   },
+   "axes_scored": 3
   },
   {
    "name": "GPT-OSS 120B Fable-5 Distilled",
@@ -7231,168 +7054,6 @@
     "tp": 14.6
    },
    "axes_scored": 2
-  },
-  {
-   "name": "GPT-OSS 20B (OpenAI mxfp4)",
-   "params": "20B",
-   "arch": "gpt_oss",
-   "size_gb": 12.1,
-   "quant": "mxfp4",
-   "format": "MLX",
-   "is_cot": false,
-   "status": "keeper",
-   "base_org": null,
-   "model_card_url": "https://lmstudio.ai/models/openai/gpt-oss-20b",
-   "slug": "gpt-oss-20b-openai-mxfp4",
-   "internal_id": "G2",
-   "cls": "standard",
-   "suites": {
-    "1a": {
-     "score_avg": 18.0,
-     "score_total": 162.0,
-     "tests_run": 9,
-     "tests_total": 13,
-     "avg_tok_s": 87.1,
-     "per_test": [
-      {
-       "id": "A1",
-       "category": "Dev/Ops Scripting",
-       "score": 10,
-       "tok_s": 75.3
-      },
-      {
-       "id": "A2",
-       "category": "Dev/Ops Scripting",
-       "score": 19,
-       "tok_s": 82.3
-      },
-      {
-       "id": "A3",
-       "category": "Dev/Ops Scripting",
-       "score": 19,
-       "tok_s": 97.4
-      },
-      {
-       "id": "A4",
-       "category": "Dev/Ops Scripting",
-       "score": 17,
-       "tok_s": 89.3
-      },
-      {
-       "id": "A5",
-       "category": "Dev/Ops Scripting",
-       "score": 17,
-       "tok_s": 87.0
-      },
-      {
-       "id": "A6",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 104.2
-      },
-      {
-       "id": "B1",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 106.3
-      },
-      {
-       "id": "B2",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 72.0
-      },
-      {
-       "id": "B3",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 44.1
-      }
-     ],
-     "run_date": "2026-06-21"
-    },
-    "1g2": {
-     "score_avg": 3,
-     "score_total": 9,
-     "tests_run": 3,
-     "tests_total": 3,
-     "avg_tok_s": 22.4,
-     "per_test": [
-      {
-       "id": "L7",
-       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
-       "score": 4,
-       "tok_s": 26.1
-      },
-      {
-       "id": "L8",
-       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
-       "score": 5,
-       "tok_s": 18.7
-      },
-      {
-       "id": "L9",
-       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
-       "score": 0
-      }
-     ],
-     "run_date": "2026-08-27"
-    },
-    "1h": {
-     "score_avg": 13.8,
-     "score_total": 55.2,
-     "tests_run": 4,
-     "tests_total": 4,
-     "avg_tok_s": 117.2,
-     "per_test": [
-      {
-       "id": "H1",
-       "category": "Web-Estate One-Shot Builds",
-       "score": 14,
-       "tok_s": 120.8
-      },
-      {
-       "id": "H2",
-       "category": "Web-Estate One-Shot Builds",
-       "score": 15,
-       "tok_s": 123.0
-      },
-      {
-       "id": "H3",
-       "category": "Web-Estate One-Shot Builds",
-       "score": 13,
-       "tok_s": 116.8
-      },
-      {
-       "id": "H4",
-       "category": "Web-Estate One-Shot Builds",
-       "score": 13,
-       "tok_s": 108.4
-      }
-     ],
-     "run_date": "2026-08-27"
-    }
-   },
-   "thinking": {
-    "tests_seen": 10,
-    "stalls": 0,
-    "runaways": 0,
-    "stall_rate": 0.0,
-    "mean_reasoning_tokens": 0.0,
-    "max_reasoning_tokens": 0
-   },
-   "mean_tok_s": 75.6,
-   "axes": {
-    "g": 62.3,
-    "a": null,
-    "u": null,
-    "n": 15.0,
-    "t": null,
-    "l": 69.0,
-    "e": null,
-    "tp": 31.6
-   },
-   "axes_scored": 4
   },
   {
    "name": "Gemma 3 4B QAT 4bit MLX",
@@ -7643,175 +7304,6 @@
     "tp": 5.5
    },
    "axes_scored": 2
-  },
-  {
-   "name": "Qwen3.8-27B MLX 8bit (lmstudio-community)",
-   "params": "27B dense",
-   "arch": "qwen3_5",
-   "size_gb": 28.0,
-   "quant": "8bit",
-   "format": "MLX",
-   "is_cot": true,
-   "status": "tested",
-   "base_org": null,
-   "model_card_url": "https://huggingface.co/lmstudio-community/Qwen3.8-27B-MLX-8bit",
-   "slug": "qwen3.8-27b-mlx-8bit-lmstudio-community",
-   "internal_id": "M25g",
-   "cls": "standard",
-   "suites": {
-    "1a": {
-     "score_avg": 12.0,
-     "score_total": 156.0,
-     "tests_run": 13,
-     "tests_total": 13,
-     "avg_tok_s": 13.2,
-     "per_test": [
-      {
-       "id": "A1",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 12.9
-      },
-      {
-       "id": "A2",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 12.7
-      },
-      {
-       "id": "A3",
-       "category": "Dev/Ops Scripting",
-       "score": 0
-      },
-      {
-       "id": "A4",
-       "category": "Dev/Ops Scripting",
-       "score": 18,
-       "tok_s": 13.6
-      },
-      {
-       "id": "A5",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 13.5
-      },
-      {
-       "id": "A6",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 13.7
-      },
-      {
-       "id": "B1",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 13.5
-      },
-      {
-       "id": "B2",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 13.4
-      },
-      {
-       "id": "B3",
-       "category": "Document Processing",
-       "score": 0
-      },
-      {
-       "id": "C1",
-       "category": "Content Production",
-       "score": 0
-      },
-      {
-       "id": "C2",
-       "category": "Content Production",
-       "score": 18,
-       "tok_s": 12.2
-      },
-      {
-       "id": "C3",
-       "category": "Content Production",
-       "score": 0
-      },
-      {
-       "id": "C4",
-       "category": "Content Production",
-       "score": 0
-      }
-     ],
-     "run_date": "2026-08-28"
-    },
-    "1b": {
-     "score_avg": 17.5,
-     "score_total": 140.0,
-     "tests_run": 8,
-     "tests_total": 8,
-     "avg_tok_s": 15.8,
-     "per_test": [
-      {
-       "id": "WA1",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 15.1
-      },
-      {
-       "id": "WA2",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 15.8
-      },
-      {
-       "id": "WA3",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 16.4
-      },
-      {
-       "id": "WA4",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 14.9
-      },
-      {
-       "id": "WA5",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 17.4
-      },
-      {
-       "id": "WB1",
-       "category": "Agent Robustness & State Management",
-       "score": 20,
-       "tok_s": 15.5
-      },
-      {
-       "id": "WB2",
-       "category": "Agent Robustness & State Management",
-       "score": 20,
-       "tok_s": 15.5
-      },
-      {
-       "id": "WB3",
-       "category": "Agent Robustness & State Management",
-       "score": 0
-      }
-     ],
-     "run_date": "2026-08-20"
-    }
-   },
-   "mean_tok_s": 14.5,
-   "axes": {
-    "g": 60.0,
-    "a": 87.5,
-    "u": null,
-    "n": null,
-    "t": null,
-    "l": null,
-    "e": null,
-    "tp": 6.1
-   },
-   "axes_scored": 3
   },
   {
    "name": "DeepSeek-R1-Distill-Llama 70B 8bit MLX",
@@ -8440,42 +7932,6 @@
    "axes_scored": 3
   },
   {
-   "name": "Qwen3.8-27B Uncensored HauhauCS Aggressive Q5_K_P GGUF",
-   "params": "27B dense",
-   "arch": "qwen3_5",
-   "size_gb": 18.83,
-   "quant": "Q5_K_P",
-   "format": "GGUF",
-   "is_cot": true,
-   "status": "untested",
-   "base_org": null,
-   "model_card_url": "https://huggingface.co/HauhauCS/Qwen3.8-27B-Uncensored-HauhauCS-Aggressive-MTP-GGUF",
-   "slug": "qwen3.8-27b-uncensored-hauhaucs-aggressive-q5-k-p-gguf",
-   "internal_id": "M29",
-   "cls": "standard",
-   "suites": {
-    "1a": {
-     "score_avg": 4.83,
-     "score_total": 62.8,
-     "tests_run": 13,
-     "tests_total": 13,
-     "avg_tok_s": 13.0
-    }
-   },
-   "mean_tok_s": 13.0,
-   "axes": {
-    "g": 24.2,
-    "a": null,
-    "u": null,
-    "n": null,
-    "t": null,
-    "l": null,
-    "e": null,
-    "tp": 5.4
-   },
-   "axes_scored": 2
-  },
-  {
    "name": "Qwen3-VL 30B-A3B Instruct 4bit MLX",
    "params": "30B total / 3B active per token",
    "arch": "qwen3_vl_moe",
@@ -8495,7 +7951,7 @@
      "score_total": 151.2,
      "tests_run": 8,
      "tests_total": 8,
-     "avg_tok_s": 53.4,
+     "avg_tok_s": 49.3,
      "per_test": [
       {
        "id": "D1",
@@ -8591,7 +8047,7 @@
     "mean_reasoning_tokens": 0.0,
     "max_reasoning_tokens": 0
    },
-   "mean_tok_s": 49.2,
+   "mean_tok_s": 47.2,
    "axes": {
     "g": null,
     "a": null,
@@ -8600,9 +8056,165 @@
     "t": 100.0,
     "l": null,
     "e": null,
-    "tp": 20.6
+    "tp": 19.7
    },
    "axes_scored": 3
+  },
+  {
+   "name": "Qwen3.8-27B MLX 6bit (lmstudio-community)",
+   "params": "27B dense",
+   "arch": "qwen3_5",
+   "size_gb": 21.0,
+   "quant": "6bit",
+   "format": "MLX",
+   "is_cot": true,
+   "status": "tested",
+   "base_org": null,
+   "model_card_url": "https://huggingface.co/lmstudio-community/Qwen3.8-27B-MLX-6bit",
+   "slug": "qwen3.8-27b-mlx-6bit-lmstudio-community",
+   "internal_id": "M25f",
+   "cls": "standard",
+   "suites": {
+    "1b": {
+     "score_avg": 20,
+     "score_total": 120,
+     "tests_run": 6,
+     "tests_total": 8,
+     "avg_tok_s": 17.8,
+     "per_test": [
+      {
+       "id": "WA1",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 19.2
+      },
+      {
+       "id": "WA2",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 20.7
+      },
+      {
+       "id": "WA3",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 20.0
+      },
+      {
+       "id": "WA4",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 18.7
+      },
+      {
+       "id": "WB1",
+       "category": "Agent Robustness & State Management",
+       "score": 20,
+       "tok_s": 13.9
+      },
+      {
+       "id": "WB2",
+       "category": "Agent Robustness & State Management",
+       "score": 20,
+       "tok_s": 14.0
+      }
+     ],
+     "run_date": "2026-08-20"
+    }
+   },
+   "mean_tok_s": 17.8,
+   "axes": {
+    "g": null,
+    "a": 75.0,
+    "u": null,
+    "n": null,
+    "t": null,
+    "l": null,
+    "e": null,
+    "tp": 7.4
+   },
+   "axes_scored": 2
+  },
+  {
+   "name": "Qwen3.8-27B MLX 8bit (lmstudio-community)",
+   "params": "27B dense",
+   "arch": "qwen3_5",
+   "size_gb": 28.0,
+   "quant": "8bit",
+   "format": "MLX",
+   "is_cot": true,
+   "status": "tested",
+   "base_org": null,
+   "model_card_url": "https://huggingface.co/lmstudio-community/Qwen3.8-27B-MLX-8bit",
+   "slug": "qwen3.8-27b-mlx-8bit-lmstudio-community",
+   "internal_id": "M25g",
+   "cls": "standard",
+   "suites": {
+    "1b": {
+     "score_avg": 20,
+     "score_total": 140,
+     "tests_run": 7,
+     "tests_total": 8,
+     "avg_tok_s": 15.8,
+     "per_test": [
+      {
+       "id": "WA1",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 15.1
+      },
+      {
+       "id": "WA2",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 15.8
+      },
+      {
+       "id": "WA3",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 16.4
+      },
+      {
+       "id": "WA4",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 14.9
+      },
+      {
+       "id": "WA5",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 17.4
+      },
+      {
+       "id": "WB1",
+       "category": "Agent Robustness & State Management",
+       "score": 20,
+       "tok_s": 15.5
+      },
+      {
+       "id": "WB2",
+       "category": "Agent Robustness & State Management",
+       "score": 20,
+       "tok_s": 15.5
+      }
+     ],
+     "run_date": "2026-08-20"
+    }
+   },
+   "mean_tok_s": 15.8,
+   "axes": {
+    "g": null,
+    "a": 87.5,
+    "u": null,
+    "n": null,
+    "t": null,
+    "l": null,
+    "e": null,
+    "tp": 6.6
+   },
+   "axes_scored": 2
   }
  ]
 }
