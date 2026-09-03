@@ -1,6 +1,6 @@
 {
  "schema_version": 2,
- "generated_at": "2026-09-02T22:29:43Z",
+ "generated_at": "2026-09-03T01:17:33Z",
  "host": {
   "name": "MacBook Pro",
   "hw": "Apple M5 Max, 128 GB unified memory",
@@ -214,8 +214,8 @@
    "cls": "standard",
    "suites": {
     "1a": {
-     "score_avg": 19.8,
-     "score_total": 257.4,
+     "score_avg": 19.9,
+     "score_total": 258.7,
      "tests_run": 13,
      "tests_total": 13,
      "avg_tok_s": 17.3,
@@ -302,8 +302,8 @@
      "run_date": "2026-08-15"
     },
     "1b": {
-     "score_avg": 20.0,
-     "score_total": 160.0,
+     "score_avg": 19.2,
+     "score_total": 153.6,
      "tests_run": 8,
      "tests_total": 8,
      "avg_tok_s": 18.3,
@@ -353,15 +353,15 @@
       {
        "id": "WB3",
        "category": "Agent Robustness & State Management",
-       "score": 20,
+       "score": 14,
        "tok_s": 15.9
       }
      ],
      "run_date": "2026-08-15"
     },
     "1c": {
-     "score_avg": 19.7,
-     "score_total": 118.2,
+     "score_avg": 19.3,
+     "score_total": 115.8,
      "tests_run": 6,
      "tests_total": 6,
      "avg_tok_s": 18.6,
@@ -381,7 +381,7 @@
       {
        "id": "K3",
        "category": "Coding \u2014 Security Review",
-       "score": 18,
+       "score": 16,
        "tok_s": 17.2
       },
       {
@@ -406,8 +406,8 @@
      "run_date": "2026-08-15"
     },
     "1d": {
-     "score_avg": 19.4,
-     "score_total": 155.2,
+     "score_avg": 20,
+     "score_total": 160,
      "tests_run": 8,
      "tests_total": 8,
      "avg_tok_s": 11.7,
@@ -439,7 +439,7 @@
       {
        "id": "D5",
        "category": "Doc/OCR \u2014 Transcription",
-       "score": 15,
+       "score": 20,
        "tok_s": 10.0
       },
       {
@@ -464,8 +464,8 @@
      "run_date": "2026-08-15"
     },
     "1d2": {
-     "score_avg": 15.2,
-     "score_total": 60.8,
+     "score_avg": 16,
+     "score_total": 64,
      "tests_run": 4,
      "tests_total": 4,
      "avg_tok_s": 13.9,
@@ -473,25 +473,25 @@
       {
        "id": "D9",
        "category": "Doc/OCR \u2014 Real Degraded Transcription",
-       "score": 13,
+       "score": 16,
        "tok_s": 14.0
       },
       {
        "id": "D10",
        "category": "Doc/OCR \u2014 Handwriting Extraction",
-       "score": 18,
+       "score": 16,
        "tok_s": 9.6
       },
       {
        "id": "D11",
        "category": "Doc/OCR \u2014 Degraded Table Transcription",
-       "score": 13,
+       "score": 17,
        "tok_s": 17.7
       },
       {
        "id": "D12",
        "category": "Doc/OCR \u2014 Degraded Table QA",
-       "score": 17,
+       "score": 15,
        "tok_s": 14.4
       }
      ],
@@ -544,8 +544,8 @@
      "run_date": "2026-08-15"
     },
     "1g": {
-     "score_avg": 19.8,
-     "score_total": 118.8,
+     "score_avg": 20,
+     "score_total": 120,
      "tests_run": 6,
      "tests_total": 6,
      "avg_tok_s": 4.4,
@@ -571,7 +571,7 @@
       {
        "id": "L4",
        "category": "Long-Context \u2014 Faithful Summarization",
-       "score": 19,
+       "score": 20,
        "tok_s": 5.3
       },
       {
@@ -590,8 +590,8 @@
      "run_date": "2026-08-15"
     },
     "1g2": {
-     "score_avg": 14.0,
-     "score_total": 42.0,
+     "score_avg": 14.7,
+     "score_total": 44.1,
      "tests_run": 3,
      "tests_total": 3,
      "avg_tok_s": 2.5,
@@ -599,7 +599,7 @@
       {
        "id": "L7",
        "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
-       "score": 18,
+       "score": 20,
        "tok_s": 3.7
       },
       {
@@ -618,8 +618,8 @@
      "run_date": "2026-08-15"
     },
     "1h": {
-     "score_avg": 19.8,
-     "score_total": 79.2,
+     "score_avg": 20,
+     "score_total": 80,
      "tests_run": 4,
      "tests_total": 4,
      "avg_tok_s": 19.4,
@@ -633,7 +633,7 @@
       {
        "id": "H2",
        "category": "Web-Estate One-Shot Builds",
-       "score": 19,
+       "score": 20,
        "tok_s": 19.2
       },
       {
@@ -652,8 +652,8 @@
      "run_date": "2026-08-15"
     },
     "1i": {
-     "score_avg": 13.6,
-     "score_total": 163.2,
+     "score_avg": 14.8,
+     "score_total": 177.6,
      "tests_run": 12,
      "tests_total": 12,
      "avg_tok_s": 13.4,
@@ -661,49 +661,49 @@
       {
        "id": "I1",
        "category": "Nightly Fix Replay",
-       "score": 6,
+       "score": 9,
        "tok_s": 13.5
       },
       {
        "id": "I2",
        "category": "Nightly Fix Replay",
-       "score": 9,
+       "score": 11,
        "tok_s": 13.9
       },
       {
        "id": "I3",
        "category": "Nightly Fix Replay",
-       "score": 10,
+       "score": 8,
        "tok_s": 8.9
       },
       {
        "id": "I4",
        "category": "Nightly Fix Replay",
-       "score": 16,
+       "score": 14,
        "tok_s": 13.5
       },
       {
        "id": "I5",
        "category": "Nightly Fix Replay",
-       "score": 8,
+       "score": 12,
        "tok_s": 14.5
       },
       {
        "id": "I6",
        "category": "Nightly Fix Replay",
-       "score": 8,
+       "score": 10,
        "tok_s": 13.6
       },
       {
        "id": "I7",
        "category": "Audit Judgment",
-       "score": 10,
+       "score": 14,
        "tok_s": 14.3
       },
       {
        "id": "I8",
        "category": "Audit Judgment",
-       "score": 18,
+       "score": 20,
        "tok_s": 14.5
       },
       {
@@ -715,13 +715,13 @@
       {
        "id": "I10",
        "category": "Cron Dependency Reasoning",
-       "score": 19,
+       "score": 20,
        "tok_s": 13.8
       },
       {
        "id": "I11",
        "category": "Curation Judgment",
-       "score": 19,
+       "score": 20,
        "tok_s": 13.3
       },
       {
@@ -744,14 +744,14 @@
    },
    "mean_tok_s": 13.8,
    "axes": {
-    "g": 99.0,
-    "a": 100.0,
-    "u": 90.0,
-    "n": 89.3,
+    "g": 99.5,
+    "a": 96.0,
+    "u": 93.3,
+    "n": 91.2,
     "t": 96.5,
-    "l": 75.8,
-    "e": 98.5,
-    "tp": 5.7
+    "l": 80.5,
+    "e": 96.5,
+    "tp": 5.8
    },
    "axes_scored": 8
   },
@@ -775,7 +775,7 @@
      "score_total": 248.3,
      "tests_run": 13,
      "tests_total": 13,
-     "avg_tok_s": 66.1,
+     "avg_tok_s": 68.7,
      "per_test": [
       {
        "id": "A1",
@@ -786,19 +786,19 @@
       {
        "id": "A2",
        "category": "Dev/Ops Scripting",
-       "score": 19,
+       "score": 18,
        "tok_s": 85.8
       },
       {
        "id": "A3",
        "category": "Dev/Ops Scripting",
-       "score": 16,
+       "score": 18,
        "tok_s": 74.7
       },
       {
        "id": "A4",
        "category": "Dev/Ops Scripting",
-       "score": 17,
+       "score": 18,
        "tok_s": 72.4
       },
       {
@@ -834,7 +834,7 @@
       {
        "id": "C1",
        "category": "Content Production",
-       "score": 19,
+       "score": 18,
        "tok_s": 77.6
       },
       {
@@ -856,11 +856,11 @@
        "tok_s": 74.6
       }
      ],
-     "run_date": "2026-06-21"
+     "run_date": "2026-09-02"
     },
     "1b": {
-     "score_avg": 19.6,
-     "score_total": 156.8,
+     "score_avg": 19.9,
+     "score_total": 159.2,
      "tests_run": 8,
      "tests_total": 8,
      "avg_tok_s": 70.5,
@@ -910,15 +910,15 @@
       {
        "id": "WB3",
        "category": "Agent Robustness & State Management",
-       "score": 17,
+       "score": 19,
        "tok_s": 81.1
       }
      ],
      "run_date": "2026-07-27"
     },
     "1c": {
-     "score_avg": 18.2,
-     "score_total": 109.2,
+     "score_avg": 19.7,
+     "score_total": 118.2,
      "tests_run": 6,
      "tests_total": 6,
      "avg_tok_s": 66.1,
@@ -926,7 +926,7 @@
       {
        "id": "K1",
        "category": "Coding \u2014 Concurrency",
-       "score": 18,
+       "score": 20,
        "tok_s": 77.2
       },
       {
@@ -938,19 +938,19 @@
       {
        "id": "K3",
        "category": "Coding \u2014 Security Review",
-       "score": 18,
+       "score": 20,
        "tok_s": 69.2
       },
       {
        "id": "K4",
        "category": "Coding \u2014 Performance",
-       "score": 14,
+       "score": 18,
        "tok_s": 63.5
       },
       {
        "id": "K5",
        "category": "Coding \u2014 Refactoring Under Constraints",
-       "score": 19,
+       "score": 20,
        "tok_s": 57.8
       },
       {
@@ -963,8 +963,8 @@
      "run_date": "2026-08-02"
     },
     "1d": {
-     "score_avg": 19.5,
-     "score_total": 156.0,
+     "score_avg": 19.8,
+     "score_total": 158.4,
      "tests_run": 8,
      "tests_total": 8,
      "avg_tok_s": 78.0,
@@ -996,7 +996,7 @@
       {
        "id": "D5",
        "category": "Doc/OCR \u2014 Transcription",
-       "score": 16,
+       "score": 18,
        "tok_s": 80.2
       },
       {
@@ -1021,8 +1021,8 @@
      "run_date": "2026-08-06"
     },
     "1d2": {
-     "score_avg": 8.8,
-     "score_total": 35.2,
+     "score_avg": 9,
+     "score_total": 36,
      "tests_run": 4,
      "tests_total": 4,
      "avg_tok_s": 68.0,
@@ -1030,7 +1030,7 @@
       {
        "id": "D9",
        "category": "Doc/OCR \u2014 Real Degraded Transcription",
-       "score": 7,
+       "score": 8,
        "tok_s": 82.6
       },
       {
@@ -1042,24 +1042,24 @@
       {
        "id": "D11",
        "category": "Doc/OCR \u2014 Degraded Table Transcription",
-       "score": 11,
+       "score": 13,
        "tok_s": 61.7
       },
       {
        "id": "D12",
        "category": "Doc/OCR \u2014 Degraded Table QA",
-       "score": 17,
+       "score": 15,
        "tok_s": 65.8
       }
      ],
      "run_date": "2026-08-14"
     },
     "1e": {
-     "score_avg": 18.5,
-     "score_total": 111.0,
+     "score_avg": 19,
+     "score_total": 114,
      "tests_run": 6,
      "tests_total": 6,
-     "avg_tok_s": 80.3,
+     "avg_tok_s": 80.9,
      "per_test": [
       {
        "id": "E1",
@@ -1094,7 +1094,7 @@
       {
        "id": "E6",
        "category": "Executive & Proposal Content",
-       "score": 17,
+       "score": 20,
        "tok_s": 74.1
       }
      ],
@@ -1105,7 +1105,7 @@
      "score_total": 120,
      "tests_run": 6,
      "tests_total": 6,
-     "avg_tok_s": 53.4,
+     "avg_tok_s": 54.4,
      "per_test": [
       {
        "id": "L1",
@@ -1175,8 +1175,8 @@
      "run_date": "2026-08-14"
     },
     "1h": {
-     "score_avg": 16.8,
-     "score_total": 67.2,
+     "score_avg": 17,
+     "score_total": 68,
      "tests_run": 4,
      "tests_total": 4,
      "avg_tok_s": 76.4,
@@ -1190,27 +1190,27 @@
       {
        "id": "H2",
        "category": "Web-Estate One-Shot Builds",
-       "score": 18,
+       "score": 19,
        "tok_s": 78.2
       },
       {
        "id": "H3",
        "category": "Web-Estate One-Shot Builds",
-       "score": 15,
+       "score": 17,
        "tok_s": 79.4
       },
       {
        "id": "H4",
        "category": "Web-Estate One-Shot Builds",
-       "score": 19,
+       "score": 17,
        "tok_s": 74.5
       }
      ],
      "run_date": "2026-08-15"
     },
     "1i": {
-     "score_avg": 9.6,
-     "score_total": 115.2,
+     "score_avg": 11.8,
+     "score_total": 141.6,
      "tests_run": 12,
      "tests_total": 12,
      "avg_tok_s": 54.9,
@@ -1230,19 +1230,19 @@
       {
        "id": "I3",
        "category": "Nightly Fix Replay",
-       "score": 6,
+       "score": 8,
        "tok_s": 36.7
       },
       {
        "id": "I4",
        "category": "Nightly Fix Replay",
-       "score": 13,
+       "score": 15,
        "tok_s": 51.7
       },
       {
        "id": "I5",
        "category": "Nightly Fix Replay",
-       "score": 8,
+       "score": 13,
        "tok_s": 51.1
       },
       {
@@ -1254,13 +1254,13 @@
       {
        "id": "I7",
        "category": "Audit Judgment",
-       "score": 9,
+       "score": 15,
        "tok_s": 59.3
       },
       {
        "id": "I8",
        "category": "Audit Judgment",
-       "score": 13,
+       "score": 20,
        "tok_s": 65.2
       },
       {
@@ -1272,19 +1272,19 @@
       {
        "id": "I10",
        "category": "Cron Dependency Reasoning",
-       "score": 10,
+       "score": 15,
        "tok_s": 56.8
       },
       {
        "id": "I11",
        "category": "Curation Judgment",
-       "score": 19,
+       "score": 20,
        "tok_s": 62.5
       },
       {
        "id": "I12",
        "category": "Curation Judgment",
-       "score": 18,
+       "score": 17,
        "tok_s": 61.0
       }
      ],
@@ -1299,16 +1299,16 @@
     "mean_reasoning_tokens": 3860.4,
     "max_reasoning_tokens": 16381
    },
-   "mean_tok_s": 66.0,
+   "mean_tok_s": 66.4,
    "axes": {
     "g": 95.5,
-    "a": 98.0,
-    "u": 79.7,
+    "a": 99.5,
+    "u": 81.0,
     "n": 77.8,
     "t": 88.0,
-    "l": 57.0,
-    "e": 91.0,
-    "tp": 27.6
+    "l": 65.5,
+    "e": 98.5,
+    "tp": 27.9
    },
    "axes_scored": 8
   },
@@ -1349,13 +1349,13 @@
       {
        "id": "A3",
        "category": "Dev/Ops Scripting",
-       "score": 19,
+       "score": 20,
        "tok_s": 16.0
       },
       {
        "id": "A4",
        "category": "Dev/Ops Scripting",
-       "score": 18,
+       "score": 17,
        "tok_s": 15.5
       },
       {
@@ -1416,8 +1416,8 @@
      "run_date": "2026-08-03"
     },
     "1b": {
-     "score_avg": 19.5,
-     "score_total": 156.0,
+     "score_avg": 19.8,
+     "score_total": 158.4,
      "tests_run": 8,
      "tests_total": 8,
      "avg_tok_s": 16.8,
@@ -1449,7 +1449,7 @@
       {
        "id": "WA5",
        "category": "Tool Calling & Protocol Adherence",
-       "score": 19,
+       "score": 20,
        "tok_s": 17.9
       },
       {
@@ -1461,7 +1461,7 @@
       {
        "id": "WB2",
        "category": "Agent Robustness & State Management",
-       "score": 19,
+       "score": 20,
        "tok_s": 17.1
       },
       {
@@ -1520,8 +1520,8 @@
      "run_date": "2026-08-04"
     },
     "1d": {
-     "score_avg": 19.0,
-     "score_total": 152.0,
+     "score_avg": 20,
+     "score_total": 160,
      "tests_run": 8,
      "tests_total": 8,
      "avg_tok_s": 14.8,
@@ -1553,7 +1553,7 @@
       {
        "id": "D5",
        "category": "Doc/OCR \u2014 Transcription",
-       "score": 13,
+       "score": 20,
        "tok_s": 14.8
       },
       {
@@ -1565,7 +1565,7 @@
       {
        "id": "D7",
        "category": "Doc/OCR \u2014 Degraded Input",
-       "score": 19,
+       "score": 20,
        "tok_s": 16.0
       },
       {
@@ -1578,8 +1578,8 @@
      "run_date": "2026-08-06"
     },
     "1d2": {
-     "score_avg": 14.8,
-     "score_total": 59.2,
+     "score_avg": 14.5,
+     "score_total": 58.0,
      "tests_run": 4,
      "tests_total": 4,
      "avg_tok_s": 13.3,
@@ -1587,33 +1587,33 @@
       {
        "id": "D9",
        "category": "Doc/OCR \u2014 Real Degraded Transcription",
-       "score": 12,
+       "score": 15,
        "tok_s": 14.4
       },
       {
        "id": "D10",
        "category": "Doc/OCR \u2014 Handwriting Extraction",
-       "score": 18,
+       "score": 19,
        "tok_s": 10.6
       },
       {
        "id": "D11",
        "category": "Doc/OCR \u2014 Degraded Table Transcription",
-       "score": 15,
+       "score": 14,
        "tok_s": 13.9
       },
       {
        "id": "D12",
        "category": "Doc/OCR \u2014 Degraded Table QA",
-       "score": 14,
+       "score": 10,
        "tok_s": 14.2
       }
      ],
      "run_date": "2026-08-14"
     },
     "1e": {
-     "score_avg": 19.5,
-     "score_total": 117.0,
+     "score_avg": 19.2,
+     "score_total": 115.2,
      "tests_run": 6,
      "tests_total": 6,
      "avg_tok_s": 16.5,
@@ -1633,7 +1633,7 @@
       {
        "id": "E3",
        "category": "Executive & Proposal Content",
-       "score": 20,
+       "score": 18,
        "tok_s": 16.4
       },
       {
@@ -1658,8 +1658,8 @@
      "run_date": "2026-08-04"
     },
     "1i": {
-     "score_avg": 9.1,
-     "score_total": 109.2,
+     "score_avg": 10.6,
+     "score_total": 127.2,
      "tests_run": 12,
      "tests_total": 12,
      "avg_tok_s": 12.2,
@@ -1679,7 +1679,7 @@
       {
        "id": "I3",
        "category": "Nightly Fix Replay",
-       "score": 6,
+       "score": 7,
        "tok_s": 9.0
       },
       {
@@ -1703,37 +1703,37 @@
       {
        "id": "I7",
        "category": "Audit Judgment",
-       "score": 11,
+       "score": 15,
        "tok_s": 13.0
       },
       {
        "id": "I8",
        "category": "Audit Judgment",
-       "score": 15,
+       "score": 20,
        "tok_s": 13.0
       },
       {
        "id": "I9",
        "category": "Cron Dependency Reasoning",
-       "score": 19,
+       "score": 20,
        "tok_s": 12.2
       },
       {
        "id": "I10",
        "category": "Cron Dependency Reasoning",
-       "score": 15,
+       "score": 18,
        "tok_s": 12.2
       },
       {
        "id": "I11",
        "category": "Curation Judgment",
-       "score": 17,
+       "score": 20,
        "tok_s": 12.9
       },
       {
        "id": "I12",
        "category": "Curation Judgment",
-       "score": 17,
+       "score": 18,
        "tok_s": 13.0
       }
      ],
@@ -1751,191 +1751,15 @@
    "mean_tok_s": 15.3,
    "axes": {
     "g": 95.5,
-    "a": 97.5,
-    "u": 88.0,
+    "a": 99.0,
+    "u": 90.8,
     "n": null,
     "t": 91.5,
-    "l": 45.5,
+    "l": 53.0,
     "e": 100.0,
     "tp": 6.4
    },
    "axes_scored": 7
-  },
-  {
-   "name": "Qwen3.6-35B-A3B Unsloth Dynamic UD-Q8_K_XL MLX (Brooooooklyn)",
-   "params": "35B total / 3B active per token",
-   "arch": "qwen3_5_moe",
-   "size_gb": 38.06,
-   "quant": "UD-Q8_K_XL mixed-precision MLX",
-   "format": "MLX",
-   "is_cot": true,
-   "status": "keeper",
-   "base_org": null,
-   "model_card_url": "https://huggingface.co/Brooooooklyn/Qwen3.6-35B-A3B-UD-Q8_K_XL-mlx",
-   "slug": "qwen3.6-35b-a3b-unsloth-dynamic-ud-q8-k-xl-mlx-brooooooklyn",
-   "internal_id": "M9b",
-   "cls": "standard",
-   "suites": {
-    "1a": {
-     "score_avg": 19.0,
-     "score_total": 247.0,
-     "tests_run": 13,
-     "tests_total": 13,
-     "avg_tok_s": 79.6
-    },
-    "1b": {
-     "score_avg": 19.0,
-     "score_total": 152.0,
-     "tests_run": 8,
-     "tests_total": 8,
-     "avg_tok_s": 81.3,
-     "per_test": [
-      {
-       "id": "WA1",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 49.1
-      },
-      {
-       "id": "WA2",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 84.4
-      },
-      {
-       "id": "WA3",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 73.1
-      },
-      {
-       "id": "WA4",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 76.9
-      },
-      {
-       "id": "WA5",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 90.9
-      },
-      {
-       "id": "WB1",
-       "category": "Agent Robustness & State Management",
-       "score": 20,
-       "tok_s": 91.3
-      },
-      {
-       "id": "WB2",
-       "category": "Agent Robustness & State Management",
-       "score": 20,
-       "tok_s": 91.1
-      },
-      {
-       "id": "WB3",
-       "category": "Agent Robustness & State Management",
-       "score": 12,
-       "tok_s": 93.4
-      }
-     ],
-     "run_date": "2026-07-28"
-    },
-    "1g": {
-     "score_avg": 20,
-     "score_total": 120,
-     "tests_run": 6,
-     "tests_total": 6,
-     "avg_tok_s": 59.8,
-     "per_test": [
-      {
-       "id": "L1",
-       "category": "Long-Context \u2014 Needle Retrieval",
-       "score": 20,
-       "tok_s": 56.2
-      },
-      {
-       "id": "L2",
-       "category": "Long-Context \u2014 Grounded QA with Distractors",
-       "score": 20,
-       "tok_s": 70.1
-      },
-      {
-       "id": "L3",
-       "category": "Long-Context \u2014 Ops Log Reasoning",
-       "score": 20,
-       "tok_s": 63.3
-      },
-      {
-       "id": "L4",
-       "category": "Long-Context \u2014 Faithful Summarization",
-       "score": 20,
-       "tok_s": 69.9
-      },
-      {
-       "id": "L5",
-       "category": "Long-Context \u2014 Instruction Retention",
-       "score": 20,
-       "tok_s": 65.9
-      },
-      {
-       "id": "L6",
-       "category": "Long-Context \u2014 Full-Haystack QA",
-       "score": 20,
-       "tok_s": 33.3
-      }
-     ],
-     "run_date": "2026-08-06"
-    },
-    "1g2": {
-     "score_avg": 14.7,
-     "score_total": 44.1,
-     "tests_run": 3,
-     "tests_total": 3,
-     "avg_tok_s": 49.5,
-     "per_test": [
-      {
-       "id": "L7",
-       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
-       "score": 20,
-       "tok_s": 60.5
-      },
-      {
-       "id": "L8",
-       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
-       "score": 20,
-       "tok_s": 44.4
-      },
-      {
-       "id": "L9",
-       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
-       "score": 4,
-       "tok_s": 43.7
-      }
-     ],
-     "run_date": "2026-08-14"
-    }
-   },
-   "thinking": {
-    "tests_seen": 30,
-    "stalls": 0,
-    "runaways": 0,
-    "stall_rate": 0.0,
-    "mean_reasoning_tokens": 2239.6,
-    "max_reasoning_tokens": 6384
-   },
-   "mean_tok_s": 67.5,
-   "axes": {
-    "g": 95.0,
-    "a": 95.0,
-    "u": null,
-    "n": 91.2,
-    "t": 100.0,
-    "l": null,
-    "e": null,
-    "tp": 28.2
-   },
-   "axes_scored": 5
   },
   {
    "name": "Qwen3.8-27B Q4_K_M GGUF",
@@ -1953,8 +1777,8 @@
    "cls": "standard",
    "suites": {
     "1a": {
-     "score_avg": 18.9,
-     "score_total": 245.7,
+     "score_avg": 19.1,
+     "score_total": 248.3,
      "tests_run": 13,
      "tests_total": 13,
      "avg_tok_s": 22.0,
@@ -1974,7 +1798,7 @@
       {
        "id": "A3",
        "category": "Dev/Ops Scripting",
-       "score": 8,
+       "score": 10,
        "tok_s": 20.9
       },
       {
@@ -2041,8 +1865,8 @@
      "run_date": "2026-08-15"
     },
     "1b": {
-     "score_avg": 19.9,
-     "score_total": 159.2,
+     "score_avg": 20,
+     "score_total": 160,
      "tests_run": 8,
      "tests_total": 8,
      "avg_tok_s": 22.5,
@@ -2080,7 +1904,7 @@
       {
        "id": "WB1",
        "category": "Agent Robustness & State Management",
-       "score": 19,
+       "score": 20,
        "tok_s": 24.2
       },
       {
@@ -2109,197 +1933,14 @@
    },
    "mean_tok_s": 22.2,
    "axes": {
-    "g": 94.5,
-    "a": 99.5,
+    "g": 95.5,
+    "a": 100.0,
     "u": null,
     "n": null,
     "t": 95.7,
     "l": null,
     "e": null,
-    "tp": 9.3
-   },
-   "axes_scored": 4
-  },
-  {
-   "name": "Qwen3.8-27B Q8_0 GGUF",
-   "params": "27B dense",
-   "arch": "qwen3_5",
-   "size_gb": 29.98,
-   "quant": "Q8_0",
-   "format": "GGUF",
-   "is_cot": true,
-   "status": "tested-offloaded",
-   "base_org": null,
-   "model_card_url": "https://huggingface.co/Qwen/Qwen3.8-27B",
-   "slug": "qwen3.8-27b-q8-0-gguf",
-   "internal_id": "M25c",
-   "cls": "standard",
-   "suites": {
-    "1a": {
-     "score_avg": 18.9,
-     "score_total": 245.7,
-     "tests_run": 13,
-     "tests_total": 13,
-     "avg_tok_s": 23.2,
-     "per_test": [
-      {
-       "id": "A1",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 24.7
-      },
-      {
-       "id": "A2",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 22.8
-      },
-      {
-       "id": "A3",
-       "category": "Dev/Ops Scripting",
-       "score": 10,
-       "tok_s": 21.5
-      },
-      {
-       "id": "A4",
-       "category": "Dev/Ops Scripting",
-       "score": 18,
-       "tok_s": 22.6
-      },
-      {
-       "id": "A5",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 23.8
-      },
-      {
-       "id": "A6",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 23.8
-      },
-      {
-       "id": "B1",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 26.8
-      },
-      {
-       "id": "B2",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 28.3
-      },
-      {
-       "id": "B3",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 23.8
-      },
-      {
-       "id": "C1",
-       "category": "Content Production",
-       "score": 20,
-       "tok_s": 20.8
-      },
-      {
-       "id": "C2",
-       "category": "Content Production",
-       "score": 19,
-       "tok_s": 21.4
-      },
-      {
-       "id": "C3",
-       "category": "Content Production",
-       "score": 19,
-       "tok_s": 20.0
-      },
-      {
-       "id": "C4",
-       "category": "Content Production",
-       "score": 20,
-       "tok_s": 21.7
-      }
-     ],
-     "run_date": "2026-08-15"
-    },
-    "1b": {
-     "score_avg": 19.9,
-     "score_total": 159.2,
-     "tests_run": 8,
-     "tests_total": 8,
-     "avg_tok_s": 22.7,
-     "per_test": [
-      {
-       "id": "WA1",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 24.7
-      },
-      {
-       "id": "WA2",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 21.9
-      },
-      {
-       "id": "WA3",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 24.5
-      },
-      {
-       "id": "WA4",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 16.9
-      },
-      {
-       "id": "WA5",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 26.3
-      },
-      {
-       "id": "WB1",
-       "category": "Agent Robustness & State Management",
-       "score": 20,
-       "tok_s": 23.7
-      },
-      {
-       "id": "WB2",
-       "category": "Agent Robustness & State Management",
-       "score": 20,
-       "tok_s": 23.1
-      },
-      {
-       "id": "WB3",
-       "category": "Agent Robustness & State Management",
-       "score": 19,
-       "tok_s": 20.3
-      }
-     ],
-     "run_date": "2026-08-15"
-    }
-   },
-   "thinking": {
-    "tests_seen": 21,
-    "stalls": 0,
-    "runaways": 0,
-    "stall_rate": 0.0,
-    "mean_reasoning_tokens": 1614.0,
-    "max_reasoning_tokens": 11418
-   },
-   "mean_tok_s": 22.9,
-   "axes": {
-    "g": 94.5,
-    "a": 99.5,
-    "u": null,
-    "n": null,
-    "t": 100.0,
-    "l": null,
-    "e": null,
-    "tp": 9.6
+    "tp": 9.4
    },
    "axes_scored": 4
   },
@@ -2319,83 +1960,83 @@
    "cls": "standard",
    "suites": {
     "1a": {
-     "score_avg": 18.7,
-     "score_total": 243.1,
+     "score_avg": 18.8,
+     "score_total": 244.4,
      "tests_run": 13,
      "tests_total": 13,
-     "avg_tok_s": 112.0,
+     "avg_tok_s": 114.6,
      "per_test": [
       {
        "id": "A1",
        "category": "Dev/Ops Scripting",
        "score": 10,
-       "tok_s": 83.9
+       "tok_s": 110.9
       },
       {
        "id": "A2",
        "category": "Dev/Ops Scripting",
        "score": 18,
-       "tok_s": 100.9
+       "tok_s": 114.9
       },
       {
        "id": "A3",
        "category": "Dev/Ops Scripting",
-       "score": 18,
-       "tok_s": 89.3
+       "score": 20,
+       "tok_s": 115.3
       },
       {
        "id": "A4",
        "category": "Dev/Ops Scripting",
        "score": 19,
-       "tok_s": 93.6
+       "tok_s": 116.8
       },
       {
        "id": "A5",
        "category": "Dev/Ops Scripting",
        "score": 20,
-       "tok_s": 117.6
+       "tok_s": 117.8
       },
       {
        "id": "A6",
        "category": "Dev/Ops Scripting",
        "score": 20,
-       "tok_s": 120.2
+       "tok_s": 118.3
       },
       {
        "id": "B1",
        "category": "Document Processing",
        "score": 20,
-       "tok_s": 112.5
+       "tok_s": 115.6
       },
       {
        "id": "B2",
        "category": "Document Processing",
        "score": 20,
-       "tok_s": 96.5
+       "tok_s": 111.1
       },
       {
        "id": "B3",
        "category": "Document Processing",
        "score": 20,
-       "tok_s": 99.8
+       "tok_s": 104.3
       },
       {
        "id": "C1",
        "category": "Content Production",
        "score": 20,
-       "tok_s": 102.5
+       "tok_s": 109.5
       },
       {
        "id": "C2",
        "category": "Content Production",
        "score": 18,
-       "tok_s": 105.7
+       "tok_s": 101.7
       },
       {
        "id": "C3",
        "category": "Content Production",
-       "score": 19,
-       "tok_s": 104.2
+       "score": 18,
+       "tok_s": 102.1
       },
       {
        "id": "C4",
@@ -2404,7 +2045,7 @@
        "tok_s": 113.0
       }
      ],
-     "run_date": "2026-06-21"
+     "run_date": "2026-09-02"
     },
     "1b": {
      "score_avg": 17.5,
@@ -2581,222 +2222,324 @@
     "mean_reasoning_tokens": 2471.2,
     "max_reasoning_tokens": 16377
    },
-   "mean_tok_s": 92.0,
+   "mean_tok_s": 92.5,
    "axes": {
-    "g": 93.5,
+    "g": 94.0,
     "a": 87.5,
     "u": null,
     "n": 91.2,
     "t": 97.1,
     "l": 94.0,
     "e": null,
-    "tp": 38.5
+    "tp": 38.9
    },
    "axes_scored": 6
   },
   {
-   "name": "Qwen3.5-122B-A10B 4bit MLX",
-   "params": "122B total / 10B active per token",
-   "arch": "qwen3_5_moe",
-   "size_gb": 69.62,
-   "quant": "4bit",
-   "format": "MLX",
+   "name": "Qwen3.8-27B Q8_0 GGUF",
+   "params": "27B dense",
+   "arch": "qwen3_5",
+   "size_gb": 29.98,
+   "quant": "Q8_0",
+   "format": "GGUF",
    "is_cot": true,
-   "status": "keeper",
+   "status": "tested-offloaded",
    "base_org": null,
-   "model_card_url": "https://huggingface.co/mlx-community/Qwen3.5-122B-A10B-4bit",
-   "slug": "qwen3.5-122b-a10b-4bit-mlx",
-   "internal_id": "M10",
+   "model_card_url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+   "slug": "qwen3.8-27b-q8-0-gguf",
+   "internal_id": "M25c",
    "cls": "standard",
    "suites": {
     "1a": {
-     "score_avg": 18.5,
-     "score_total": 240.5,
+     "score_avg": 18.8,
+     "score_total": 244.4,
      "tests_run": 13,
      "tests_total": 13,
-     "avg_tok_s": 51.8,
+     "avg_tok_s": 23.2,
      "per_test": [
       {
        "id": "A1",
        "category": "Dev/Ops Scripting",
-       "score": 18,
-       "tok_s": 53.9
+       "score": 20,
+       "tok_s": 24.7
       },
       {
        "id": "A2",
        "category": "Dev/Ops Scripting",
-       "score": 18,
-       "tok_s": 52.7
+       "score": 20,
+       "tok_s": 22.8
       },
       {
        "id": "A3",
        "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 51.5
+       "score": 10,
+       "tok_s": 21.5
       },
       {
        "id": "A4",
        "category": "Dev/Ops Scripting",
-       "score": 15,
-       "tok_s": 55.6
+       "score": 19,
+       "tok_s": 22.6
       },
       {
        "id": "A5",
        "category": "Dev/Ops Scripting",
-       "score": 14,
-       "tok_s": 50.0
+       "score": 20,
+       "tok_s": 23.8
       },
       {
        "id": "A6",
        "category": "Dev/Ops Scripting",
        "score": 20,
-       "tok_s": 50.3
+       "tok_s": 23.8
       },
       {
        "id": "B1",
        "category": "Document Processing",
        "score": 20,
-       "tok_s": 53.8
+       "tok_s": 26.8
       },
       {
        "id": "B2",
        "category": "Document Processing",
-       "score": 18,
-       "tok_s": 53.4
+       "score": 20,
+       "tok_s": 28.3
       },
       {
        "id": "B3",
        "category": "Document Processing",
        "score": 20,
-       "tok_s": 49.0
+       "tok_s": 23.8
       },
       {
        "id": "C1",
        "category": "Content Production",
        "score": 20,
-       "tok_s": 49.6
+       "tok_s": 20.8
       },
       {
        "id": "C2",
        "category": "Content Production",
        "score": 18,
-       "tok_s": 51.7
+       "tok_s": 21.4
       },
       {
        "id": "C3",
        "category": "Content Production",
-       "score": 20,
-       "tok_s": 53.8
+       "score": 18,
+       "tok_s": 20.0
       },
       {
        "id": "C4",
        "category": "Content Production",
        "score": 20,
-       "tok_s": 54.6
+       "tok_s": 21.7
       }
      ],
-     "run_date": "2026-06-21"
+     "run_date": "2026-08-15"
     },
     "1b": {
-     "score_avg": 19.0,
-     "score_total": 152.0,
+     "score_avg": 19.1,
+     "score_total": 152.8,
      "tests_run": 8,
      "tests_total": 8,
-     "avg_tok_s": 43.8,
+     "avg_tok_s": 22.7,
      "per_test": [
       {
        "id": "WA1",
        "category": "Tool Calling & Protocol Adherence",
        "score": 20,
-       "tok_s": 15.6
+       "tok_s": 24.7
       },
       {
        "id": "WA2",
        "category": "Tool Calling & Protocol Adherence",
        "score": 20,
-       "tok_s": 41.7
+       "tok_s": 21.9
       },
       {
        "id": "WA3",
        "category": "Tool Calling & Protocol Adherence",
        "score": 20,
-       "tok_s": 41.2
+       "tok_s": 24.5
       },
       {
        "id": "WA4",
        "category": "Tool Calling & Protocol Adherence",
        "score": 20,
-       "tok_s": 32.7
+       "tok_s": 16.9
       },
       {
        "id": "WA5",
        "category": "Tool Calling & Protocol Adherence",
        "score": 20,
-       "tok_s": 50.7
+       "tok_s": 26.3
       },
       {
        "id": "WB1",
        "category": "Agent Robustness & State Management",
        "score": 20,
-       "tok_s": 60.4
+       "tok_s": 23.7
       },
       {
        "id": "WB2",
        "category": "Agent Robustness & State Management",
        "score": 20,
-       "tok_s": 58.0
+       "tok_s": 23.1
       },
       {
        "id": "WB3",
        "category": "Agent Robustness & State Management",
-       "score": 12,
-       "tok_s": 49.7
+       "score": 13,
+       "tok_s": 20.3
+      }
+     ],
+     "run_date": "2026-08-15"
+    }
+   },
+   "thinking": {
+    "tests_seen": 21,
+    "stalls": 0,
+    "runaways": 0,
+    "stall_rate": 0.0,
+    "mean_reasoning_tokens": 1614.0,
+    "max_reasoning_tokens": 11418
+   },
+   "mean_tok_s": 22.9,
+   "axes": {
+    "g": 94.0,
+    "a": 95.5,
+    "u": null,
+    "n": null,
+    "t": 100.0,
+    "l": null,
+    "e": null,
+    "tp": 9.7
+   },
+   "axes_scored": 4
+  },
+  {
+   "name": "Qwen3.6-35B-A3B Unsloth Dynamic UD-Q8_K_XL MLX (Brooooooklyn)",
+   "params": "35B total / 3B active per token",
+   "arch": "qwen3_5_moe",
+   "size_gb": 38.06,
+   "quant": "UD-Q8_K_XL mixed-precision MLX",
+   "format": "MLX",
+   "is_cot": true,
+   "status": "keeper",
+   "base_org": null,
+   "model_card_url": "https://huggingface.co/Brooooooklyn/Qwen3.6-35B-A3B-UD-Q8_K_XL-mlx",
+   "slug": "qwen3.6-35b-a3b-unsloth-dynamic-ud-q8-k-xl-mlx-brooooooklyn",
+   "internal_id": "M9b",
+   "cls": "standard",
+   "suites": {
+    "1a": {
+     "score_avg": 18.7,
+     "score_total": 243.1,
+     "tests_run": 13,
+     "tests_total": 13,
+     "avg_tok_s": 80.4
+    },
+    "1b": {
+     "score_avg": 19.2,
+     "score_total": 153.6,
+     "tests_run": 8,
+     "tests_total": 8,
+     "avg_tok_s": 81.3,
+     "per_test": [
+      {
+       "id": "WA1",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 49.1
+      },
+      {
+       "id": "WA2",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 84.4
+      },
+      {
+       "id": "WA3",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 73.1
+      },
+      {
+       "id": "WA4",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 76.9
+      },
+      {
+       "id": "WA5",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 90.9
+      },
+      {
+       "id": "WB1",
+       "category": "Agent Robustness & State Management",
+       "score": 20,
+       "tok_s": 91.3
+      },
+      {
+       "id": "WB2",
+       "category": "Agent Robustness & State Management",
+       "score": 20,
+       "tok_s": 91.1
+      },
+      {
+       "id": "WB3",
+       "category": "Agent Robustness & State Management",
+       "score": 14,
+       "tok_s": 93.4
       }
      ],
      "run_date": "2026-07-28"
     },
     "1g": {
-     "score_avg": 19.7,
-     "score_total": 118.2,
+     "score_avg": 20,
+     "score_total": 120,
      "tests_run": 6,
      "tests_total": 6,
-     "avg_tok_s": 35.9,
+     "avg_tok_s": 59.8,
      "per_test": [
       {
        "id": "L1",
        "category": "Long-Context \u2014 Needle Retrieval",
-       "score": 19,
-       "tok_s": 53.5
+       "score": 20,
+       "tok_s": 56.2
       },
       {
        "id": "L2",
        "category": "Long-Context \u2014 Grounded QA with Distractors",
        "score": 20,
-       "tok_s": 41.6
+       "tok_s": 70.1
       },
       {
        "id": "L3",
        "category": "Long-Context \u2014 Ops Log Reasoning",
        "score": 20,
-       "tok_s": 33.5
+       "tok_s": 63.3
       },
       {
        "id": "L4",
        "category": "Long-Context \u2014 Faithful Summarization",
-       "score": 19,
-       "tok_s": 36.9
+       "score": 20,
+       "tok_s": 69.9
       },
       {
        "id": "L5",
        "category": "Long-Context \u2014 Instruction Retention",
        "score": 20,
-       "tok_s": 31.9
+       "tok_s": 65.9
       },
       {
        "id": "L6",
        "category": "Long-Context \u2014 Full-Haystack QA",
        "score": 20,
-       "tok_s": 17.8
+       "tok_s": 33.3
       }
      ],
      "run_date": "2026-08-06"
@@ -2806,25 +2549,25 @@
      "score_total": 44.1,
      "tests_run": 3,
      "tests_total": 3,
-     "avg_tok_s": 24.3,
+     "avg_tok_s": 49.5,
      "per_test": [
       {
        "id": "L7",
        "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
        "score": 20,
-       "tok_s": 31.1
+       "tok_s": 60.5
       },
       {
        "id": "L8",
        "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
        "score": 20,
-       "tok_s": 17.1
+       "tok_s": 44.4
       },
       {
        "id": "L9",
        "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
        "score": 4,
-       "tok_s": 24.7
+       "tok_s": 43.7
       }
      ],
      "run_date": "2026-08-14"
@@ -2835,19 +2578,19 @@
     "stalls": 0,
     "runaways": 0,
     "stall_rate": 0.0,
-    "mean_reasoning_tokens": 2042.7,
-    "max_reasoning_tokens": 9288
+    "mean_reasoning_tokens": 2239.6,
+    "max_reasoning_tokens": 6384
    },
-   "mean_tok_s": 38.9,
+   "mean_tok_s": 67.8,
    "axes": {
-    "g": 92.5,
-    "a": 95.0,
+    "g": 93.5,
+    "a": 96.0,
     "u": null,
-    "n": 90.2,
+    "n": 91.2,
     "t": 100.0,
     "l": null,
     "e": null,
-    "tp": 16.3
+    "tp": 28.5
    },
    "axes_scored": 5
   },
@@ -2882,7 +2625,7 @@
       {
        "id": "A2",
        "category": "Dev/Ops Scripting",
-       "score": 20,
+       "score": 19,
        "tok_s": 14.6
       },
       {
@@ -2952,7 +2695,7 @@
        "tok_s": 15.3
       }
      ],
-     "run_date": "2026-06-21"
+     "run_date": "2026-09-02"
     },
     "1b": {
      "score_avg": 20.0,
@@ -3013,8 +2756,8 @@
      "run_date": "2026-07-28"
     },
     "1c": {
-     "score_avg": 18.3,
-     "score_total": 109.8,
+     "score_avg": 20,
+     "score_total": 120,
      "tests_run": 6,
      "tests_total": 6,
      "avg_tok_s": 13.9,
@@ -3022,13 +2765,13 @@
       {
        "id": "K1",
        "category": "Coding \u2014 Concurrency",
-       "score": 19,
+       "score": 20,
        "tok_s": 15.0
       },
       {
        "id": "K2",
        "category": "Coding \u2014 Algorithms",
-       "score": 18,
+       "score": 20,
        "tok_s": 14.9
       },
       {
@@ -3040,7 +2783,7 @@
       {
        "id": "K4",
        "category": "Coding \u2014 Performance",
-       "score": 17,
+       "score": 20,
        "tok_s": 12.6
       },
       {
@@ -3052,15 +2795,15 @@
       {
        "id": "K6",
        "category": "Coding \u2014 Test Writing",
-       "score": 16,
+       "score": 20,
        "tok_s": 14.0
       }
      ],
      "run_date": "2026-08-02"
     },
     "1d": {
-     "score_avg": 19.2,
-     "score_total": 153.6,
+     "score_avg": 20,
+     "score_total": 160,
      "tests_run": 8,
      "tests_total": 8,
      "avg_tok_s": 14.1,
@@ -3092,7 +2835,7 @@
       {
        "id": "D5",
        "category": "Doc/OCR \u2014 Transcription",
-       "score": 15,
+       "score": 20,
        "tok_s": 13.8
       },
       {
@@ -3104,7 +2847,7 @@
       {
        "id": "D7",
        "category": "Doc/OCR \u2014 Degraded Input",
-       "score": 19,
+       "score": 20,
        "tok_s": 15.2
       },
       {
@@ -3117,8 +2860,8 @@
      "run_date": "2026-08-06"
     },
     "1d2": {
-     "score_avg": 17.5,
-     "score_total": 70.0,
+     "score_avg": 17.8,
+     "score_total": 71.2,
      "tests_run": 4,
      "tests_total": 4,
      "avg_tok_s": 13.2,
@@ -3126,19 +2869,19 @@
       {
        "id": "D9",
        "category": "Doc/OCR \u2014 Real Degraded Transcription",
-       "score": 14,
+       "score": 17,
        "tok_s": 15.7
       },
       {
        "id": "D10",
        "category": "Doc/OCR \u2014 Handwriting Extraction",
-       "score": 18,
+       "score": 17,
        "tok_s": 10.9
       },
       {
        "id": "D11",
        "category": "Doc/OCR \u2014 Degraded Table Transcription",
-       "score": 18,
+       "score": 17,
        "tok_s": 13.3
       },
       {
@@ -3151,8 +2894,8 @@
      "run_date": "2026-08-14"
     },
     "1e": {
-     "score_avg": 19.3,
-     "score_total": 115.8,
+     "score_avg": 19.2,
+     "score_total": 115.2,
      "tests_run": 6,
      "tests_total": 6,
      "avg_tok_s": 16.4,
@@ -3172,13 +2915,13 @@
       {
        "id": "E3",
        "category": "Executive & Proposal Content",
-       "score": 19,
+       "score": 18,
        "tok_s": 16.2
       },
       {
        "id": "E4",
        "category": "Executive & Proposal Content",
-       "score": 19,
+       "score": 18,
        "tok_s": 16.8
       },
       {
@@ -3190,15 +2933,15 @@
       {
        "id": "E6",
        "category": "Executive & Proposal Content",
-       "score": 19,
+       "score": 20,
        "tok_s": 15.7
       }
      ],
      "run_date": "2026-08-02"
     },
     "1g": {
-     "score_avg": 19.7,
-     "score_total": 118.2,
+     "score_avg": 20,
+     "score_total": 120,
      "tests_run": 6,
      "tests_total": 6,
      "avg_tok_s": 10.5,
@@ -3206,7 +2949,7 @@
       {
        "id": "L1",
        "category": "Long-Context \u2014 Needle Retrieval",
-       "score": 19,
+       "score": 20,
        "tok_s": 10.5
       },
       {
@@ -3224,7 +2967,7 @@
       {
        "id": "L4",
        "category": "Long-Context \u2014 Faithful Summarization",
-       "score": 19,
+       "score": 20,
        "tok_s": 12.6
       },
       {
@@ -3271,8 +3014,8 @@
      "run_date": "2026-08-14"
     },
     "1h": {
-     "score_avg": 19.2,
-     "score_total": 76.8,
+     "score_avg": 20,
+     "score_total": 80,
      "tests_run": 4,
      "tests_total": 4,
      "avg_tok_s": 13.8,
@@ -3286,27 +3029,27 @@
       {
        "id": "H2",
        "category": "Web-Estate One-Shot Builds",
-       "score": 19,
+       "score": 20,
        "tok_s": 13.5
       },
       {
        "id": "H3",
        "category": "Web-Estate One-Shot Builds",
-       "score": 19,
+       "score": 20,
        "tok_s": 13.6
       },
       {
        "id": "H4",
        "category": "Web-Estate One-Shot Builds",
-       "score": 19,
+       "score": 20,
        "tok_s": 13.6
       }
      ],
      "run_date": "2026-08-15"
     },
     "1i": {
-     "score_avg": 11.8,
-     "score_total": 141.6,
+     "score_avg": 14.4,
+     "score_total": 172.8,
      "tests_run": 12,
      "tests_total": 12,
      "avg_tok_s": 11.5,
@@ -3314,13 +3057,13 @@
       {
        "id": "I1",
        "category": "Nightly Fix Replay",
-       "score": 5,
+       "score": 8,
        "tok_s": 12.0
       },
       {
        "id": "I2",
        "category": "Nightly Fix Replay",
-       "score": 8,
+       "score": 13,
        "tok_s": 10.1
       },
       {
@@ -3332,55 +3075,55 @@
       {
        "id": "I4",
        "category": "Nightly Fix Replay",
-       "score": 11,
+       "score": 16,
        "tok_s": 10.4
       },
       {
        "id": "I5",
        "category": "Nightly Fix Replay",
-       "score": 9,
+       "score": 10,
        "tok_s": 10.6
       },
       {
        "id": "I6",
        "category": "Nightly Fix Replay",
-       "score": 11,
+       "score": 9,
        "tok_s": 10.9
       },
       {
        "id": "I7",
        "category": "Audit Judgment",
-       "score": 13,
+       "score": 19,
        "tok_s": 11.7
       },
       {
        "id": "I8",
        "category": "Audit Judgment",
-       "score": 18,
+       "score": 20,
        "tok_s": 12.3
       },
       {
        "id": "I9",
        "category": "Cron Dependency Reasoning",
-       "score": 19,
+       "score": 20,
        "tok_s": 12.0
       },
       {
        "id": "I10",
        "category": "Cron Dependency Reasoning",
-       "score": 17,
+       "score": 20,
        "tok_s": 12.2
       },
       {
        "id": "I11",
        "category": "Curation Judgment",
-       "score": 13,
+       "score": 19,
        "tok_s": 12.8
       },
       {
        "id": "I12",
        "category": "Curation Judgment",
-       "score": 18,
+       "score": 19,
        "tok_s": 13.0
       }
      ],
@@ -3399,14 +3142,271 @@
    "axes": {
     "g": 90.5,
     "a": 100.0,
-    "u": 93.2,
-    "n": 99.0,
+    "u": 96.3,
+    "n": 100.0,
     "t": 97.2,
-    "l": 68.2,
-    "e": 91.5,
-    "tp": 5.6
+    "l": 79.0,
+    "e": 100.0,
+    "tp": 5.7
    },
    "axes_scored": 8
+  },
+  {
+   "name": "Qwen3.5-122B-A10B 4bit MLX",
+   "params": "122B total / 10B active per token",
+   "arch": "qwen3_5_moe",
+   "size_gb": 69.62,
+   "quant": "4bit",
+   "format": "MLX",
+   "is_cot": true,
+   "status": "keeper",
+   "base_org": null,
+   "model_card_url": "https://huggingface.co/mlx-community/Qwen3.5-122B-A10B-4bit",
+   "slug": "qwen3.5-122b-a10b-4bit-mlx",
+   "internal_id": "M10",
+   "cls": "standard",
+   "suites": {
+    "1a": {
+     "score_avg": 18.0,
+     "score_total": 234.0,
+     "tests_run": 13,
+     "tests_total": 13,
+     "avg_tok_s": 51.8,
+     "per_test": [
+      {
+       "id": "A1",
+       "category": "Dev/Ops Scripting",
+       "score": 14,
+       "tok_s": 55.8
+      },
+      {
+       "id": "A2",
+       "category": "Dev/Ops Scripting",
+       "score": 18,
+       "tok_s": 54.2
+      },
+      {
+       "id": "A3",
+       "category": "Dev/Ops Scripting",
+       "score": 20,
+       "tok_s": 53.0
+      },
+      {
+       "id": "A4",
+       "category": "Dev/Ops Scripting",
+       "score": 11,
+       "tok_s": 56.9
+      },
+      {
+       "id": "A5",
+       "category": "Dev/Ops Scripting",
+       "score": 14,
+       "tok_s": 51.6
+      },
+      {
+       "id": "A6",
+       "category": "Dev/Ops Scripting",
+       "score": 20,
+       "tok_s": 51.3
+      },
+      {
+       "id": "B1",
+       "category": "Document Processing",
+       "score": 20,
+       "tok_s": 54.9
+      },
+      {
+       "id": "B2",
+       "category": "Document Processing",
+       "score": 20,
+       "tok_s": 54.4
+      },
+      {
+       "id": "B3",
+       "category": "Document Processing",
+       "score": 20,
+       "tok_s": 50.2
+      },
+      {
+       "id": "C1",
+       "category": "Content Production",
+       "score": 20,
+       "tok_s": 50.9
+      },
+      {
+       "id": "C2",
+       "category": "Content Production",
+       "score": 17,
+       "tok_s": 52.6
+      },
+      {
+       "id": "C3",
+       "category": "Content Production",
+       "score": 20,
+       "tok_s": 54.8
+      },
+      {
+       "id": "C4",
+       "category": "Content Production",
+       "score": 20,
+       "tok_s": 55.6
+      }
+     ],
+     "run_date": "2026-09-02"
+    },
+    "1b": {
+     "score_avg": 18.9,
+     "score_total": 151.2,
+     "tests_run": 8,
+     "tests_total": 8,
+     "avg_tok_s": 43.8,
+     "per_test": [
+      {
+       "id": "WA1",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 15.6
+      },
+      {
+       "id": "WA2",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 41.7
+      },
+      {
+       "id": "WA3",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 41.2
+      },
+      {
+       "id": "WA4",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 32.7
+      },
+      {
+       "id": "WA5",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 50.7
+      },
+      {
+       "id": "WB1",
+       "category": "Agent Robustness & State Management",
+       "score": 20,
+       "tok_s": 60.4
+      },
+      {
+       "id": "WB2",
+       "category": "Agent Robustness & State Management",
+       "score": 20,
+       "tok_s": 58.0
+      },
+      {
+       "id": "WB3",
+       "category": "Agent Robustness & State Management",
+       "score": 11,
+       "tok_s": 49.7
+      }
+     ],
+     "run_date": "2026-07-28"
+    },
+    "1g": {
+     "score_avg": 20,
+     "score_total": 120,
+     "tests_run": 6,
+     "tests_total": 6,
+     "avg_tok_s": 35.9,
+     "per_test": [
+      {
+       "id": "L1",
+       "category": "Long-Context \u2014 Needle Retrieval",
+       "score": 20,
+       "tok_s": 53.5
+      },
+      {
+       "id": "L2",
+       "category": "Long-Context \u2014 Grounded QA with Distractors",
+       "score": 20,
+       "tok_s": 41.6
+      },
+      {
+       "id": "L3",
+       "category": "Long-Context \u2014 Ops Log Reasoning",
+       "score": 20,
+       "tok_s": 33.5
+      },
+      {
+       "id": "L4",
+       "category": "Long-Context \u2014 Faithful Summarization",
+       "score": 20,
+       "tok_s": 36.9
+      },
+      {
+       "id": "L5",
+       "category": "Long-Context \u2014 Instruction Retention",
+       "score": 20,
+       "tok_s": 31.9
+      },
+      {
+       "id": "L6",
+       "category": "Long-Context \u2014 Full-Haystack QA",
+       "score": 20,
+       "tok_s": 17.8
+      }
+     ],
+     "run_date": "2026-08-06"
+    },
+    "1g2": {
+     "score_avg": 14.7,
+     "score_total": 44.1,
+     "tests_run": 3,
+     "tests_total": 3,
+     "avg_tok_s": 24.3,
+     "per_test": [
+      {
+       "id": "L7",
+       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
+       "score": 20,
+       "tok_s": 31.1
+      },
+      {
+       "id": "L8",
+       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
+       "score": 20,
+       "tok_s": 17.1
+      },
+      {
+       "id": "L9",
+       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
+       "score": 4,
+       "tok_s": 24.7
+      }
+     ],
+     "run_date": "2026-08-14"
+    }
+   },
+   "thinking": {
+    "tests_seen": 30,
+    "stalls": 0,
+    "runaways": 0,
+    "stall_rate": 0.0,
+    "mean_reasoning_tokens": 2042.7,
+    "max_reasoning_tokens": 9288
+   },
+   "mean_tok_s": 38.9,
+   "axes": {
+    "g": 90.0,
+    "a": 94.5,
+    "u": null,
+    "n": 91.2,
+    "t": 100.0,
+    "l": null,
+    "e": null,
+    "tp": 16.4
+   },
+   "axes_scored": 5
   },
   {
    "name": "Qwen3.6-27B Fable-Fusion-711 Uncensored Heretic NEO-MAX Q8_0 GGUF",
@@ -3424,8 +3424,8 @@
    "cls": "standard",
    "suites": {
     "1a": {
-     "score_avg": 18.0,
-     "score_total": 234.0,
+     "score_avg": 17.9,
+     "score_total": 232.7,
      "tests_run": 13,
      "tests_total": 13,
      "avg_tok_s": 12.8,
@@ -3463,7 +3463,7 @@
       {
        "id": "A6",
        "category": "Dev/Ops Scripting",
-       "score": 14,
+       "score": 15,
        "tok_s": 13.4
       },
       {
@@ -3505,15 +3505,15 @@
       {
        "id": "C4",
        "category": "Content Production",
-       "score": 20,
+       "score": 19,
        "tok_s": 12.0
       }
      ],
      "run_date": "2026-07-29"
     },
     "1b": {
-     "score_avg": 19.9,
-     "score_total": 159.2,
+     "score_avg": 20,
+     "score_total": 160,
      "tests_run": 8,
      "tests_total": 8,
      "avg_tok_s": 12.4,
@@ -3563,15 +3563,15 @@
       {
        "id": "WB3",
        "category": "Agent Robustness & State Management",
-       "score": 19,
+       "score": 20,
        "tok_s": 11.4
       }
      ],
      "run_date": "2026-07-30"
     },
     "1c": {
-     "score_avg": 17.8,
-     "score_total": 106.8,
+     "score_avg": 19.7,
+     "score_total": 118.2,
      "tests_run": 6,
      "tests_total": 6,
      "avg_tok_s": 14.0,
@@ -3579,13 +3579,13 @@
       {
        "id": "K1",
        "category": "Coding \u2014 Concurrency",
-       "score": 19,
+       "score": 20,
        "tok_s": 13.5
       },
       {
        "id": "K2",
        "category": "Coding \u2014 Algorithms",
-       "score": 19,
+       "score": 20,
        "tok_s": 13.4
       },
       {
@@ -3597,27 +3597,27 @@
       {
        "id": "K4",
        "category": "Coding \u2014 Performance",
-       "score": 18,
+       "score": 19,
        "tok_s": 14.3
       },
       {
        "id": "K5",
        "category": "Coding \u2014 Refactoring Under Constraints",
-       "score": 17,
+       "score": 20,
        "tok_s": 14.3
       },
       {
        "id": "K6",
        "category": "Coding \u2014 Test Writing",
-       "score": 14,
+       "score": 19,
        "tok_s": 14.2
       }
      ],
      "run_date": "2026-08-02"
     },
     "1e": {
-     "score_avg": 19.8,
-     "score_total": 118.8,
+     "score_avg": 19.2,
+     "score_total": 115.2,
      "tests_run": 6,
      "tests_total": 6,
      "avg_tok_s": 15.2,
@@ -3637,13 +3637,13 @@
       {
        "id": "E3",
        "category": "Executive & Proposal Content",
-       "score": 19,
+       "score": 18,
        "tok_s": 15.2
       },
       {
        "id": "E4",
        "category": "Executive & Proposal Content",
-       "score": 20,
+       "score": 19,
        "tok_s": 14.8
       },
       {
@@ -3655,15 +3655,15 @@
       {
        "id": "E6",
        "category": "Executive & Proposal Content",
-       "score": 20,
+       "score": 18,
        "tok_s": 14.8
       }
      ],
      "run_date": "2026-08-02"
     },
     "1g": {
-     "score_avg": 19.8,
-     "score_total": 118.8,
+     "score_avg": 20,
+     "score_total": 120,
      "tests_run": 6,
      "tests_total": 6,
      "avg_tok_s": 7.0,
@@ -3689,7 +3689,7 @@
       {
        "id": "L4",
        "category": "Long-Context \u2014 Faithful Summarization",
-       "score": 19,
+       "score": 20,
        "tok_s": 8.7
       },
       {
@@ -3746,13 +3746,13 @@
    },
    "mean_tok_s": 11.0,
    "axes": {
-    "g": 90.0,
-    "a": 99.5,
+    "g": 89.5,
+    "a": 100.0,
     "u": null,
-    "n": 90.5,
+    "n": 91.2,
     "t": 97.7,
     "l": null,
-    "e": 89.0,
+    "e": 98.5,
     "tp": 4.6
    },
    "axes_scored": 6
@@ -3773,96 +3773,15 @@
    "cls": "standard",
    "suites": {
     "1a": {
-     "score_avg": 17.8,
-     "score_total": 231.4,
+     "score_avg": 17.7,
+     "score_total": 230.1,
      "tests_run": 13,
      "tests_total": 13,
-     "avg_tok_s": 73.1,
-     "per_test": [
-      {
-       "id": "A1",
-       "category": "Dev/Ops Scripting",
-       "score": 8,
-       "tok_s": 79.0
-      },
-      {
-       "id": "A2",
-       "category": "Dev/Ops Scripting",
-       "score": 16,
-       "tok_s": 78.1
-      },
-      {
-       "id": "A3",
-       "category": "Dev/Ops Scripting",
-       "score": 18,
-       "tok_s": 78.2
-      },
-      {
-       "id": "A4",
-       "category": "Dev/Ops Scripting",
-       "score": 19,
-       "tok_s": 72.9
-      },
-      {
-       "id": "A5",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 79.9
-      },
-      {
-       "id": "A6",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 78.7
-      },
-      {
-       "id": "B1",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 73.4
-      },
-      {
-       "id": "B2",
-       "category": "Document Processing",
-       "score": 18,
-       "tok_s": 73.8
-      },
-      {
-       "id": "B3",
-       "category": "Document Processing",
-       "score": 18,
-       "tok_s": 78.2
-      },
-      {
-       "id": "C1",
-       "category": "Content Production",
-       "score": 19,
-       "tok_s": 80.7
-      },
-      {
-       "id": "C2",
-       "category": "Content Production",
-       "score": 18,
-       "tok_s": 77.8
-      },
-      {
-       "id": "C3",
-       "category": "Content Production",
-       "score": 18,
-       "tok_s": 83.2
-      },
-      {
-       "id": "C4",
-       "category": "Content Production",
-       "score": 19,
-       "tok_s": 76.7
-      }
-     ],
-     "run_date": "2026-06-21"
+     "avg_tok_s": 74.7
     },
     "1b": {
-     "score_avg": 19.0,
-     "score_total": 152.0,
+     "score_avg": 18.9,
+     "score_total": 151.2,
      "tests_run": 8,
      "tests_total": 8,
      "avg_tok_s": 46.1,
@@ -3912,15 +3831,15 @@
       {
        "id": "WB3",
        "category": "Agent Robustness & State Management",
-       "score": 12,
+       "score": 11,
        "tok_s": 49.1
       }
      ],
      "run_date": "2026-07-28"
     },
     "1c": {
-     "score_avg": 14.3,
-     "score_total": 85.8,
+     "score_avg": 18.3,
+     "score_total": 109.8,
      "tests_run": 6,
      "tests_total": 6,
      "avg_tok_s": 69.3,
@@ -3928,45 +3847,45 @@
       {
        "id": "K1",
        "category": "Coding \u2014 Concurrency",
-       "score": 14,
+       "score": 19,
        "tok_s": 62.5
       },
       {
        "id": "K2",
        "category": "Coding \u2014 Algorithms",
-       "score": 19,
+       "score": 20,
        "tok_s": 67.0
       },
       {
        "id": "K3",
        "category": "Coding \u2014 Security Review",
-       "score": 9,
+       "score": 13,
        "tok_s": 70.8
       },
       {
        "id": "K4",
        "category": "Coding \u2014 Performance",
-       "score": 14,
+       "score": 20,
        "tok_s": 71.4
       },
       {
        "id": "K5",
        "category": "Coding \u2014 Refactoring Under Constraints",
-       "score": 18,
+       "score": 20,
        "tok_s": 74.9
       },
       {
        "id": "K6",
        "category": "Coding \u2014 Test Writing",
-       "score": 12,
+       "score": 18,
        "tok_s": 69.2
       }
      ],
      "run_date": "2026-08-02"
     },
     "1e": {
-     "score_avg": 18.2,
-     "score_total": 109.2,
+     "score_avg": 16.7,
+     "score_total": 100.2,
      "tests_run": 6,
      "tests_total": 6,
      "avg_tok_s": 76.9,
@@ -3986,33 +3905,33 @@
       {
        "id": "E3",
        "category": "Executive & Proposal Content",
-       "score": 19,
+       "score": 17,
        "tok_s": 84.4
       },
       {
        "id": "E4",
        "category": "Executive & Proposal Content",
-       "score": 17,
+       "score": 15,
        "tok_s": 78.5
       },
       {
        "id": "E5",
        "category": "Executive & Proposal Content",
-       "score": 18,
+       "score": 17,
        "tok_s": 73.1
       },
       {
        "id": "E6",
        "category": "Executive & Proposal Content",
-       "score": 19,
+       "score": 15,
        "tok_s": 76.5
       }
      ],
      "run_date": "2026-08-02"
     },
     "1g2": {
-     "score_avg": 4.3,
-     "score_total": 12.9,
+     "score_avg": 5.3,
+     "score_total": 15.9,
      "tests_run": 3,
      "tests_total": 3,
      "avg_tok_s": 18.4,
@@ -4020,13 +3939,13 @@
       {
        "id": "L7",
        "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
-       "score": 5,
+       "score": 7,
        "tok_s": 28.8
       },
       {
        "id": "L8",
        "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
-       "score": 4,
+       "score": 5,
        "tok_s": 16.8
       },
       {
@@ -4047,247 +3966,18 @@
     "mean_reasoning_tokens": 0.0,
     "max_reasoning_tokens": 0
    },
-   "mean_tok_s": 56.8,
+   "mean_tok_s": 57.1,
    "axes": {
-    "g": 89.0,
-    "a": 95.0,
+    "g": 88.5,
+    "a": 94.5,
     "u": null,
-    "n": 21.5,
+    "n": 26.5,
     "t": 100.0,
     "l": null,
-    "e": 71.5,
-    "tp": 23.7
+    "e": 91.5,
+    "tp": 24.0
    },
    "axes_scored": 6
-  },
-  {
-   "name": "Laguna S 2.1 (Q4_K_M GGUF)",
-   "params": "118B total / 8B active (MoE, 10-of-256 experts + 1 shared)",
-   "arch": "laguna",
-   "size_gb": 71.2,
-   "quant": "Q4_K_M",
-   "format": "GGUF",
-   "is_cot": false,
-   "status": "candidate",
-   "base_org": null,
-   "model_card_url": "https://huggingface.co/poolside/Laguna-S-2.1",
-   "slug": "laguna-s-2.1-q4-k-m-gguf",
-   "internal_id": "M20",
-   "cls": "standard",
-   "suites": {
-    "1a": {
-     "score_avg": 17.2,
-     "score_total": 223.6,
-     "tests_run": 13,
-     "tests_total": 13,
-     "avg_tok_s": 59.5,
-     "per_test": [
-      {
-       "id": "A1",
-       "category": "Dev/Ops Scripting",
-       "score": 17,
-       "tok_s": 64.9
-      },
-      {
-       "id": "A2",
-       "category": "Dev/Ops Scripting",
-       "score": 19,
-       "tok_s": 54.5
-      },
-      {
-       "id": "A3",
-       "category": "Dev/Ops Scripting",
-       "score": 5,
-       "tok_s": 64.1
-      },
-      {
-       "id": "A4",
-       "category": "Dev/Ops Scripting",
-       "score": 19,
-       "tok_s": 57.6
-      },
-      {
-       "id": "A5",
-       "category": "Dev/Ops Scripting",
-       "score": 18,
-       "tok_s": 60.3
-      },
-      {
-       "id": "A6",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 59.7
-      },
-      {
-       "id": "B1",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 56.1
-      },
-      {
-       "id": "B2",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 60.7
-      },
-      {
-       "id": "B3",
-       "category": "Document Processing",
-       "score": 16,
-       "tok_s": 62.4
-      },
-      {
-       "id": "C1",
-       "category": "Content Production",
-       "score": 18,
-       "tok_s": 61.4
-      },
-      {
-       "id": "C2",
-       "category": "Content Production",
-       "score": 18,
-       "tok_s": 60.7
-      },
-      {
-       "id": "C3",
-       "category": "Content Production",
-       "score": 14,
-       "tok_s": 63.7
-      },
-      {
-       "id": "C4",
-       "category": "Content Production",
-       "score": 19,
-       "tok_s": 47.4
-      }
-     ],
-     "run_date": "2026-08-04"
-    },
-    "1b": {
-     "score_avg": 19.2,
-     "score_total": 153.6,
-     "tests_run": 8,
-     "tests_total": 8,
-     "avg_tok_s": 37.4,
-     "per_test": [
-      {
-       "id": "WA1",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 20.5
-      },
-      {
-       "id": "WA2",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 16.7
-      },
-      {
-       "id": "WA3",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 17.4
-      },
-      {
-       "id": "WA4",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 21.6
-      },
-      {
-       "id": "WA5",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 50.3
-      },
-      {
-       "id": "WB1",
-       "category": "Agent Robustness & State Management",
-       "score": 18,
-       "tok_s": 58.5
-      },
-      {
-       "id": "WB2",
-       "category": "Agent Robustness & State Management",
-       "score": 19,
-       "tok_s": 55.6
-      },
-      {
-       "id": "WB3",
-       "category": "Agent Robustness & State Management",
-       "score": 17,
-       "tok_s": 58.5
-      }
-     ],
-     "run_date": "2026-08-04"
-    },
-    "1c": {
-     "score_avg": 16.7,
-     "score_total": 100.2,
-     "tests_run": 6,
-     "tests_total": 6,
-     "avg_tok_s": 63.0,
-     "per_test": [
-      {
-       "id": "K1",
-       "category": "Coding \u2014 Concurrency",
-       "score": 16,
-       "tok_s": 64.9
-      },
-      {
-       "id": "K2",
-       "category": "Coding \u2014 Algorithms",
-       "score": 20,
-       "tok_s": 63.5
-      },
-      {
-       "id": "K3",
-       "category": "Coding \u2014 Security Review",
-       "score": 15,
-       "tok_s": 62.6
-      },
-      {
-       "id": "K4",
-       "category": "Coding \u2014 Performance",
-       "score": 17,
-       "tok_s": 61.7
-      },
-      {
-       "id": "K5",
-       "category": "Coding \u2014 Refactoring Under Constraints",
-       "score": 20,
-       "tok_s": 63.6
-      },
-      {
-       "id": "K6",
-       "category": "Coding \u2014 Test Writing",
-       "score": 12,
-       "tok_s": 61.9
-      }
-     ],
-     "run_date": "2026-08-04"
-    }
-   },
-   "thinking": {
-    "tests_seen": 29,
-    "stalls": 0,
-    "runaways": 0,
-    "stall_rate": 0.0,
-    "mean_reasoning_tokens": 0.0,
-    "max_reasoning_tokens": 0
-   },
-   "mean_tok_s": 53.3,
-   "axes": {
-    "g": 86.0,
-    "a": 96.0,
-    "u": null,
-    "n": null,
-    "t": 100.0,
-    "l": null,
-    "e": 83.5,
-    "tp": 22.3
-   },
-   "axes_scored": 5
   },
   {
    "name": "Qwen3.6-35B-A3B MLX 8bit Uniform (lmstudio-community)",
@@ -4305,8 +3995,8 @@
    "cls": "standard",
    "suites": {
     "1a": {
-     "score_avg": 17.1,
-     "score_total": 222.3,
+     "score_avg": 17.6,
+     "score_total": 228.8,
      "tests_run": 13,
      "tests_total": 13,
      "avg_tok_s": 87.5,
@@ -4314,13 +4004,13 @@
       {
        "id": "A1",
        "category": "Dev/Ops Scripting",
-       "score": 10,
+       "score": 14,
        "tok_s": 89.5
       },
       {
        "id": "A2",
        "category": "Dev/Ops Scripting",
-       "score": 16,
+       "score": 17,
        "tok_s": 89.4
       },
       {
@@ -4380,17 +4070,17 @@
       {
        "id": "C3",
        "category": "Content Production",
-       "score": 19,
+       "score": 20,
        "tok_s": 84.2
       },
       {
        "id": "C4",
        "category": "Content Production",
-       "score": 19,
+       "score": 20,
        "tok_s": 85.9
       }
      ],
-     "run_date": "2026-06-21"
+     "run_date": "2026-09-02"
     }
    },
    "thinking": {
@@ -4403,16 +4093,245 @@
    },
    "mean_tok_s": 87.5,
    "axes": {
-    "g": 85.5,
+    "g": 88.0,
     "a": null,
     "u": null,
     "n": null,
     "t": null,
     "l": null,
     "e": null,
-    "tp": 36.6
+    "tp": 36.8
    },
    "axes_scored": 2
+  },
+  {
+   "name": "Laguna S 2.1 (Q4_K_M GGUF)",
+   "params": "118B total / 8B active (MoE, 10-of-256 experts + 1 shared)",
+   "arch": "laguna",
+   "size_gb": 71.2,
+   "quant": "Q4_K_M",
+   "format": "GGUF",
+   "is_cot": false,
+   "status": "candidate",
+   "base_org": null,
+   "model_card_url": "https://huggingface.co/poolside/Laguna-S-2.1",
+   "slug": "laguna-s-2.1-q4-k-m-gguf",
+   "internal_id": "M20",
+   "cls": "standard",
+   "suites": {
+    "1a": {
+     "score_avg": 17.4,
+     "score_total": 226.2,
+     "tests_run": 13,
+     "tests_total": 13,
+     "avg_tok_s": 60.5,
+     "per_test": [
+      {
+       "id": "A1",
+       "category": "Dev/Ops Scripting",
+       "score": 17,
+       "tok_s": 64.9
+      },
+      {
+       "id": "A2",
+       "category": "Dev/Ops Scripting",
+       "score": 18,
+       "tok_s": 54.5
+      },
+      {
+       "id": "A3",
+       "category": "Dev/Ops Scripting",
+       "score": 7,
+       "tok_s": 64.1
+      },
+      {
+       "id": "A4",
+       "category": "Dev/Ops Scripting",
+       "score": 19,
+       "tok_s": 57.6
+      },
+      {
+       "id": "A5",
+       "category": "Dev/Ops Scripting",
+       "score": 18,
+       "tok_s": 60.3
+      },
+      {
+       "id": "A6",
+       "category": "Dev/Ops Scripting",
+       "score": 20,
+       "tok_s": 59.7
+      },
+      {
+       "id": "B1",
+       "category": "Document Processing",
+       "score": 20,
+       "tok_s": 56.1
+      },
+      {
+       "id": "B2",
+       "category": "Document Processing",
+       "score": 20,
+       "tok_s": 60.7
+      },
+      {
+       "id": "B3",
+       "category": "Document Processing",
+       "score": 16,
+       "tok_s": 62.4
+      },
+      {
+       "id": "C1",
+       "category": "Content Production",
+       "score": 20,
+       "tok_s": 61.4
+      },
+      {
+       "id": "C2",
+       "category": "Content Production",
+       "score": 18,
+       "tok_s": 60.7
+      },
+      {
+       "id": "C3",
+       "category": "Content Production",
+       "score": 15,
+       "tok_s": 63.7
+      },
+      {
+       "id": "C4",
+       "category": "Content Production",
+       "score": 20,
+       "tok_s": 47.4
+      }
+     ],
+     "run_date": "2026-08-04"
+    },
+    "1b": {
+     "score_avg": 19.8,
+     "score_total": 158.4,
+     "tests_run": 8,
+     "tests_total": 8,
+     "avg_tok_s": 37.4,
+     "per_test": [
+      {
+       "id": "WA1",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 20.5
+      },
+      {
+       "id": "WA2",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 16.7
+      },
+      {
+       "id": "WA3",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 17.4
+      },
+      {
+       "id": "WA4",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 21.6
+      },
+      {
+       "id": "WA5",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 50.3
+      },
+      {
+       "id": "WB1",
+       "category": "Agent Robustness & State Management",
+       "score": 19,
+       "tok_s": 58.5
+      },
+      {
+       "id": "WB2",
+       "category": "Agent Robustness & State Management",
+       "score": 20,
+       "tok_s": 55.6
+      },
+      {
+       "id": "WB3",
+       "category": "Agent Robustness & State Management",
+       "score": 19,
+       "tok_s": 58.5
+      }
+     ],
+     "run_date": "2026-08-04"
+    },
+    "1c": {
+     "score_avg": 17.5,
+     "score_total": 105.0,
+     "tests_run": 6,
+     "tests_total": 6,
+     "avg_tok_s": 63.0,
+     "per_test": [
+      {
+       "id": "K1",
+       "category": "Coding \u2014 Concurrency",
+       "score": 16,
+       "tok_s": 64.9
+      },
+      {
+       "id": "K2",
+       "category": "Coding \u2014 Algorithms",
+       "score": 20,
+       "tok_s": 63.5
+      },
+      {
+       "id": "K3",
+       "category": "Coding \u2014 Security Review",
+       "score": 16,
+       "tok_s": 62.6
+      },
+      {
+       "id": "K4",
+       "category": "Coding \u2014 Performance",
+       "score": 16,
+       "tok_s": 61.7
+      },
+      {
+       "id": "K5",
+       "category": "Coding \u2014 Refactoring Under Constraints",
+       "score": 20,
+       "tok_s": 63.6
+      },
+      {
+       "id": "K6",
+       "category": "Coding \u2014 Test Writing",
+       "score": 17,
+       "tok_s": 61.9
+      }
+     ],
+     "run_date": "2026-08-04"
+    }
+   },
+   "thinking": {
+    "tests_seen": 29,
+    "stalls": 0,
+    "runaways": 0,
+    "stall_rate": 0.0,
+    "mean_reasoning_tokens": 0.0,
+    "max_reasoning_tokens": 0
+   },
+   "mean_tok_s": 53.6,
+   "axes": {
+    "g": 87.0,
+    "a": 99.0,
+    "u": null,
+    "n": null,
+    "t": 100.0,
+    "l": null,
+    "e": 87.5,
+    "tp": 22.6
+   },
+   "axes_scored": 5
   },
   {
    "name": "Ornith-1.0-35B 4bit MLX",
@@ -4430,11 +4349,11 @@
    "cls": "standard",
    "suites": {
     "1a": {
-     "score_avg": 18.5,
-     "score_total": 222.0,
+     "score_avg": 18.7,
+     "score_total": 224.4,
      "tests_run": 12,
      "tests_total": 13,
-     "avg_tok_s": 118.9,
+     "avg_tok_s": 118.1,
      "per_test": [
       {
        "id": "A1",
@@ -4451,19 +4370,19 @@
       {
        "id": "A3",
        "category": "Dev/Ops Scripting",
-       "score": 19,
+       "score": 20,
        "tok_s": 121.6
       },
       {
        "id": "A4",
        "category": "Dev/Ops Scripting",
-       "score": 19,
+       "score": 20,
        "tok_s": 121.4
       },
       {
        "id": "A5",
        "category": "Dev/Ops Scripting",
-       "score": 19,
+       "score": 20,
        "tok_s": 128.3
       },
       {
@@ -4493,7 +4412,7 @@
       {
        "id": "C2",
        "category": "Content Production",
-       "score": 19,
+       "score": 18,
        "tok_s": 109.7
       },
       {
@@ -4570,16 +4489,16 @@
      "run_date": "2026-08-22"
     }
    },
-   "mean_tok_s": 115.6,
+   "mean_tok_s": 115.2,
    "axes": {
-    "g": 85.4,
+    "g": 86.3,
     "a": 98.0,
     "u": null,
     "n": null,
     "t": null,
     "l": null,
     "e": null,
-    "tp": 48.3
+    "tp": 48.5
    },
    "axes_scored": 3
   },
@@ -4599,8 +4518,8 @@
    "cls": "small",
    "suites": {
     "1a": {
-     "score_avg": 16.5,
-     "score_total": 214.5,
+     "score_avg": 16.9,
+     "score_total": 219.7,
      "tests_run": 13,
      "tests_total": 13,
      "avg_tok_s": 82.0,
@@ -4608,7 +4527,7 @@
       {
        "id": "A1",
        "category": "Dev/Ops Scripting",
-       "score": 7,
+       "score": 9,
        "tok_s": 80.4
       },
       {
@@ -4632,7 +4551,7 @@
       {
        "id": "A5",
        "category": "Dev/Ops Scripting",
-       "score": 10,
+       "score": 13,
        "tok_s": 80.8
       },
       {
@@ -4650,7 +4569,7 @@
       {
        "id": "B2",
        "category": "Document Processing",
-       "score": 19,
+       "score": 20,
        "tok_s": 82.3
       },
       {
@@ -4684,11 +4603,11 @@
        "tok_s": 81.1
       }
      ],
-     "run_date": "2026-06-21"
+     "run_date": "2026-09-02"
     },
     "1b": {
-     "score_avg": 18.6,
-     "score_total": 148.8,
+     "score_avg": 18.9,
+     "score_total": 151.2,
      "tests_run": 8,
      "tests_total": 8,
      "avg_tok_s": 70.0,
@@ -4738,7 +4657,7 @@
       {
        "id": "WB3",
        "category": "Agent Robustness & State Management",
-       "score": 9,
+       "score": 11,
        "tok_s": 81.6
       }
      ],
@@ -4755,14 +4674,14 @@
    },
    "mean_tok_s": 76.0,
    "axes": {
-    "g": 82.5,
-    "a": 93.0,
+    "g": 84.5,
+    "a": 94.5,
     "u": null,
     "n": null,
     "t": 100.0,
     "l": null,
     "e": null,
-    "tp": 31.8
+    "tp": 32.0
    },
    "axes_scored": 4
   },
@@ -4782,22 +4701,22 @@
    "cls": "standard",
    "suites": {
     "1a": {
-     "score_avg": 16.5,
-     "score_total": 214.5,
+     "score_avg": 16.2,
+     "score_total": 210.6,
      "tests_run": 13,
      "tests_total": 13,
-     "avg_tok_s": 40.7,
+     "avg_tok_s": 41.4,
      "per_test": [
       {
        "id": "A1",
        "category": "Dev/Ops Scripting",
-       "score": 4,
+       "score": 5,
        "tok_s": 48.8
       },
       {
        "id": "A2",
        "category": "Dev/Ops Scripting",
-       "score": 14,
+       "score": 13,
        "tok_s": 45.5
       },
       {
@@ -4809,7 +4728,7 @@
       {
        "id": "A4",
        "category": "Dev/Ops Scripting",
-       "score": 19,
+       "score": 17,
        "tok_s": 38.3
       },
       {
@@ -4857,21 +4776,21 @@
       {
        "id": "C3",
        "category": "Content Production",
-       "score": 19,
+       "score": 18,
        "tok_s": 38.9
       },
       {
        "id": "C4",
        "category": "Content Production",
-       "score": 20,
+       "score": 19,
        "tok_s": 39.3
       }
      ],
      "run_date": "2026-08-05"
     },
     "1b": {
-     "score_avg": 19.5,
-     "score_total": 156.0,
+     "score_avg": 18.4,
+     "score_total": 147.2,
      "tests_run": 8,
      "tests_total": 8,
      "avg_tok_s": 48.9,
@@ -4885,7 +4804,7 @@
       {
        "id": "WA2",
        "category": "Tool Calling & Protocol Adherence",
-       "score": 19,
+       "score": 16,
        "tok_s": 45.7
       },
       {
@@ -4921,7 +4840,7 @@
       {
        "id": "WB3",
        "category": "Agent Robustness & State Management",
-       "score": 17,
+       "score": 11,
        "tok_s": 53.1
       }
      ],
@@ -4982,18 +4901,493 @@
     "mean_reasoning_tokens": 2960.4,
     "max_reasoning_tokens": 15892
    },
-   "mean_tok_s": 41.1,
+   "mean_tok_s": 41.4,
    "axes": {
-    "g": 82.5,
-    "a": 97.5,
+    "g": 81.0,
+    "a": 92.0,
     "u": null,
     "n": null,
     "t": 93.1,
     "l": null,
     "e": 99.0,
-    "tp": 17.2
+    "tp": 17.4
    },
    "axes_scored": 5
+  },
+  {
+   "name": "Mistral Small 3.2 24B 8bit MLX",
+   "params": "24B",
+   "arch": "mistral3",
+   "size_gb": 25.93,
+   "quant": "8bit",
+   "format": "MLX",
+   "is_cot": false,
+   "status": "keeper",
+   "base_org": null,
+   "model_card_url": "https://huggingface.co/lmstudio-community/Mistral-Small-3.2-24B-Instruct-2506-MLX-8bit",
+   "slug": "mistral-small-3.2-24b-8bit-mlx",
+   "internal_id": "M13",
+   "cls": "standard",
+   "suites": {
+    "1a": {
+     "score_avg": 16.1,
+     "score_total": 209.3,
+     "tests_run": 13,
+     "tests_total": 13,
+     "avg_tok_s": 20.3,
+     "per_test": [
+      {
+       "id": "A1",
+       "category": "Dev/Ops Scripting",
+       "score": 11,
+       "tok_s": 20.3
+      },
+      {
+       "id": "A2",
+       "category": "Dev/Ops Scripting",
+       "score": 17,
+       "tok_s": 19.8
+      },
+      {
+       "id": "A3",
+       "category": "Dev/Ops Scripting",
+       "score": 17,
+       "tok_s": 20.3
+      },
+      {
+       "id": "A4",
+       "category": "Dev/Ops Scripting",
+       "score": 15,
+       "tok_s": 20.0
+      },
+      {
+       "id": "A5",
+       "category": "Dev/Ops Scripting",
+       "score": 16,
+       "tok_s": 20.7
+      },
+      {
+       "id": "A6",
+       "category": "Dev/Ops Scripting",
+       "score": 20,
+       "tok_s": 20.8
+      },
+      {
+       "id": "B1",
+       "category": "Document Processing",
+       "score": 19,
+       "tok_s": 19.6
+      },
+      {
+       "id": "B2",
+       "category": "Document Processing",
+       "score": 20,
+       "tok_s": 19.7
+      },
+      {
+       "id": "B3",
+       "category": "Document Processing",
+       "score": 10,
+       "tok_s": 19.3
+      },
+      {
+       "id": "C1",
+       "category": "Content Production",
+       "score": 18,
+       "tok_s": 20.7
+      },
+      {
+       "id": "C2",
+       "category": "Content Production",
+       "score": 15,
+       "tok_s": 20.1
+      },
+      {
+       "id": "C3",
+       "category": "Content Production",
+       "score": 17,
+       "tok_s": 21.2
+      },
+      {
+       "id": "C4",
+       "category": "Content Production",
+       "score": 14,
+       "tok_s": 20.9
+      }
+     ],
+     "run_date": "2026-09-02"
+    },
+    "1b": {
+     "score_avg": 18.2,
+     "score_total": 145.6,
+     "tests_run": 8,
+     "tests_total": 8,
+     "avg_tok_s": 17.1,
+     "per_test": [
+      {
+       "id": "WA1",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 5.2
+      },
+      {
+       "id": "WA2",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 17.3
+      },
+      {
+       "id": "WA3",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 16,
+       "tok_s": 17.8
+      },
+      {
+       "id": "WA4",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 16.4
+      },
+      {
+       "id": "WA5",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 20.1
+      },
+      {
+       "id": "WB1",
+       "category": "Agent Robustness & State Management",
+       "score": 20,
+       "tok_s": 20.6
+      },
+      {
+       "id": "WB2",
+       "category": "Agent Robustness & State Management",
+       "score": 19,
+       "tok_s": 20.5
+      },
+      {
+       "id": "WB3",
+       "category": "Agent Robustness & State Management",
+       "score": 11,
+       "tok_s": 18.8
+      }
+     ],
+     "run_date": "2026-07-28"
+    },
+    "1c": {
+     "score_avg": 17.3,
+     "score_total": 103.8,
+     "tests_run": 6,
+     "tests_total": 6,
+     "avg_tok_s": 14.8,
+     "per_test": [
+      {
+       "id": "K1",
+       "category": "Coding \u2014 Concurrency",
+       "score": 16,
+       "tok_s": 15.3
+      },
+      {
+       "id": "K2",
+       "category": "Coding \u2014 Algorithms",
+       "score": 20,
+       "tok_s": 14.9
+      },
+      {
+       "id": "K3",
+       "category": "Coding \u2014 Security Review",
+       "score": 13,
+       "tok_s": 14.2
+      },
+      {
+       "id": "K4",
+       "category": "Coding \u2014 Performance",
+       "score": 15,
+       "tok_s": 17.2
+      },
+      {
+       "id": "K5",
+       "category": "Coding \u2014 Refactoring Under Constraints",
+       "score": 20,
+       "tok_s": 13.7
+      },
+      {
+       "id": "K6",
+       "category": "Coding \u2014 Test Writing",
+       "score": 20,
+       "tok_s": 13.5
+      }
+     ],
+     "run_date": "2026-08-02"
+    },
+    "1d": {
+     "score_avg": 17.8,
+     "score_total": 142.4,
+     "tests_run": 8,
+     "tests_total": 8,
+     "avg_tok_s": 14.0,
+     "per_test": [
+      {
+       "id": "D1",
+       "category": "Doc/OCR \u2014 Transcription",
+       "score": 20,
+       "tok_s": 16.4
+      },
+      {
+       "id": "D2",
+       "category": "Doc/OCR \u2014 Document QA",
+       "score": 20,
+       "tok_s": 8.7
+      },
+      {
+       "id": "D3",
+       "category": "Doc/OCR \u2014 Field Extraction",
+       "score": 20,
+       "tok_s": 15.3
+      },
+      {
+       "id": "D4",
+       "category": "Doc/OCR \u2014 Document QA",
+       "score": 11,
+       "tok_s": 12.9
+      },
+      {
+       "id": "D5",
+       "category": "Doc/OCR \u2014 Transcription",
+       "score": 11,
+       "tok_s": 15.5
+      },
+      {
+       "id": "D6",
+       "category": "Doc/OCR \u2014 Field Extraction",
+       "score": 20,
+       "tok_s": 12.8
+      },
+      {
+       "id": "D7",
+       "category": "Doc/OCR \u2014 Degraded Input",
+       "score": 20,
+       "tok_s": 16.2
+      },
+      {
+       "id": "D8",
+       "category": "Doc/OCR \u2014 Degraded Input",
+       "score": 20,
+       "tok_s": 14.4
+      }
+     ],
+     "run_date": "2026-08-06"
+    },
+    "1d2": {
+     "score_avg": 11.8,
+     "score_total": 47.2,
+     "tests_run": 4,
+     "tests_total": 4,
+     "avg_tok_s": 11.4,
+     "per_test": [
+      {
+       "id": "D9",
+       "category": "Doc/OCR \u2014 Real Degraded Transcription",
+       "score": 9,
+       "tok_s": 14.5
+      },
+      {
+       "id": "D10",
+       "category": "Doc/OCR \u2014 Handwriting Extraction",
+       "score": 16,
+       "tok_s": 10.3
+      },
+      {
+       "id": "D11",
+       "category": "Doc/OCR \u2014 Degraded Table Transcription",
+       "score": 12,
+       "tok_s": 14.3
+      },
+      {
+       "id": "D12",
+       "category": "Doc/OCR \u2014 Degraded Table QA",
+       "score": 10,
+       "tok_s": 6.5
+      }
+     ],
+     "run_date": "2026-08-14"
+    },
+    "1e": {
+     "score_avg": 14.8,
+     "score_total": 88.8,
+     "tests_run": 6,
+     "tests_total": 6,
+     "avg_tok_s": 19.7,
+     "per_test": [
+      {
+       "id": "E1",
+       "category": "SOW & Requirements Decomposition",
+       "score": 8,
+       "tok_s": 18.5
+      },
+      {
+       "id": "E2",
+       "category": "SOW & Requirements Decomposition",
+       "score": 20,
+       "tok_s": 19.1
+      },
+      {
+       "id": "E3",
+       "category": "Executive & Proposal Content",
+       "score": 16,
+       "tok_s": 20.3
+      },
+      {
+       "id": "E4",
+       "category": "Executive & Proposal Content",
+       "score": 8,
+       "tok_s": 21.0
+      },
+      {
+       "id": "E5",
+       "category": "Executive & Proposal Content",
+       "score": 17,
+       "tok_s": 20.1
+      },
+      {
+       "id": "E6",
+       "category": "Executive & Proposal Content",
+       "score": 20,
+       "tok_s": 19.3
+      }
+     ],
+     "run_date": "2026-08-02"
+    },
+    "1g": {
+     "score_avg": 19.2,
+     "score_total": 115.2,
+     "tests_run": 6,
+     "tests_total": 6,
+     "avg_tok_s": 2.5,
+     "per_test": [
+      {
+       "id": "L1",
+       "category": "Long-Context \u2014 Needle Retrieval",
+       "score": 20,
+       "tok_s": 2.8
+      },
+      {
+       "id": "L2",
+       "category": "Long-Context \u2014 Grounded QA with Distractors",
+       "score": 15,
+       "tok_s": 1.4
+      },
+      {
+       "id": "L3",
+       "category": "Long-Context \u2014 Ops Log Reasoning",
+       "score": 20,
+       "tok_s": 2.1
+      },
+      {
+       "id": "L4",
+       "category": "Long-Context \u2014 Faithful Summarization",
+       "score": 20,
+       "tok_s": 6.9
+      },
+      {
+       "id": "L5",
+       "category": "Long-Context \u2014 Instruction Retention",
+       "score": 20,
+       "tok_s": 1.6
+      },
+      {
+       "id": "L6",
+       "category": "Long-Context \u2014 Full-Haystack QA",
+       "score": 20,
+       "tok_s": 0.5
+      }
+     ],
+     "run_date": "2026-08-06"
+    },
+    "1g2": {
+     "score_avg": 9.7,
+     "score_total": 29.1,
+     "tests_run": 3,
+     "tests_total": 3,
+     "avg_tok_s": 3.6,
+     "per_test": [
+      {
+       "id": "L7",
+       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
+       "score": 20,
+       "tok_s": 5.1
+      },
+      {
+       "id": "L8",
+       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
+       "score": 5,
+       "tok_s": 3.3
+      },
+      {
+       "id": "L9",
+       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
+       "score": 4,
+       "tok_s": 2.5
+      }
+     ],
+     "run_date": "2026-08-14"
+    },
+    "1h": {
+     "score_avg": 12.5,
+     "score_total": 50.0,
+     "tests_run": 4,
+     "tests_total": 4,
+     "avg_tok_s": 15.6,
+     "per_test": [
+      {
+       "id": "H1",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 16,
+       "tok_s": 16.9
+      },
+      {
+       "id": "H2",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 12,
+       "tok_s": 15.4
+      },
+      {
+       "id": "H3",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 10,
+       "tok_s": 15.0
+      },
+      {
+       "id": "H4",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 12,
+       "tok_s": 15.2
+      }
+     ],
+     "run_date": "2026-08-28"
+    }
+   },
+   "thinking": {
+    "tests_seen": 54,
+    "stalls": 0,
+    "runaways": 0,
+    "stall_rate": 0.0,
+    "mean_reasoning_tokens": 0.0,
+    "max_reasoning_tokens": 0
+   },
+   "mean_tok_s": 13.2,
+   "axes": {
+    "g": 80.5,
+    "a": 91.0,
+    "u": 79.0,
+    "n": 80.2,
+    "t": 100.0,
+    "l": 62.5,
+    "e": 86.5,
+    "tp": 5.6
+   },
+   "axes_scored": 8
   },
   {
    "name": "Nemotron 3 Nano 30B-A3B 4bit MLX",
@@ -5011,8 +5405,8 @@
    "cls": "standard",
    "suites": {
     "1a": {
-     "score_avg": 15.9,
-     "score_total": 206.7,
+     "score_avg": 15.7,
+     "score_total": 204.1,
      "tests_run": 13,
      "tests_total": 13,
      "avg_tok_s": 132.4,
@@ -5020,31 +5414,31 @@
       {
        "id": "A1",
        "category": "Dev/Ops Scripting",
-       "score": 12,
+       "score": 11,
        "tok_s": 103.4
       },
       {
        "id": "A2",
        "category": "Dev/Ops Scripting",
-       "score": 20,
+       "score": 18,
        "tok_s": 137.2
       },
       {
        "id": "A3",
        "category": "Dev/Ops Scripting",
-       "score": 10,
+       "score": 11,
        "tok_s": 124.4
       },
       {
        "id": "A4",
        "category": "Dev/Ops Scripting",
-       "score": 17,
+       "score": 16,
        "tok_s": 113.7
       },
       {
        "id": "A5",
        "category": "Dev/Ops Scripting",
-       "score": 17,
+       "score": 18,
        "tok_s": 142.0
       },
       {
@@ -5068,7 +5462,7 @@
       {
        "id": "B3",
        "category": "Document Processing",
-       "score": 18,
+       "score": 17,
        "tok_s": 141.1
       },
       {
@@ -5099,8 +5493,8 @@
      "run_date": "2026-07-27"
     },
     "1b": {
-     "score_avg": 18.4,
-     "score_total": 147.2,
+     "score_avg": 18.5,
+     "score_total": 148.0,
      "tests_run": 8,
      "tests_total": 8,
      "avg_tok_s": 107.7,
@@ -5138,7 +5532,7 @@
       {
        "id": "WB1",
        "category": "Agent Robustness & State Management",
-       "score": 18,
+       "score": 17,
        "tok_s": 156.1
       },
       {
@@ -5150,15 +5544,15 @@
       {
        "id": "WB3",
        "category": "Agent Robustness & State Management",
-       "score": 9,
+       "score": 11,
        "tok_s": 142.1
       }
      ],
      "run_date": "2026-07-28"
     },
     "1g": {
-     "score_avg": 19.7,
-     "score_total": 118.2,
+     "score_avg": 20,
+     "score_total": 120,
      "tests_run": 6,
      "tests_total": 6,
      "avg_tok_s": 60.7,
@@ -5166,7 +5560,7 @@
       {
        "id": "L1",
        "category": "Long-Context \u2014 Needle Retrieval",
-       "score": 19,
+       "score": 20,
        "tok_s": 61.3
       },
       {
@@ -5184,7 +5578,7 @@
       {
        "id": "L4",
        "category": "Long-Context \u2014 Faithful Summarization",
-       "score": 19,
+       "score": 20,
        "tok_s": 81.6
       },
       {
@@ -5203,8 +5597,8 @@
      "run_date": "2026-08-06"
     },
     "1g2": {
-     "score_avg": 4.3,
-     "score_total": 12.9,
+     "score_avg": 5,
+     "score_total": 15,
      "tests_run": 3,
      "tests_total": 3,
      "avg_tok_s": 45.8,
@@ -5212,7 +5606,7 @@
       {
        "id": "L7",
        "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
-       "score": 9,
+       "score": 11,
        "tok_s": 58.2
       },
       {
@@ -5241,491 +5635,169 @@
    },
    "mean_tok_s": 86.7,
    "axes": {
-    "g": 79.5,
-    "a": 92.0,
+    "g": 78.5,
+    "a": 92.5,
     "u": null,
-    "n": 72.8,
+    "n": 75.0,
     "t": 96.7,
     "l": null,
     "e": null,
-    "tp": 36.2
+    "tp": 36.5
    },
    "axes_scored": 5
   },
   {
-   "name": "Mistral Small 3.2 24B 8bit MLX",
-   "params": "24B",
-   "arch": "mistral3",
-   "size_gb": 25.93,
-   "quant": "8bit",
-   "format": "MLX",
+   "name": "Gemma-4 E4B 7.5B Q4_K_M GGUF",
+   "params": "7.5B",
+   "arch": "gemma4",
+   "size_gb": 6.33,
+   "quant": "Q4_K_M",
+   "format": "GGUF",
    "is_cot": false,
    "status": "keeper",
    "base_org": null,
-   "model_card_url": "https://huggingface.co/lmstudio-community/Mistral-Small-3.2-24B-Instruct-2506-MLX-8bit",
-   "slug": "mistral-small-3.2-24b-8bit-mlx",
-   "internal_id": "M13",
-   "cls": "standard",
+   "model_card_url": "https://lmstudio.ai/models/google/gemma-4-e4b",
+   "slug": "gemma-4-e4b-7.5b-q4-k-m-gguf",
+   "internal_id": "M1a",
+   "cls": "small",
    "suites": {
     "1a": {
-     "score_avg": 15.8,
-     "score_total": 205.4,
+     "score_avg": 15.6,
+     "score_total": 202.8,
      "tests_run": 13,
      "tests_total": 13,
-     "avg_tok_s": 20.3,
+     "avg_tok_s": 88.0,
      "per_test": [
       {
        "id": "A1",
        "category": "Dev/Ops Scripting",
        "score": 11,
-       "tok_s": 20.3
+       "tok_s": 102.7
       },
       {
        "id": "A2",
        "category": "Dev/Ops Scripting",
-       "score": 17,
-       "tok_s": 19.8
+       "score": 16,
+       "tok_s": 99.7
       },
       {
        "id": "A3",
        "category": "Dev/Ops Scripting",
-       "score": 17,
-       "tok_s": 20.3
+       "score": 10,
+       "tok_s": 97.4
       },
       {
        "id": "A4",
        "category": "Dev/Ops Scripting",
-       "score": 14,
-       "tok_s": 20.0
+       "score": 19,
+       "tok_s": 100.0
       },
       {
        "id": "A5",
        "category": "Dev/Ops Scripting",
-       "score": 15,
-       "tok_s": 20.7
+       "score": 12,
+       "tok_s": 101.3
       },
       {
        "id": "A6",
        "category": "Dev/Ops Scripting",
        "score": 20,
-       "tok_s": 20.8
+       "tok_s": 101.7
       },
       {
        "id": "B1",
        "category": "Document Processing",
-       "score": 18,
-       "tok_s": 19.6
+       "score": 20,
+       "tok_s": 83.0
       },
       {
        "id": "B2",
        "category": "Document Processing",
        "score": 20,
-       "tok_s": 19.7
+       "tok_s": 71.6
       },
       {
        "id": "B3",
        "category": "Document Processing",
-       "score": 11,
-       "tok_s": 19.3
+       "score": 8,
+       "tok_s": 76.2
       },
       {
        "id": "C1",
        "category": "Content Production",
        "score": 18,
-       "tok_s": 20.7
+       "tok_s": 89.0
       },
       {
        "id": "C2",
        "category": "Content Production",
-       "score": 15,
-       "tok_s": 20.1
+       "score": 17,
+       "tok_s": 76.1
       },
       {
        "id": "C3",
        "category": "Content Production",
-       "score": 16,
-       "tok_s": 21.2
+       "score": 20,
+       "tok_s": 79.8
       },
       {
        "id": "C4",
        "category": "Content Production",
-       "score": 14,
-       "tok_s": 20.9
+       "score": 12,
+       "tok_s": 83.3
       }
      ],
-     "run_date": "2026-06-21"
-    },
-    "1b": {
-     "score_avg": 18.5,
-     "score_total": 148.0,
-     "tests_run": 8,
-     "tests_total": 8,
-     "avg_tok_s": 17.1,
-     "per_test": [
-      {
-       "id": "WA1",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 5.2
-      },
-      {
-       "id": "WA2",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 17.3
-      },
-      {
-       "id": "WA3",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 19,
-       "tok_s": 17.8
-      },
-      {
-       "id": "WA4",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 16.4
-      },
-      {
-       "id": "WA5",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 20,
-       "tok_s": 20.1
-      },
-      {
-       "id": "WB1",
-       "category": "Agent Robustness & State Management",
-       "score": 20,
-       "tok_s": 20.6
-      },
-      {
-       "id": "WB2",
-       "category": "Agent Robustness & State Management",
-       "score": 19,
-       "tok_s": 20.5
-      },
-      {
-       "id": "WB3",
-       "category": "Agent Robustness & State Management",
-       "score": 10,
-       "tok_s": 18.8
-      }
-     ],
-     "run_date": "2026-07-28"
-    },
-    "1c": {
-     "score_avg": 14.0,
-     "score_total": 84.0,
-     "tests_run": 6,
-     "tests_total": 6,
-     "avg_tok_s": 14.8,
-     "per_test": [
-      {
-       "id": "K1",
-       "category": "Coding \u2014 Concurrency",
-       "score": 11,
-       "tok_s": 15.3
-      },
-      {
-       "id": "K2",
-       "category": "Coding \u2014 Algorithms",
-       "score": 16,
-       "tok_s": 14.9
-      },
-      {
-       "id": "K3",
-       "category": "Coding \u2014 Security Review",
-       "score": 13,
-       "tok_s": 14.2
-      },
-      {
-       "id": "K4",
-       "category": "Coding \u2014 Performance",
-       "score": 15,
-       "tok_s": 17.2
-      },
-      {
-       "id": "K5",
-       "category": "Coding \u2014 Refactoring Under Constraints",
-       "score": 14,
-       "tok_s": 13.7
-      },
-      {
-       "id": "K6",
-       "category": "Coding \u2014 Test Writing",
-       "score": 15,
-       "tok_s": 13.5
-      }
-     ],
-     "run_date": "2026-08-02"
-    },
-    "1d": {
-     "score_avg": 18.0,
-     "score_total": 144.0,
-     "tests_run": 8,
-     "tests_total": 8,
-     "avg_tok_s": 14.0,
-     "per_test": [
-      {
-       "id": "D1",
-       "category": "Doc/OCR \u2014 Transcription",
-       "score": 20,
-       "tok_s": 16.4
-      },
-      {
-       "id": "D2",
-       "category": "Doc/OCR \u2014 Document QA",
-       "score": 19,
-       "tok_s": 8.7
-      },
-      {
-       "id": "D3",
-       "category": "Doc/OCR \u2014 Field Extraction",
-       "score": 20,
-       "tok_s": 15.3
-      },
-      {
-       "id": "D4",
-       "category": "Doc/OCR \u2014 Document QA",
-       "score": 15,
-       "tok_s": 12.9
-      },
-      {
-       "id": "D5",
-       "category": "Doc/OCR \u2014 Transcription",
-       "score": 11,
-       "tok_s": 15.5
-      },
-      {
-       "id": "D6",
-       "category": "Doc/OCR \u2014 Field Extraction",
-       "score": 20,
-       "tok_s": 12.8
-      },
-      {
-       "id": "D7",
-       "category": "Doc/OCR \u2014 Degraded Input",
-       "score": 19,
-       "tok_s": 16.2
-      },
-      {
-       "id": "D8",
-       "category": "Doc/OCR \u2014 Degraded Input",
-       "score": 20,
-       "tok_s": 14.4
-      }
-     ],
-     "run_date": "2026-08-06"
-    },
-    "1d2": {
-     "score_avg": 11.2,
-     "score_total": 44.8,
-     "tests_run": 4,
-     "tests_total": 4,
-     "avg_tok_s": 11.4,
-     "per_test": [
-      {
-       "id": "D9",
-       "category": "Doc/OCR \u2014 Real Degraded Transcription",
-       "score": 7,
-       "tok_s": 14.5
-      },
-      {
-       "id": "D10",
-       "category": "Doc/OCR \u2014 Handwriting Extraction",
-       "score": 18,
-       "tok_s": 10.3
-      },
-      {
-       "id": "D11",
-       "category": "Doc/OCR \u2014 Degraded Table Transcription",
-       "score": 10,
-       "tok_s": 14.3
-      },
-      {
-       "id": "D12",
-       "category": "Doc/OCR \u2014 Degraded Table QA",
-       "score": 10,
-       "tok_s": 6.5
-      }
-     ],
-     "run_date": "2026-08-14"
-    },
-    "1e": {
-     "score_avg": 14.2,
-     "score_total": 85.2,
-     "tests_run": 6,
-     "tests_total": 6,
-     "avg_tok_s": 19.7,
-     "per_test": [
-      {
-       "id": "E1",
-       "category": "SOW & Requirements Decomposition",
-       "score": 9,
-       "tok_s": 18.5
-      },
-      {
-       "id": "E2",
-       "category": "SOW & Requirements Decomposition",
-       "score": 20,
-       "tok_s": 19.1
-      },
-      {
-       "id": "E3",
-       "category": "Executive & Proposal Content",
-       "score": 15,
-       "tok_s": 20.3
-      },
-      {
-       "id": "E4",
-       "category": "Executive & Proposal Content",
-       "score": 7,
-       "tok_s": 21.0
-      },
-      {
-       "id": "E5",
-       "category": "Executive & Proposal Content",
-       "score": 15,
-       "tok_s": 20.1
-      },
-      {
-       "id": "E6",
-       "category": "Executive & Proposal Content",
-       "score": 19,
-       "tok_s": 19.3
-      }
-     ],
-     "run_date": "2026-08-02"
-    },
-    "1g": {
-     "score_avg": 19.5,
-     "score_total": 117.0,
-     "tests_run": 6,
-     "tests_total": 6,
-     "avg_tok_s": 2.5,
-     "per_test": [
-      {
-       "id": "L1",
-       "category": "Long-Context \u2014 Needle Retrieval",
-       "score": 20,
-       "tok_s": 2.8
-      },
-      {
-       "id": "L2",
-       "category": "Long-Context \u2014 Grounded QA with Distractors",
-       "score": 18,
-       "tok_s": 1.4
-      },
-      {
-       "id": "L3",
-       "category": "Long-Context \u2014 Ops Log Reasoning",
-       "score": 20,
-       "tok_s": 2.1
-      },
-      {
-       "id": "L4",
-       "category": "Long-Context \u2014 Faithful Summarization",
-       "score": 19,
-       "tok_s": 6.9
-      },
-      {
-       "id": "L5",
-       "category": "Long-Context \u2014 Instruction Retention",
-       "score": 20,
-       "tok_s": 1.6
-      },
-      {
-       "id": "L6",
-       "category": "Long-Context \u2014 Full-Haystack QA",
-       "score": 20,
-       "tok_s": 0.5
-      }
-     ],
-     "run_date": "2026-08-06"
+     "run_date": "2026-09-02"
     },
     "1g2": {
-     "score_avg": 9,
-     "score_total": 27,
+     "score_avg": 5.3,
+     "score_total": 15.9,
      "tests_run": 3,
      "tests_total": 3,
-     "avg_tok_s": 3.6,
+     "avg_tok_s": 24.6,
      "per_test": [
       {
        "id": "L7",
        "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
-       "score": 19,
-       "tok_s": 5.1
+       "score": 8,
+       "tok_s": 50.9
       },
       {
        "id": "L8",
        "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
        "score": 4,
-       "tok_s": 3.3
+       "tok_s": 14.6
       },
       {
        "id": "L9",
        "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
        "score": 4,
-       "tok_s": 2.5
+       "tok_s": 8.4
       }
      ],
-     "run_date": "2026-08-14"
-    },
-    "1h": {
-     "score_avg": 12.2,
-     "score_total": 48.8,
-     "tests_run": 4,
-     "tests_total": 4,
-     "avg_tok_s": 15.6,
-     "per_test": [
-      {
-       "id": "H1",
-       "category": "Web-Estate One-Shot Builds",
-       "score": 15,
-       "tok_s": 16.9
-      },
-      {
-       "id": "H2",
-       "category": "Web-Estate One-Shot Builds",
-       "score": 12,
-       "tok_s": 15.4
-      },
-      {
-       "id": "H3",
-       "category": "Web-Estate One-Shot Builds",
-       "score": 10,
-       "tok_s": 15.0
-      },
-      {
-       "id": "H4",
-       "category": "Web-Estate One-Shot Builds",
-       "score": 12,
-       "tok_s": 15.2
-      }
-     ],
-     "run_date": "2026-08-28"
+     "run_date": "2026-08-31"
     }
    },
    "thinking": {
-    "tests_seen": 54,
+    "tests_seen": 13,
     "stalls": 0,
     "runaways": 0,
     "stall_rate": 0.0,
-    "mean_reasoning_tokens": 0.0,
-    "max_reasoning_tokens": 0
+    "mean_reasoning_tokens": 860.5,
+    "max_reasoning_tokens": 2100
    },
-   "mean_tok_s": 13.2,
+   "mean_tok_s": 56.3,
    "axes": {
-    "g": 79.0,
-    "a": 92.5,
-    "u": 78.7,
-    "n": 80.0,
-    "t": 100.0,
-    "l": 61.0,
-    "e": 70.0,
-    "tp": 5.5
+    "g": 78.0,
+    "a": null,
+    "u": null,
+    "n": 26.5,
+    "t": null,
+    "l": null,
+    "e": null,
+    "tp": 23.7
    },
-   "axes_scored": 8
+   "axes_scored": 3
   },
   {
    "name": "Devstral Small 2 24B 6bit MLX",
@@ -5743,11 +5815,11 @@
    "cls": "standard",
    "suites": {
     "1a": {
-     "score_avg": 15.7,
-     "score_total": 204.1,
+     "score_avg": 15.6,
+     "score_total": 202.8,
      "tests_run": 13,
      "tests_total": 13,
-     "avg_tok_s": 17.7,
+     "avg_tok_s": 18.3,
      "per_test": [
       {
        "id": "A1",
@@ -5758,7 +5830,7 @@
       {
        "id": "A2",
        "category": "Dev/Ops Scripting",
-       "score": 16,
+       "score": 14,
        "tok_s": 24.9
       },
       {
@@ -5770,7 +5842,7 @@
       {
        "id": "A4",
        "category": "Dev/Ops Scripting",
-       "score": 16,
+       "score": 18,
        "tok_s": 23.8
       },
       {
@@ -5800,19 +5872,19 @@
       {
        "id": "B3",
        "category": "Document Processing",
-       "score": 13,
+       "score": 12,
        "tok_s": 13.8
       },
       {
        "id": "C1",
        "category": "Content Production",
-       "score": 16,
+       "score": 15,
        "tok_s": 13.3
       },
       {
        "id": "C2",
        "category": "Content Production",
-       "score": 16,
+       "score": 15,
        "tok_s": 12.9
       },
       {
@@ -5824,15 +5896,15 @@
       {
        "id": "C4",
        "category": "Content Production",
-       "score": 10,
+       "score": 12,
        "tok_s": 14.1
       }
      ],
      "run_date": "2026-08-06"
     },
     "1b": {
-     "score_avg": 18.9,
-     "score_total": 151.2,
+     "score_avg": 19.4,
+     "score_total": 155.2,
      "tests_run": 8,
      "tests_total": 8,
      "avg_tok_s": 22.9,
@@ -5882,15 +5954,15 @@
       {
        "id": "WB3",
        "category": "Agent Robustness & State Management",
-       "score": 11,
+       "score": 15,
        "tok_s": 23.8
       }
      ],
      "run_date": "2026-08-06"
     },
     "1c": {
-     "score_avg": 17.5,
-     "score_total": 105.0,
+     "score_avg": 18,
+     "score_total": 108,
      "tests_run": 6,
      "tests_total": 6,
      "avg_tok_s": 21.3,
@@ -5898,7 +5970,7 @@
       {
        "id": "K1",
        "category": "Coding \u2014 Concurrency",
-       "score": 17,
+       "score": 19,
        "tok_s": 25.7
       },
       {
@@ -5910,7 +5982,7 @@
       {
        "id": "K3",
        "category": "Coding \u2014 Security Review",
-       "score": 15,
+       "score": 16,
        "tok_s": 24.6
       },
       {
@@ -5943,479 +6015,18 @@
     "mean_reasoning_tokens": 0.0,
     "max_reasoning_tokens": 0
    },
-   "mean_tok_s": 20.6,
-   "axes": {
-    "g": 78.5,
-    "a": 94.5,
-    "u": null,
-    "n": null,
-    "t": 100.0,
-    "l": null,
-    "e": 87.5,
-    "tp": 8.6
-   },
-   "axes_scored": 5
-  },
-  {
-   "name": "Gemma-4 E4B 7.5B Q4_K_M GGUF",
-   "params": "7.5B",
-   "arch": "gemma4",
-   "size_gb": 6.33,
-   "quant": "Q4_K_M",
-   "format": "GGUF",
-   "is_cot": false,
-   "status": "keeper",
-   "base_org": null,
-   "model_card_url": "https://lmstudio.ai/models/google/gemma-4-e4b",
-   "slug": "gemma-4-e4b-7.5b-q4-k-m-gguf",
-   "internal_id": "M1a",
-   "cls": "small",
-   "suites": {
-    "1a": {
-     "score_avg": 15.6,
-     "score_total": 202.8,
-     "tests_run": 13,
-     "tests_total": 13,
-     "avg_tok_s": 89.4,
-     "per_test": [
-      {
-       "id": "A1",
-       "category": "Dev/Ops Scripting",
-       "score": 8,
-       "tok_s": 102.7
-      },
-      {
-       "id": "A2",
-       "category": "Dev/Ops Scripting",
-       "score": 17,
-       "tok_s": 99.7
-      },
-      {
-       "id": "A3",
-       "category": "Dev/Ops Scripting",
-       "score": 10,
-       "tok_s": 97.4
-      },
-      {
-       "id": "A4",
-       "category": "Dev/Ops Scripting",
-       "score": 19,
-       "tok_s": 100.0
-      },
-      {
-       "id": "A5",
-       "category": "Dev/Ops Scripting",
-       "score": 11,
-       "tok_s": 101.3
-      },
-      {
-       "id": "A6",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 101.7
-      },
-      {
-       "id": "B1",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 83.0
-      },
-      {
-       "id": "B2",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 71.6
-      },
-      {
-       "id": "B3",
-       "category": "Document Processing",
-       "score": 10,
-       "tok_s": 76.2
-      },
-      {
-       "id": "C1",
-       "category": "Content Production",
-       "score": 18,
-       "tok_s": 89.0
-      },
-      {
-       "id": "C2",
-       "category": "Content Production",
-       "score": 18,
-       "tok_s": 76.1
-      },
-      {
-       "id": "C3",
-       "category": "Content Production",
-       "score": 19,
-       "tok_s": 79.8
-      },
-      {
-       "id": "C4",
-       "category": "Content Production",
-       "score": 13,
-       "tok_s": 83.3
-      }
-     ],
-     "run_date": "2026-06-21"
-    },
-    "1g2": {
-     "score_avg": 3.3,
-     "score_total": 9.9,
-     "tests_run": 3,
-     "tests_total": 3,
-     "avg_tok_s": 24.6,
-     "per_test": [
-      {
-       "id": "L7",
-       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
-       "score": 4,
-       "tok_s": 50.9
-      },
-      {
-       "id": "L8",
-       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
-       "score": 4,
-       "tok_s": 14.6
-      },
-      {
-       "id": "L9",
-       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
-       "score": 2,
-       "tok_s": 8.4
-      }
-     ],
-     "run_date": "2026-08-31"
-    }
-   },
-   "thinking": {
-    "tests_seen": 13,
-    "stalls": 0,
-    "runaways": 0,
-    "stall_rate": 0.0,
-    "mean_reasoning_tokens": 860.5,
-    "max_reasoning_tokens": 2100
-   },
-   "mean_tok_s": 57.0,
+   "mean_tok_s": 20.8,
    "axes": {
     "g": 78.0,
-    "a": null,
-    "u": null,
-    "n": 16.5,
-    "t": null,
-    "l": null,
-    "e": null,
-    "tp": 23.8
-   },
-   "axes_scored": 3
-  },
-  {
-   "name": "Muse-Glimmer 30B (GGUF, kquant 17GB)",
-   "params": "30B (unconfirmed -- filename-derived, see note)",
-   "arch": "muse-glimmer",
-   "size_gb": 17.0,
-   "quant": "kquant (unconfirmed exact scheme -- filename says \"kquant\", not a standard llama.cpp quant label)",
-   "format": "GGUF",
-   "is_cot": false,
-   "status": "tested",
-   "base_org": null,
-   "model_card_url": null,
-   "slug": "muse-glimmer-30b-gguf-kquant-17gb",
-   "internal_id": "M24",
-   "cls": "standard",
-   "suites": {
-    "1a": {
-     "score_avg": 15.0,
-     "score_total": 195.0,
-     "tests_run": 13,
-     "tests_total": 13,
-     "avg_tok_s": 15.4,
-     "per_test": [
-      {
-       "id": "A1",
-       "category": "Dev/Ops Scripting",
-       "score": 12,
-       "tok_s": 20.6
-      },
-      {
-       "id": "A2",
-       "category": "Dev/Ops Scripting",
-       "score": 17,
-       "tok_s": 12.1
-      },
-      {
-       "id": "A3",
-       "category": "Dev/Ops Scripting",
-       "score": 16,
-       "tok_s": 14.3
-      },
-      {
-       "id": "A4",
-       "category": "Dev/Ops Scripting",
-       "score": 15,
-       "tok_s": 16.1
-      },
-      {
-       "id": "A5",
-       "category": "Dev/Ops Scripting",
-       "score": 18,
-       "tok_s": 16.1
-      },
-      {
-       "id": "A6",
-       "category": "Dev/Ops Scripting",
-       "score": 11,
-       "tok_s": 16.3
-      },
-      {
-       "id": "B1",
-       "category": "Document Processing",
-       "score": 17,
-       "tok_s": 13.4
-      },
-      {
-       "id": "B2",
-       "category": "Document Processing",
-       "score": 12,
-       "tok_s": 13.6
-      },
-      {
-       "id": "B3",
-       "category": "Document Processing",
-       "score": 16,
-       "tok_s": 14.8
-      },
-      {
-       "id": "C1",
-       "category": "Content Production",
-       "score": 16,
-       "tok_s": 16.2
-      },
-      {
-       "id": "C2",
-       "category": "Content Production",
-       "score": 17,
-       "tok_s": 16.7
-      },
-      {
-       "id": "C3",
-       "category": "Content Production",
-       "score": 18,
-       "tok_s": 14.7
-      },
-      {
-       "id": "C4",
-       "category": "Content Production",
-       "score": 10,
-       "tok_s": 15.5
-      }
-     ],
-     "run_date": "2026-08-13"
-    },
-    "1b": {
-     "score_avg": 15.4,
-     "score_total": 123.2,
-     "tests_run": 8,
-     "tests_total": 8,
-     "avg_tok_s": 21.0,
-     "per_test": [
-      {
-       "id": "WA1",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 9,
-       "tok_s": 26.0
-      },
-      {
-       "id": "WA2",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 14,
-       "tok_s": 21.2
-      },
-      {
-       "id": "WA3",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 14,
-       "tok_s": 24.2
-      },
-      {
-       "id": "WA4",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 17,
-       "tok_s": 14.4
-      },
-      {
-       "id": "WA5",
-       "category": "Tool Calling & Protocol Adherence",
-       "score": 17,
-       "tok_s": 24.5
-      },
-      {
-       "id": "WB1",
-       "category": "Agent Robustness & State Management",
-       "score": 18,
-       "tok_s": 22.4
-      },
-      {
-       "id": "WB2",
-       "category": "Agent Robustness & State Management",
-       "score": 18,
-       "tok_s": 18.1
-      },
-      {
-       "id": "WB3",
-       "category": "Agent Robustness & State Management",
-       "score": 16,
-       "tok_s": 16.9
-      }
-     ],
-     "run_date": "2026-08-13"
-    }
-   },
-   "thinking": {
-    "tests_seen": 22,
-    "stalls": 0,
-    "runaways": 0,
-    "stall_rate": 0.0,
-    "mean_reasoning_tokens": 0.0,
-    "max_reasoning_tokens": 0
-   },
-   "mean_tok_s": 18.2,
-   "axes": {
-    "g": 75.0,
-    "a": 77.0,
+    "a": 97.0,
     "u": null,
     "n": null,
     "t": 100.0,
     "l": null,
-    "e": null,
-    "tp": 7.6
+    "e": 90.0,
+    "tp": 8.8
    },
-   "axes_scored": 4
-  },
-  {
-   "name": "Devstral Small 2 24B 4bit MLX",
-   "params": "24B",
-   "arch": "mistral3",
-   "size_gb": 14.12,
-   "quant": "4bit",
-   "format": "MLX",
-   "is_cot": false,
-   "status": "retired",
-   "base_org": null,
-   "model_card_url": null,
-   "slug": "devstral-small-2-24b-4bit-mlx",
-   "internal_id": "M3",
-   "cls": "standard",
-   "suites": {
-    "1a": {
-     "score_avg": 14.9,
-     "score_total": 193.7,
-     "tests_run": 13,
-     "tests_total": 13,
-     "avg_tok_s": 34.7,
-     "per_test": [
-      {
-       "id": "A1",
-       "category": "Dev/Ops Scripting",
-       "score": 16,
-       "tok_s": 33.0
-      },
-      {
-       "id": "A2",
-       "category": "Dev/Ops Scripting",
-       "score": 13,
-       "tok_s": 31.7
-      },
-      {
-       "id": "A3",
-       "category": "Dev/Ops Scripting",
-       "score": 9,
-       "tok_s": 33.0
-      },
-      {
-       "id": "A4",
-       "category": "Dev/Ops Scripting",
-       "score": 18,
-       "tok_s": 33.2
-      },
-      {
-       "id": "A5",
-       "category": "Dev/Ops Scripting",
-       "score": 13,
-       "tok_s": 33.4
-      },
-      {
-       "id": "A6",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 35.2
-      },
-      {
-       "id": "B1",
-       "category": "Document Processing",
-       "score": 18,
-       "tok_s": 35.7
-      },
-      {
-       "id": "B2",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 35.7
-      },
-      {
-       "id": "B3",
-       "category": "Document Processing",
-       "score": 13,
-       "tok_s": 36.4
-      },
-      {
-       "id": "C1",
-       "category": "Content Production",
-       "score": 14,
-       "tok_s": 38.1
-      },
-      {
-       "id": "C2",
-       "category": "Content Production",
-       "score": 10,
-       "tok_s": 38.0
-      },
-      {
-       "id": "C3",
-       "category": "Content Production",
-       "score": 17,
-       "tok_s": 30.9
-      },
-      {
-       "id": "C4",
-       "category": "Content Production",
-       "score": 13,
-       "tok_s": 31.2
-      }
-     ],
-     "run_date": "2026-06-21"
-    }
-   },
-   "thinking": {
-    "tests_seen": 13,
-    "stalls": 0,
-    "runaways": 0,
-    "stall_rate": 0.0,
-    "mean_reasoning_tokens": 0.0,
-    "max_reasoning_tokens": 0
-   },
-   "mean_tok_s": 34.7,
-   "axes": {
-    "g": 74.5,
-    "a": null,
-    "u": null,
-    "n": null,
-    "t": null,
-    "l": null,
-    "e": null,
-    "tp": 14.5
-   },
-   "axes_scored": 2
+   "axes_scored": 5
   },
   {
    "name": "Hermes-4 70B 4bit MLX",
@@ -6433,8 +6044,8 @@
    "cls": "standard",
    "suites": {
     "1a": {
-     "score_avg": 14.6,
-     "score_total": 189.8,
+     "score_avg": 14.8,
+     "score_total": 192.4,
      "tests_run": 13,
      "tests_total": 13,
      "avg_tok_s": 10.4,
@@ -6448,37 +6059,37 @@
       {
        "id": "A2",
        "category": "Dev/Ops Scripting",
-       "score": 17,
+       "score": 16,
        "tok_s": 11.1
       },
       {
        "id": "A3",
        "category": "Dev/Ops Scripting",
-       "score": 7,
+       "score": 5,
        "tok_s": 11.1
       },
       {
        "id": "A4",
        "category": "Dev/Ops Scripting",
-       "score": 19,
+       "score": 20,
        "tok_s": 10.9
       },
       {
        "id": "A5",
        "category": "Dev/Ops Scripting",
-       "score": 11,
+       "score": 15,
        "tok_s": 10.4
       },
       {
        "id": "A6",
        "category": "Dev/Ops Scripting",
-       "score": 20,
+       "score": 19,
        "tok_s": 10.8
       },
       {
        "id": "B1",
        "category": "Document Processing",
-       "score": 19,
+       "score": 20,
        "tok_s": 10.1
       },
       {
@@ -6508,17 +6119,17 @@
       {
        "id": "C3",
        "category": "Content Production",
-       "score": 16,
+       "score": 17,
        "tok_s": 10.3
       },
       {
        "id": "C4",
        "category": "Content Production",
-       "score": 16,
+       "score": 15,
        "tok_s": 10.0
       }
      ],
-     "run_date": "2026-06-21"
+     "run_date": "2026-09-02"
     }
    },
    "thinking": {
@@ -6531,14 +6142,322 @@
    },
    "mean_tok_s": 10.4,
    "axes": {
-    "g": 73.0,
+    "g": 74.0,
     "a": null,
     "u": null,
     "n": null,
     "t": null,
     "l": null,
     "e": null,
-    "tp": 4.3
+    "tp": 4.4
+   },
+   "axes_scored": 2
+  },
+  {
+   "name": "Muse-Glimmer 30B (GGUF, kquant 17GB)",
+   "params": "30B (unconfirmed -- filename-derived, see note)",
+   "arch": "muse-glimmer",
+   "size_gb": 17.0,
+   "quant": "kquant (unconfirmed exact scheme -- filename says \"kquant\", not a standard llama.cpp quant label)",
+   "format": "GGUF",
+   "is_cot": false,
+   "status": "tested",
+   "base_org": null,
+   "model_card_url": null,
+   "slug": "muse-glimmer-30b-gguf-kquant-17gb",
+   "internal_id": "M24",
+   "cls": "standard",
+   "suites": {
+    "1a": {
+     "score_avg": 14.8,
+     "score_total": 192.4,
+     "tests_run": 13,
+     "tests_total": 13,
+     "avg_tok_s": 15.4,
+     "per_test": [
+      {
+       "id": "A1",
+       "category": "Dev/Ops Scripting",
+       "score": 13,
+       "tok_s": 20.6
+      },
+      {
+       "id": "A2",
+       "category": "Dev/Ops Scripting",
+       "score": 15,
+       "tok_s": 12.1
+      },
+      {
+       "id": "A3",
+       "category": "Dev/Ops Scripting",
+       "score": 15,
+       "tok_s": 14.3
+      },
+      {
+       "id": "A4",
+       "category": "Dev/Ops Scripting",
+       "score": 12,
+       "tok_s": 16.1
+      },
+      {
+       "id": "A5",
+       "category": "Dev/Ops Scripting",
+       "score": 17,
+       "tok_s": 16.1
+      },
+      {
+       "id": "A6",
+       "category": "Dev/Ops Scripting",
+       "score": 12,
+       "tok_s": 16.3
+      },
+      {
+       "id": "B1",
+       "category": "Document Processing",
+       "score": 17,
+       "tok_s": 13.4
+      },
+      {
+       "id": "B2",
+       "category": "Document Processing",
+       "score": 15,
+       "tok_s": 13.6
+      },
+      {
+       "id": "B3",
+       "category": "Document Processing",
+       "score": 20,
+       "tok_s": 14.8
+      },
+      {
+       "id": "C1",
+       "category": "Content Production",
+       "score": 15,
+       "tok_s": 16.2
+      },
+      {
+       "id": "C2",
+       "category": "Content Production",
+       "score": 16,
+       "tok_s": 16.7
+      },
+      {
+       "id": "C3",
+       "category": "Content Production",
+       "score": 14,
+       "tok_s": 14.7
+      },
+      {
+       "id": "C4",
+       "category": "Content Production",
+       "score": 11,
+       "tok_s": 15.5
+      }
+     ],
+     "run_date": "2026-08-13"
+    },
+    "1b": {
+     "score_avg": 15.2,
+     "score_total": 121.6,
+     "tests_run": 8,
+     "tests_total": 8,
+     "avg_tok_s": 21.0,
+     "per_test": [
+      {
+       "id": "WA1",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 11,
+       "tok_s": 26.0
+      },
+      {
+       "id": "WA2",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 14,
+       "tok_s": 21.2
+      },
+      {
+       "id": "WA3",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 14,
+       "tok_s": 24.2
+      },
+      {
+       "id": "WA4",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 17,
+       "tok_s": 14.4
+      },
+      {
+       "id": "WA5",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 17,
+       "tok_s": 24.5
+      },
+      {
+       "id": "WB1",
+       "category": "Agent Robustness & State Management",
+       "score": 16,
+       "tok_s": 22.4
+      },
+      {
+       "id": "WB2",
+       "category": "Agent Robustness & State Management",
+       "score": 18,
+       "tok_s": 18.1
+      },
+      {
+       "id": "WB3",
+       "category": "Agent Robustness & State Management",
+       "score": 15,
+       "tok_s": 16.9
+      }
+     ],
+     "run_date": "2026-08-13"
+    }
+   },
+   "thinking": {
+    "tests_seen": 22,
+    "stalls": 0,
+    "runaways": 0,
+    "stall_rate": 0.0,
+    "mean_reasoning_tokens": 0.0,
+    "max_reasoning_tokens": 0
+   },
+   "mean_tok_s": 18.2,
+   "axes": {
+    "g": 74.0,
+    "a": 76.0,
+    "u": null,
+    "n": null,
+    "t": 100.0,
+    "l": null,
+    "e": null,
+    "tp": 7.7
+   },
+   "axes_scored": 4
+  },
+  {
+   "name": "Devstral Small 2 24B 4bit MLX",
+   "params": "24B",
+   "arch": "mistral3",
+   "size_gb": 14.12,
+   "quant": "4bit",
+   "format": "MLX",
+   "is_cot": false,
+   "status": "retired",
+   "base_org": null,
+   "model_card_url": null,
+   "slug": "devstral-small-2-24b-4bit-mlx",
+   "internal_id": "M3",
+   "cls": "standard",
+   "suites": {
+    "1a": {
+     "score_avg": 14.7,
+     "score_total": 191.1,
+     "tests_run": 13,
+     "tests_total": 13,
+     "avg_tok_s": 34.7,
+     "per_test": [
+      {
+       "id": "A1",
+       "category": "Dev/Ops Scripting",
+       "score": 14,
+       "tok_s": 33.0
+      },
+      {
+       "id": "A2",
+       "category": "Dev/Ops Scripting",
+       "score": 13,
+       "tok_s": 31.7
+      },
+      {
+       "id": "A3",
+       "category": "Dev/Ops Scripting",
+       "score": 9,
+       "tok_s": 33.0
+      },
+      {
+       "id": "A4",
+       "category": "Dev/Ops Scripting",
+       "score": 19,
+       "tok_s": 33.2
+      },
+      {
+       "id": "A5",
+       "category": "Dev/Ops Scripting",
+       "score": 15,
+       "tok_s": 33.4
+      },
+      {
+       "id": "A6",
+       "category": "Dev/Ops Scripting",
+       "score": 20,
+       "tok_s": 35.2
+      },
+      {
+       "id": "B1",
+       "category": "Document Processing",
+       "score": 19,
+       "tok_s": 35.7
+      },
+      {
+       "id": "B2",
+       "category": "Document Processing",
+       "score": 20,
+       "tok_s": 35.7
+      },
+      {
+       "id": "B3",
+       "category": "Document Processing",
+       "score": 11,
+       "tok_s": 36.4
+      },
+      {
+       "id": "C1",
+       "category": "Content Production",
+       "score": 15,
+       "tok_s": 38.1
+      },
+      {
+       "id": "C2",
+       "category": "Content Production",
+       "score": 8,
+       "tok_s": 38.0
+      },
+      {
+       "id": "C3",
+       "category": "Content Production",
+       "score": 16,
+       "tok_s": 30.9
+      },
+      {
+       "id": "C4",
+       "category": "Content Production",
+       "score": 12,
+       "tok_s": 31.2
+      }
+     ],
+     "run_date": "2026-09-02"
+    }
+   },
+   "thinking": {
+    "tests_seen": 13,
+    "stalls": 0,
+    "runaways": 0,
+    "stall_rate": 0.0,
+    "mean_reasoning_tokens": 0.0,
+    "max_reasoning_tokens": 0
+   },
+   "mean_tok_s": 34.7,
+   "axes": {
+    "g": 73.5,
+    "a": null,
+    "u": null,
+    "n": null,
+    "t": null,
+    "l": null,
+    "e": null,
+    "tp": 14.6
    },
    "axes_scored": 2
   },
@@ -6558,46 +6477,46 @@
    "cls": "small",
    "suites": {
     "1a": {
-     "score_avg": 13.7,
-     "score_total": 178.1,
+     "score_avg": 13.6,
+     "score_total": 176.8,
      "tests_run": 13,
      "tests_total": 13,
-     "avg_tok_s": 137.6,
+     "avg_tok_s": 135.6,
      "per_test": [
       {
        "id": "A1",
        "category": "Dev/Ops Scripting",
-       "score": 4,
+       "score": 3,
        "tok_s": 105.9
       },
       {
        "id": "A2",
        "category": "Dev/Ops Scripting",
-       "score": 14,
+       "score": 12,
        "tok_s": 158.6
       },
       {
        "id": "A3",
        "category": "Dev/Ops Scripting",
-       "score": 10,
+       "score": 9,
        "tok_s": 121.4
       },
       {
        "id": "A4",
        "category": "Dev/Ops Scripting",
-       "score": 10,
+       "score": 6,
        "tok_s": 141.2
       },
       {
        "id": "A5",
        "category": "Dev/Ops Scripting",
-       "score": 13,
+       "score": 15,
        "tok_s": 135.3
       },
       {
        "id": "A6",
        "category": "Dev/Ops Scripting",
-       "score": 12,
+       "score": 13,
        "tok_s": 141.6
       },
       {
@@ -6615,25 +6534,25 @@
       {
        "id": "B3",
        "category": "Document Processing",
-       "score": 6,
+       "score": 8,
        "tok_s": 99.2
       },
       {
        "id": "C1",
        "category": "Content Production",
-       "score": 18,
+       "score": 17,
        "tok_s": 145.3
       },
       {
        "id": "C2",
        "category": "Content Production",
-       "score": 17,
+       "score": 18,
        "tok_s": 143.4
       },
       {
        "id": "C3",
        "category": "Content Production",
-       "score": 17,
+       "score": 18,
        "tok_s": 145.1
       },
       {
@@ -6654,16 +6573,16 @@
     "mean_reasoning_tokens": 0.0,
     "max_reasoning_tokens": 0
    },
-   "mean_tok_s": 137.6,
+   "mean_tok_s": 135.6,
    "axes": {
-    "g": 68.5,
+    "g": 68.0,
     "a": null,
     "u": null,
     "n": null,
     "t": null,
     "l": null,
     "e": null,
-    "tp": 57.5
+    "tp": 57.1
    },
    "axes_scored": 2
   },
@@ -6683,8 +6602,8 @@
    "cls": "standard",
    "suites": {
     "1a": {
-     "score_avg": 19.0,
-     "score_total": 171.0,
+     "score_avg": 18.9,
+     "score_total": 170.1,
      "tests_run": 9,
      "tests_total": 13,
      "avg_tok_s": 40.0,
@@ -6698,19 +6617,19 @@
       {
        "id": "A2",
        "category": "Dev/Ops Scripting",
-       "score": 19,
+       "score": 18,
        "tok_s": 35.7
       },
       {
        "id": "A3",
        "category": "Dev/Ops Scripting",
-       "score": 19,
+       "score": 18,
        "tok_s": 52.8
       },
       {
        "id": "A4",
        "category": "Dev/Ops Scripting",
-       "score": 19,
+       "score": 20,
        "tok_s": 21.0
       },
       {
@@ -6744,7 +6663,7 @@
        "tok_s": 21.3
       }
      ],
-     "run_date": "2026-06-21"
+     "run_date": "2026-09-02"
     },
     "1e": {
      "score_avg": 18.8,
@@ -6756,7 +6675,7 @@
       {
        "id": "E1",
        "category": "SOW & Requirements Decomposition",
-       "score": 20,
+       "score": 19,
        "tok_s": 53.5
       },
       {
@@ -6774,7 +6693,7 @@
       {
        "id": "E4",
        "category": "Executive & Proposal Content",
-       "score": 16,
+       "score": 17,
        "tok_s": 64.4
       },
       {
@@ -6793,8 +6712,8 @@
      "run_date": "2026-08-02"
     },
     "1g2": {
-     "score_avg": 12.3,
-     "score_total": 36.9,
+     "score_avg": 12,
+     "score_total": 36,
      "tests_run": 3,
      "tests_total": 3,
      "avg_tok_s": 7.9,
@@ -6808,7 +6727,7 @@
       {
        "id": "L8",
        "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
-       "score": 14,
+       "score": 13,
        "tok_s": 8.5
       },
       {
@@ -6821,8 +6740,8 @@
      "run_date": "2026-08-31"
     },
     "1h": {
-     "score_avg": 16.5,
-     "score_total": 66.0,
+     "score_avg": 17,
+     "score_total": 68,
      "tests_run": 4,
      "tests_total": 4,
      "avg_tok_s": 49.1,
@@ -6830,19 +6749,19 @@
       {
        "id": "H1",
        "category": "Web-Estate One-Shot Builds",
-       "score": 17,
+       "score": 19,
        "tok_s": 61.8
       },
       {
        "id": "H2",
        "category": "Web-Estate One-Shot Builds",
-       "score": 15,
+       "score": 16,
        "tok_s": 43.0
       },
       {
        "id": "H3",
        "category": "Web-Estate One-Shot Builds",
-       "score": 18,
+       "score": 17,
        "tok_s": 63.9
       },
       {
@@ -6865,14 +6784,14 @@
    },
    "mean_tok_s": 37.2,
    "axes": {
-    "g": 65.8,
+    "g": 65.4,
     "a": null,
     "u": null,
-    "n": 61.5,
+    "n": 60.0,
     "t": 100.0,
-    "l": 82.5,
+    "l": 85.0,
     "e": null,
-    "tp": 15.5
+    "tp": 15.6
    },
    "axes_scored": 5
   },
@@ -6892,15 +6811,15 @@
    "cls": "standard",
    "suites": {
     "1a": {
-     "score_avg": 18.3,
-     "score_total": 164.7,
+     "score_avg": 18.4,
+     "score_total": 165.6,
      "tests_run": 9,
      "tests_total": 13,
-     "avg_tok_s": 87.1
+     "avg_tok_s": 89.2
     },
     "1h": {
-     "score_avg": 13.8,
-     "score_total": 55.2,
+     "score_avg": 14.2,
+     "score_total": 56.8,
      "tests_run": 4,
      "tests_total": 4,
      "avg_tok_s": 117.2,
@@ -6908,7 +6827,7 @@
       {
        "id": "H1",
        "category": "Web-Estate One-Shot Builds",
-       "score": 14,
+       "score": 15,
        "tok_s": 120.8
       },
       {
@@ -6926,7 +6845,7 @@
       {
        "id": "H4",
        "category": "Web-Estate One-Shot Builds",
-       "score": 13,
+       "score": 14,
        "tok_s": 108.4
       }
      ],
@@ -6941,16 +6860,16 @@
     "mean_reasoning_tokens": 0.0,
     "max_reasoning_tokens": 0
    },
-   "mean_tok_s": 102.2,
+   "mean_tok_s": 103.2,
    "axes": {
-    "g": 63.3,
+    "g": 63.7,
     "a": null,
     "u": null,
     "n": null,
     "t": null,
-    "l": 69.0,
+    "l": 71.0,
     "e": null,
-    "tp": 42.7
+    "tp": 43.4
    },
    "axes_scored": 3
   },
@@ -6970,8 +6889,8 @@
    "cls": "standard",
    "suites": {
     "1a": {
-     "score_avg": 18.1,
-     "score_total": 162.9,
+     "score_avg": 18.3,
+     "score_total": 164.7,
      "tests_run": 9,
      "tests_total": 13,
      "avg_tok_s": 34.8,
@@ -6997,13 +6916,13 @@
       {
        "id": "A4",
        "category": "Dev/Ops Scripting",
-       "score": 18,
+       "score": 19,
        "tok_s": 27.4
       },
       {
        "id": "A5",
        "category": "Dev/Ops Scripting",
-       "score": 13,
+       "score": 14,
        "tok_s": 50.2
       },
       {
@@ -7031,7 +6950,7 @@
        "tok_s": 15.6
       }
      ],
-     "run_date": "2026-06-21"
+     "run_date": "2026-09-02"
     }
    },
    "thinking": {
@@ -7044,7 +6963,7 @@
    },
    "mean_tok_s": 34.8,
    "axes": {
-    "g": 62.7,
+    "g": 63.3,
     "a": null,
     "u": null,
     "n": null,
@@ -7056,107 +6975,107 @@
    "axes_scored": 2
   },
   {
-   "name": "Gemma 3 4B QAT 4bit MLX",
-   "params": "4B",
-   "arch": "gemma3",
-   "size_gb": 2.8,
-   "quant": "QAT 4bit",
+   "name": "DeepSeek-R1-Distill-Llama 70B 8bit MLX",
+   "params": "70B",
+   "arch": "llama",
+   "size_gb": 75.0,
+   "quant": "8bit",
    "format": "MLX",
-   "is_cot": false,
-   "status": "tested",
+   "is_cot": true,
+   "status": "retired",
    "base_org": null,
-   "model_card_url": "https://lmstudio.ai/models/google/gemma-3-4b",
-   "slug": "gemma-3-4b-qat-4bit-mlx",
-   "internal_id": "M16",
-   "cls": "small",
+   "model_card_url": null,
+   "slug": "deepseek-r1-distill-llama-70b-8bit-mlx",
+   "internal_id": "M5",
+   "cls": "standard",
    "suites": {
     "1a": {
-     "score_avg": 12.3,
-     "score_total": 159.9,
+     "score_avg": 12.5,
+     "score_total": 162.5,
      "tests_run": 13,
      "tests_total": 13,
-     "avg_tok_s": 163.3,
+     "avg_tok_s": 5.7,
      "per_test": [
       {
        "id": "A1",
        "category": "Dev/Ops Scripting",
-       "score": 8,
-       "tok_s": 167.1
+       "score": 7,
+       "tok_s": 6.1
       },
       {
        "id": "A2",
        "category": "Dev/Ops Scripting",
-       "score": 11,
-       "tok_s": 166.2
+       "score": 14,
+       "tok_s": 5.7
       },
       {
        "id": "A3",
        "category": "Dev/Ops Scripting",
-       "score": 2,
-       "tok_s": 161.7
+       "score": 19,
+       "tok_s": 5.6
       },
       {
        "id": "A4",
        "category": "Dev/Ops Scripting",
-       "score": 8,
-       "tok_s": 145.4
+       "score": 16,
+       "tok_s": 5.8
       },
       {
        "id": "A5",
        "category": "Dev/Ops Scripting",
-       "score": 7,
-       "tok_s": 166.6
+       "score": 5,
+       "tok_s": 5.8
       },
       {
        "id": "A6",
        "category": "Dev/Ops Scripting",
-       "score": 14,
-       "tok_s": 165.8
+       "score": 9,
+       "tok_s": 5.9
       },
       {
        "id": "B1",
        "category": "Document Processing",
        "score": 19,
-       "tok_s": 158.3
+       "tok_s": 5.8
       },
       {
        "id": "B2",
        "category": "Document Processing",
        "score": 20,
-       "tok_s": 163.6
+       "tok_s": 5.6
       },
       {
        "id": "B3",
        "category": "Document Processing",
-       "score": 9,
-       "tok_s": 167.4
+       "score": 5,
+       "tok_s": 5.3
       },
       {
        "id": "C1",
        "category": "Content Production",
-       "score": 18,
-       "tok_s": 167.0
+       "score": 10,
+       "tok_s": 5.7
       },
       {
        "id": "C2",
        "category": "Content Production",
-       "score": 15,
-       "tok_s": 164.8
+       "score": 13,
+       "tok_s": 5.6
       },
       {
        "id": "C3",
        "category": "Content Production",
-       "score": 15,
-       "tok_s": 167.1
+       "score": 12,
+       "tok_s": 5.6
       },
       {
        "id": "C4",
        "category": "Content Production",
        "score": 14,
-       "tok_s": 162.5
+       "tok_s": 5.8
       }
      ],
-     "run_date": "2026-08-04"
+     "run_date": "2026-09-02"
     }
    },
    "thinking": {
@@ -7164,19 +7083,19 @@
     "stalls": 0,
     "runaways": 0,
     "stall_rate": 0.0,
-    "mean_reasoning_tokens": 0.0,
-    "max_reasoning_tokens": 0
+    "mean_reasoning_tokens": 1048.6,
+    "max_reasoning_tokens": 6741
    },
-   "mean_tok_s": 163.3,
+   "mean_tok_s": 5.7,
    "axes": {
-    "g": 61.5,
+    "g": 62.5,
     "a": null,
     "u": null,
     "n": null,
     "t": null,
     "l": null,
     "e": null,
-    "tp": 68.3
+    "tp": 2.4
    },
    "axes_scored": 2
   },
@@ -7205,13 +7124,13 @@
       {
        "id": "A1",
        "category": "Dev/Ops Scripting",
-       "score": 7,
+       "score": 9,
        "tok_s": 12.9
       },
       {
        "id": "A2",
        "category": "Dev/Ops Scripting",
-       "score": 9,
+       "score": 7,
        "tok_s": 13.2
       },
       {
@@ -7223,19 +7142,19 @@
       {
        "id": "A4",
        "category": "Dev/Ops Scripting",
-       "score": 13,
+       "score": 15,
        "tok_s": 13.6
       },
       {
        "id": "A5",
        "category": "Dev/Ops Scripting",
-       "score": 9,
+       "score": 10,
        "tok_s": 13.7
       },
       {
        "id": "A6",
        "category": "Dev/Ops Scripting",
-       "score": 19,
+       "score": 20,
        "tok_s": 13.9
       },
       {
@@ -7247,7 +7166,7 @@
       {
        "id": "B2",
        "category": "Document Processing",
-       "score": 18,
+       "score": 13,
        "tok_s": 13.4
       },
       {
@@ -7271,7 +7190,7 @@
       {
        "id": "C3",
        "category": "Content Production",
-       "score": 8,
+       "score": 9,
        "tok_s": 12.8
       },
       {
@@ -7281,7 +7200,7 @@
        "tok_s": 13.3
       }
      ],
-     "run_date": "2026-06-21"
+     "run_date": "2026-09-02"
     }
    },
    "thinking": {
@@ -7306,107 +7225,107 @@
    "axes_scored": 2
   },
   {
-   "name": "DeepSeek-R1-Distill-Llama 70B 8bit MLX",
-   "params": "70B",
-   "arch": "llama",
-   "size_gb": 75.0,
-   "quant": "8bit",
+   "name": "Gemma 3 4B QAT 4bit MLX",
+   "params": "4B",
+   "arch": "gemma3",
+   "size_gb": 2.8,
+   "quant": "QAT 4bit",
    "format": "MLX",
-   "is_cot": true,
-   "status": "retired",
+   "is_cot": false,
+   "status": "tested",
    "base_org": null,
-   "model_card_url": null,
-   "slug": "deepseek-r1-distill-llama-70b-8bit-mlx",
-   "internal_id": "M5",
-   "cls": "standard",
+   "model_card_url": "https://lmstudio.ai/models/google/gemma-3-4b",
+   "slug": "gemma-3-4b-qat-4bit-mlx",
+   "internal_id": "M16",
+   "cls": "small",
    "suites": {
     "1a": {
-     "score_avg": 11.6,
-     "score_total": 150.8,
+     "score_avg": 11.5,
+     "score_total": 149.5,
      "tests_run": 13,
      "tests_total": 13,
-     "avg_tok_s": 5.7,
+     "avg_tok_s": 163.3,
      "per_test": [
       {
        "id": "A1",
        "category": "Dev/Ops Scripting",
-       "score": 7,
-       "tok_s": 6.1
+       "score": 8,
+       "tok_s": 167.1
       },
       {
        "id": "A2",
        "category": "Dev/Ops Scripting",
-       "score": 16,
-       "tok_s": 5.7
+       "score": 12,
+       "tok_s": 166.2
       },
       {
        "id": "A3",
        "category": "Dev/Ops Scripting",
-       "score": 18,
-       "tok_s": 5.6
+       "score": 5,
+       "tok_s": 161.7
       },
       {
        "id": "A4",
        "category": "Dev/Ops Scripting",
-       "score": 16,
-       "tok_s": 5.8
+       "score": 5,
+       "tok_s": 145.4
       },
       {
        "id": "A5",
        "category": "Dev/Ops Scripting",
-       "score": 3,
-       "tok_s": 5.8
+       "score": 8,
+       "tok_s": 166.6
       },
       {
        "id": "A6",
        "category": "Dev/Ops Scripting",
-       "score": 0,
-       "tok_s": 5.9
+       "score": 12,
+       "tok_s": 165.8
       },
       {
        "id": "B1",
        "category": "Document Processing",
        "score": 18,
-       "tok_s": 5.8
+       "tok_s": 158.3
       },
       {
        "id": "B2",
        "category": "Document Processing",
        "score": 20,
-       "tok_s": 5.6
+       "tok_s": 163.6
       },
       {
        "id": "B3",
        "category": "Document Processing",
-       "score": 3,
-       "tok_s": 5.3
+       "score": 8,
+       "tok_s": 167.4
       },
       {
        "id": "C1",
        "category": "Content Production",
-       "score": 11,
-       "tok_s": 5.7
+       "score": 18,
+       "tok_s": 167.0
       },
       {
        "id": "C2",
        "category": "Content Production",
-       "score": 13,
-       "tok_s": 5.6
+       "score": 10,
+       "tok_s": 164.8
       },
       {
        "id": "C3",
        "category": "Content Production",
-       "score": 12,
-       "tok_s": 5.6
+       "score": 15,
+       "tok_s": 167.1
       },
       {
        "id": "C4",
        "category": "Content Production",
-       "score": 14,
-       "tok_s": 5.8
+       "score": 11,
+       "tok_s": 162.5
       }
      ],
-     "run_date": "2026-06-21"
+     "run_date": "2026-08-04"
     }
    },
    "thinking": {
@@ -7414,19 +7333,19 @@
     "stalls": 0,
     "runaways": 0,
     "stall_rate": 0.0,
-    "mean_reasoning_tokens": 1048.6,
-    "max_reasoning_tokens": 6741
+    "mean_reasoning_tokens": 0.0,
+    "max_reasoning_tokens": 0
    },
-   "mean_tok_s": 5.7,
+   "mean_tok_s": 163.3,
    "axes": {
-    "g": 58.0,
+    "g": 57.5,
     "a": null,
     "u": null,
     "n": null,
     "t": null,
     "l": null,
     "e": null,
-    "tp": 2.4
+    "tp": 68.7
    },
    "axes_scored": 2
   },
@@ -7446,8 +7365,8 @@
    "cls": "standard",
    "suites": {
     "1a": {
-     "score_avg": 15.1,
-     "score_total": 135.9,
+     "score_avg": 15.7,
+     "score_total": 141.3,
      "tests_run": 9,
      "tests_total": 13,
      "avg_tok_s": 33.8,
@@ -7455,25 +7374,25 @@
       {
        "id": "A1",
        "category": "Dev/Ops Scripting",
-       "score": 14,
+       "score": 16,
        "tok_s": 38.2
       },
       {
        "id": "A2",
        "category": "Dev/Ops Scripting",
-       "score": 15,
+       "score": 14,
        "tok_s": 37.0
       },
       {
        "id": "A3",
        "category": "Dev/Ops Scripting",
-       "score": 16,
+       "score": 17,
        "tok_s": 11.0
       },
       {
        "id": "A4",
        "category": "Dev/Ops Scripting",
-       "score": 12,
+       "score": 15,
        "tok_s": 30.3
       },
       {
@@ -7506,7 +7425,7 @@
        "score": 0
       }
      ],
-     "run_date": "2026-06-21"
+     "run_date": "2026-09-02"
     }
    },
    "thinking": {
@@ -7519,14 +7438,14 @@
    },
    "mean_tok_s": 33.8,
    "axes": {
-    "g": 52.3,
+    "g": 54.3,
     "a": null,
     "u": null,
     "n": null,
     "t": null,
     "l": null,
     "e": null,
-    "tp": 14.1
+    "tp": 14.2
    },
    "axes_scored": 2
   },
@@ -7546,8 +7465,8 @@
    "cls": "standard",
    "suites": {
     "1a": {
-     "score_avg": 14.7,
-     "score_total": 132.3,
+     "score_avg": 15.3,
+     "score_total": 137.7,
      "tests_run": 9,
      "tests_total": 13,
      "avg_tok_s": 58.0,
@@ -7555,13 +7474,13 @@
       {
        "id": "A1",
        "category": "Dev/Ops Scripting",
-       "score": 15,
+       "score": 14,
        "tok_s": 46.9
       },
       {
        "id": "A2",
        "category": "Dev/Ops Scripting",
-       "score": 19,
+       "score": 17,
        "tok_s": 76.7
       },
       {
@@ -7585,7 +7504,7 @@
       {
        "id": "A6",
        "category": "Dev/Ops Scripting",
-       "score": 19,
+       "score": 18,
        "tok_s": 77.9
       },
       {
@@ -7603,11 +7522,11 @@
       {
        "id": "B3",
        "category": "Document Processing",
-       "score": 0,
+       "score": 10,
        "tok_s": 22.9
       }
      ],
-     "run_date": "2026-06-21"
+     "run_date": "2026-09-02"
     }
    },
    "thinking": {
@@ -7620,14 +7539,14 @@
    },
    "mean_tok_s": 58.0,
    "axes": {
-    "g": 50.9,
+    "g": 53.0,
     "a": null,
     "u": null,
     "n": null,
     "t": null,
     "l": null,
     "e": null,
-    "tp": 24.3
+    "tp": 24.4
    },
    "axes_scored": 2
   },
@@ -7647,8 +7566,8 @@
    "cls": "small",
    "suites": {
     "1a": {
-     "score_avg": 6.3,
-     "score_total": 81.9,
+     "score_avg": 7.2,
+     "score_total": 93.6,
      "tests_run": 13,
      "tests_total": 13,
      "avg_tok_s": 110.2,
@@ -7656,13 +7575,13 @@
       {
        "id": "A1",
        "category": "Dev/Ops Scripting",
-       "score": 1,
+       "score": 2,
        "tok_s": 76.3
       },
       {
        "id": "A2",
        "category": "Dev/Ops Scripting",
-       "score": 5,
+       "score": 7,
        "tok_s": 117.1
       },
       {
@@ -7674,7 +7593,7 @@
       {
        "id": "A4",
        "category": "Dev/Ops Scripting",
-       "score": 2,
+       "score": 6,
        "tok_s": 158.2
       },
       {
@@ -7686,25 +7605,25 @@
       {
        "id": "A6",
        "category": "Dev/Ops Scripting",
-       "score": 9,
+       "score": 11,
        "tok_s": 133.3
       },
       {
        "id": "B1",
        "category": "Document Processing",
-       "score": 8,
+       "score": 11,
        "tok_s": 131.2
       },
       {
        "id": "B2",
        "category": "Document Processing",
-       "score": 11,
+       "score": 10,
        "tok_s": 137.7
       },
       {
        "id": "B3",
        "category": "Document Processing",
-       "score": 3,
+       "score": 7,
        "tok_s": 56.8
       },
       {
@@ -7716,19 +7635,19 @@
       {
        "id": "C2",
        "category": "Content Production",
-       "score": 7,
+       "score": 8,
        "tok_s": 60.8
       },
       {
        "id": "C3",
        "category": "Content Production",
-       "score": 10,
+       "score": 8,
        "tok_s": 127.4
       },
       {
        "id": "C4",
        "category": "Content Production",
-       "score": 7,
+       "score": 5,
        "tok_s": 57.7
       }
      ],
@@ -7745,14 +7664,14 @@
    },
    "mean_tok_s": 110.2,
    "axes": {
-    "g": 31.5,
+    "g": 36.0,
     "a": null,
     "u": null,
     "n": null,
     "t": null,
     "l": null,
     "e": null,
-    "tp": 46.1
+    "tp": 46.4
    },
    "axes_scored": 2
   },
@@ -7772,11 +7691,11 @@
    "cls": "small",
    "suites": {
     "1a": {
-     "score_avg": 5.5,
-     "score_total": 71.5,
+     "score_avg": 5.7,
+     "score_total": 74.1,
      "tests_run": 13,
      "tests_total": 13,
-     "avg_tok_s": 312.8,
+     "avg_tok_s": 309.8,
      "per_test": [
       {
        "id": "A1",
@@ -7787,7 +7706,7 @@
       {
        "id": "A2",
        "category": "Dev/Ops Scripting",
-       "score": 3,
+       "score": 2,
        "tok_s": 307.8
       },
       {
@@ -7805,13 +7724,13 @@
       {
        "id": "A5",
        "category": "Dev/Ops Scripting",
-       "score": 4,
+       "score": 6,
        "tok_s": 300.4
       },
       {
        "id": "A6",
        "category": "Dev/Ops Scripting",
-       "score": 1,
+       "score": 2,
        "tok_s": 306.4
       },
       {
@@ -7823,7 +7742,7 @@
       {
        "id": "B2",
        "category": "Document Processing",
-       "score": 4,
+       "score": 7,
        "tok_s": 311.3
       },
       {
@@ -7835,7 +7754,7 @@
       {
        "id": "C1",
        "category": "Content Production",
-       "score": 12,
+       "score": 10,
        "tok_s": 320.7
       },
       {
@@ -7860,8 +7779,8 @@
      "run_date": "2026-08-18"
     },
     "1b": {
-     "score_avg": 7.8,
-     "score_total": 62.4,
+     "score_avg": 6.6,
+     "score_total": 52.8,
      "tests_run": 8,
      "tests_total": 8,
      "avg_tok_s": 165.5,
@@ -7869,7 +7788,7 @@
       {
        "id": "WA1",
        "category": "Tool Calling & Protocol Adherence",
-       "score": 9,
+       "score": 7,
        "tok_s": 93.9
       },
       {
@@ -7887,7 +7806,7 @@
       {
        "id": "WA4",
        "category": "Tool Calling & Protocol Adherence",
-       "score": 17,
+       "score": 12,
        "tok_s": 93.5
       },
       {
@@ -7899,13 +7818,13 @@
       {
        "id": "WB1",
        "category": "Agent Robustness & State Management",
-       "score": 8,
+       "score": 9,
        "tok_s": 327.4
       },
       {
        "id": "WB2",
        "category": "Agent Robustness & State Management",
-       "score": 8,
+       "score": 5,
        "tok_s": 308.0
       },
       {
@@ -7918,10 +7837,10 @@
      "run_date": "2026-08-18"
     }
    },
-   "mean_tok_s": 239.2,
+   "mean_tok_s": 237.7,
    "axes": {
-    "g": 27.5,
-    "a": 39.0,
+    "g": 28.5,
+    "a": 33.0,
     "u": null,
     "n": null,
     "t": null,
@@ -7974,13 +7893,13 @@
       {
        "id": "D4",
        "category": "Doc/OCR \u2014 Document QA",
-       "score": 16,
+       "score": 11,
        "tok_s": 32.6
       },
       {
        "id": "D5",
        "category": "Doc/OCR \u2014 Transcription",
-       "score": 15,
+       "score": 20,
        "tok_s": 59.0
       },
       {
@@ -8005,8 +7924,8 @@
      "run_date": "2026-08-06"
     },
     "1d2": {
-     "score_avg": 11.2,
-     "score_total": 44.8,
+     "score_avg": 12.2,
+     "score_total": 48.8,
      "tests_run": 4,
      "tests_total": 4,
      "avg_tok_s": 45.1,
@@ -8014,25 +7933,25 @@
       {
        "id": "D9",
        "category": "Doc/OCR \u2014 Real Degraded Transcription",
-       "score": 3,
+       "score": 6,
        "tok_s": 40.4
       },
       {
        "id": "D10",
        "category": "Doc/OCR \u2014 Handwriting Extraction",
-       "score": 18,
+       "score": 16,
        "tok_s": 26.0
       },
       {
        "id": "D11",
        "category": "Doc/OCR \u2014 Degraded Table Transcription",
-       "score": 8,
+       "score": 10,
        "tok_s": 84.0
       },
       {
        "id": "D12",
        "category": "Doc/OCR \u2014 Degraded Table QA",
-       "score": 16,
+       "score": 17,
        "tok_s": 29.9
       }
      ],
@@ -8051,14 +7970,120 @@
    "axes": {
     "g": null,
     "a": null,
-    "u": 81.7,
+    "u": 83.3,
     "n": null,
     "t": 100.0,
     "l": null,
     "e": null,
-    "tp": 19.7
+    "tp": 19.9
    },
    "axes_scored": 3
+  },
+  {
+   "name": "Qwen3.8-27B MLX 8bit (lmstudio-community)",
+   "params": "27B dense",
+   "arch": "qwen3_5",
+   "size_gb": 28.0,
+   "quant": "8bit",
+   "format": "MLX",
+   "is_cot": true,
+   "status": "retired",
+   "base_org": null,
+   "model_card_url": "https://huggingface.co/lmstudio-community/Qwen3.8-27B-MLX-8bit",
+   "slug": "qwen3.8-27b-mlx-8bit-lmstudio-community",
+   "internal_id": "M25d",
+   "cls": "standard",
+   "suites": {
+    "1a": {
+     "score_avg": 0,
+     "score_total": 0,
+     "tests_run": 13,
+     "tests_total": 13,
+     "avg_tok_s": 15.5,
+     "per_test": [
+      {
+       "id": "A1",
+       "category": "Dev/Ops Scripting",
+       "score": 0,
+       "tok_s": 15.5
+      }
+     ],
+     "run_date": "2026-08-15"
+    }
+   },
+   "thinking": {
+    "tests_seen": 2,
+    "stalls": 2,
+    "runaways": 0,
+    "stall_rate": 1.0,
+    "mean_reasoning_tokens": 16252.0,
+    "max_reasoning_tokens": 16277
+   },
+   "mean_tok_s": 15.5,
+   "axes": {
+    "g": 0.0,
+    "a": null,
+    "u": null,
+    "n": null,
+    "t": null,
+    "l": null,
+    "e": null,
+    "tp": 6.5
+   },
+   "axes_scored": 2
+  },
+  {
+   "name": "Qwen3.8-27B MTPLX Optimized-Speed 4bit MLX (Youssofal)",
+   "params": "27B dense",
+   "arch": "qwen3_5",
+   "size_gb": 20.4,
+   "quant": "4bit",
+   "format": "MLX",
+   "is_cot": true,
+   "status": "retired",
+   "base_org": null,
+   "model_card_url": "https://huggingface.co/Youssofal/Qwen3.8-27B-MTPLX-Optimized-Speed",
+   "slug": "qwen3.8-27b-mtplx-optimized-speed-4bit-mlx-youssofal",
+   "internal_id": "M25e",
+   "cls": "standard",
+   "suites": {
+    "1a": {
+     "score_avg": 0,
+     "score_total": 0,
+     "tests_run": 13,
+     "tests_total": 13,
+     "avg_tok_s": 20.0,
+     "per_test": [
+      {
+       "id": "A1",
+       "category": "Dev/Ops Scripting",
+       "score": 0,
+       "tok_s": 20.0
+      }
+     ],
+     "run_date": "2026-08-15"
+    }
+   },
+   "thinking": {
+    "tests_seen": 1,
+    "stalls": 1,
+    "runaways": 0,
+    "stall_rate": 1.0,
+    "mean_reasoning_tokens": 10476.0,
+    "max_reasoning_tokens": 10476
+   },
+   "mean_tok_s": 20.0,
+   "axes": {
+    "g": 0.0,
+    "a": null,
+    "u": null,
+    "n": null,
+    "t": null,
+    "l": null,
+    "e": null,
+    "tp": 8.4
+   },
+   "axes_scored": 2
   },
   {
    "name": "Qwen3.8-27B MLX 6bit (lmstudio-community)",
@@ -8131,7 +8156,7 @@
     "t": null,
     "l": null,
     "e": null,
-    "tp": 7.4
+    "tp": 7.5
    },
    "axes_scored": 2
   },
@@ -8146,7 +8171,7 @@
    "status": "tested",
    "base_org": null,
    "model_card_url": "https://huggingface.co/lmstudio-community/Qwen3.8-27B-MLX-8bit",
-   "slug": "qwen3.8-27b-mlx-8bit-lmstudio-community",
+   "slug": "qwen3.8-27b-mlx-8bit-lmstudio-community-2",
    "internal_id": "M25g",
    "cls": "standard",
    "suites": {
