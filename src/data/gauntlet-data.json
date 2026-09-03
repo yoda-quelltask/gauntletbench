@@ -1,6 +1,6 @@
 {
  "schema_version": 2,
- "generated_at": "2026-09-03T01:17:33Z",
+ "generated_at": "2026-09-03T08:37:06Z",
  "host": {
   "name": "MacBook Pro",
   "hw": "Apple M5 Max, 128 GB unified memory",
@@ -3385,6 +3385,40 @@
       }
      ],
      "run_date": "2026-08-14"
+    },
+    "1h": {
+     "score_avg": 16.5,
+     "score_total": 66.0,
+     "tests_run": 4,
+     "tests_total": 4,
+     "avg_tok_s": 56.8,
+     "per_test": [
+      {
+       "id": "H1",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 19,
+       "tok_s": 60.8
+      },
+      {
+       "id": "H2",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 16,
+       "tok_s": 58.7
+      },
+      {
+       "id": "H3",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 14,
+       "tok_s": 53.9
+      },
+      {
+       "id": "H4",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 17,
+       "tok_s": 53.8
+      }
+     ],
+     "run_date": "2026-09-03"
     }
    },
    "thinking": {
@@ -3395,18 +3429,18 @@
     "mean_reasoning_tokens": 2042.7,
     "max_reasoning_tokens": 9288
    },
-   "mean_tok_s": 38.9,
+   "mean_tok_s": 42.5,
    "axes": {
     "g": 90.0,
     "a": 94.5,
     "u": null,
     "n": 91.2,
     "t": 100.0,
-    "l": null,
+    "l": 82.5,
     "e": null,
-    "tp": 16.4
+    "tp": 17.9
    },
-   "axes_scored": 5
+   "axes_scored": 6
   },
   {
    "name": "Qwen3.6-27B Fable-Fusion-711 Uncensored Heretic NEO-MAX Q8_0 GGUF",
