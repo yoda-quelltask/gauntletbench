@@ -1,6 +1,6 @@
 {
  "schema_version": 2,
- "generated_at": "2026-09-03T08:37:06Z",
+ "generated_at": "2026-09-04T08:50:48Z",
  "host": {
   "name": "MacBook Pro",
   "hw": "Apple M5 Max, 128 GB unified memory",
@@ -214,8 +214,8 @@
    "cls": "standard",
    "suites": {
     "1a": {
-     "score_avg": 19.9,
-     "score_total": 258.7,
+     "score_avg": 19.8,
+     "score_total": 257.4,
      "tests_run": 13,
      "tests_total": 13,
      "avg_tok_s": 17.3,
@@ -744,7 +744,7 @@
    },
    "mean_tok_s": 13.8,
    "axes": {
-    "g": 99.5,
+    "g": 99.0,
     "a": 96.0,
     "u": 93.3,
     "n": 91.2,
@@ -3990,6 +3990,40 @@
       }
      ],
      "run_date": "2026-09-02"
+    },
+    "1h": {
+     "score_avg": 17,
+     "score_total": 68,
+     "tests_run": 4,
+     "tests_total": 4,
+     "avg_tok_s": 71.9,
+     "per_test": [
+      {
+       "id": "H1",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 19,
+       "tok_s": 62.0
+      },
+      {
+       "id": "H2",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 19,
+       "tok_s": 83.8
+      },
+      {
+       "id": "H3",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 17,
+       "tok_s": 64.7
+      },
+      {
+       "id": "H4",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 13,
+       "tok_s": 77.2
+      }
+     ],
+     "run_date": "2026-09-04"
     }
    },
    "thinking": {
@@ -4000,18 +4034,18 @@
     "mean_reasoning_tokens": 0.0,
     "max_reasoning_tokens": 0
    },
-   "mean_tok_s": 57.1,
+   "mean_tok_s": 59.6,
    "axes": {
     "g": 88.5,
     "a": 94.5,
     "u": null,
     "n": 26.5,
     "t": 100.0,
-    "l": null,
+    "l": 85.0,
     "e": 91.5,
-    "tp": 24.0
+    "tp": 25.1
    },
-   "axes_scored": 6
+   "axes_scored": 7
   },
   {
    "name": "Qwen3.6-35B-A3B MLX 8bit Uniform (lmstudio-community)",
@@ -4718,6 +4752,169 @@
     "tp": 32.0
    },
    "axes_scored": 4
+  },
+  {
+   "name": "Qwen3.8-27B MLX 4bit (lmstudio-community)",
+   "params": "27B dense",
+   "arch": "qwen3_5",
+   "size_gb": 15.0,
+   "quant": "4bit",
+   "format": "MLX",
+   "is_cot": true,
+   "status": "untested",
+   "base_org": null,
+   "model_card_url": "https://huggingface.co/lmstudio-community/Qwen3.8-27B-MLX-4bit",
+   "slug": "qwen3.8-27b-mlx-4bit-lmstudio-community",
+   "internal_id": "M25h",
+   "cls": "standard",
+   "suites": {
+    "1a": {
+     "score_avg": 19.5,
+     "score_total": 214.5,
+     "tests_run": 11,
+     "tests_total": 13,
+     "avg_tok_s": 20.6,
+     "per_test": [
+      {
+       "id": "A1",
+       "category": "Dev/Ops Scripting",
+       "score": 20,
+       "tok_s": 25.1
+      },
+      {
+       "id": "A2",
+       "category": "Dev/Ops Scripting",
+       "score": 18,
+       "tok_s": 18.8
+      },
+      {
+       "id": "A4",
+       "category": "Dev/Ops Scripting",
+       "score": 19,
+       "tok_s": 21.9
+      },
+      {
+       "id": "A5",
+       "category": "Dev/Ops Scripting",
+       "score": 20,
+       "tok_s": 20.3
+      },
+      {
+       "id": "A6",
+       "category": "Dev/Ops Scripting",
+       "score": 20,
+       "tok_s": 21.6
+      },
+      {
+       "id": "B1",
+       "category": "Document Processing",
+       "score": 20,
+       "tok_s": 22.2
+      },
+      {
+       "id": "B2",
+       "category": "Document Processing",
+       "score": 20,
+       "tok_s": 21.5
+      },
+      {
+       "id": "C1",
+       "category": "Content Production",
+       "score": 20,
+       "tok_s": 15.1
+      },
+      {
+       "id": "C2",
+       "category": "Content Production",
+       "score": 18,
+       "tok_s": 15.2
+      },
+      {
+       "id": "C3",
+       "category": "Content Production",
+       "score": 20,
+       "tok_s": 20.9
+      },
+      {
+       "id": "C4",
+       "category": "Content Production",
+       "score": 19,
+       "tok_s": 24.3
+      }
+     ],
+     "run_date": "2026-09-02"
+    },
+    "1b": {
+     "score_avg": 20,
+     "score_total": 160,
+     "tests_run": 8,
+     "tests_total": 8,
+     "avg_tok_s": 22.1,
+     "per_test": [
+      {
+       "id": "WA1",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 24.9
+      },
+      {
+       "id": "WA2",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 25.4
+      },
+      {
+       "id": "WA3",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 25.0
+      },
+      {
+       "id": "WA4",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 23.5
+      },
+      {
+       "id": "WA5",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 20.8
+      },
+      {
+       "id": "WB1",
+       "category": "Agent Robustness & State Management",
+       "score": 20,
+       "tok_s": 18.4
+      },
+      {
+       "id": "WB2",
+       "category": "Agent Robustness & State Management",
+       "score": 20,
+       "tok_s": 19.3
+      },
+      {
+       "id": "WB3",
+       "category": "Agent Robustness & State Management",
+       "score": 20,
+       "tok_s": 19.9
+      }
+     ],
+     "run_date": "2026-09-02"
+    }
+   },
+   "mean_tok_s": 21.4,
+   "axes": {
+    "g": 82.5,
+    "a": 100.0,
+    "u": null,
+    "n": null,
+    "t": null,
+    "l": null,
+    "e": null,
+    "tp": 9.0
+   },
+   "axes_scored": 3
   },
   {
    "name": "Bonsai 27B Ternary 2bit MLX",
@@ -5810,6 +6007,40 @@
       }
      ],
      "run_date": "2026-08-31"
+    },
+    "1h": {
+     "score_avg": 12.8,
+     "score_total": 51.2,
+     "tests_run": 4,
+     "tests_total": 4,
+     "avg_tok_s": 71.4,
+     "per_test": [
+      {
+       "id": "H1",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 15,
+       "tok_s": 60.5
+      },
+      {
+       "id": "H2",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 16,
+       "tok_s": 55.3
+      },
+      {
+       "id": "H3",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 9,
+       "tok_s": 84.5
+      },
+      {
+       "id": "H4",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 11,
+       "tok_s": 85.3
+      }
+     ],
+     "run_date": "2026-09-04"
     }
    },
    "thinking": {
@@ -5820,18 +6051,18 @@
     "mean_reasoning_tokens": 860.5,
     "max_reasoning_tokens": 2100
    },
-   "mean_tok_s": 56.3,
+   "mean_tok_s": 61.3,
    "axes": {
     "g": 78.0,
     "a": null,
     "u": null,
     "n": 26.5,
     "t": null,
-    "l": null,
+    "l": 64.0,
     "e": null,
-    "tp": 23.7
+    "tp": 25.8
    },
-   "axes_scored": 3
+   "axes_scored": 4
   },
   {
    "name": "Devstral Small 2 24B 6bit MLX",
@@ -6061,6 +6292,163 @@
     "tp": 8.8
    },
    "axes_scored": 5
+  },
+  {
+   "name": "Qwen3.8-27B MLX 5bit (lmstudio-community)",
+   "params": "27B dense",
+   "arch": "qwen3_5",
+   "size_gb": 19.0,
+   "quant": "5bit",
+   "format": "MLX",
+   "is_cot": true,
+   "status": "untested",
+   "base_org": null,
+   "model_card_url": "https://huggingface.co/lmstudio-community/Qwen3.8-27B-MLX-5bit",
+   "slug": "qwen3.8-27b-mlx-5bit-lmstudio-community",
+   "internal_id": "M25i",
+   "cls": "standard",
+   "suites": {
+    "1a": {
+     "score_avg": 19.4,
+     "score_total": 194.0,
+     "tests_run": 10,
+     "tests_total": 13,
+     "avg_tok_s": 16.3,
+     "per_test": [
+      {
+       "id": "A1",
+       "category": "Dev/Ops Scripting",
+       "score": 20,
+       "tok_s": 13.1
+      },
+      {
+       "id": "A2",
+       "category": "Dev/Ops Scripting",
+       "score": 19,
+       "tok_s": 13.4
+      },
+      {
+       "id": "A3",
+       "category": "Dev/Ops Scripting",
+       "score": 20,
+       "tok_s": 13.2
+      },
+      {
+       "id": "A4",
+       "category": "Dev/Ops Scripting",
+       "score": 19,
+       "tok_s": 17.3
+      },
+      {
+       "id": "A5",
+       "category": "Dev/Ops Scripting",
+       "score": 20,
+       "tok_s": 19.1
+      },
+      {
+       "id": "A6",
+       "category": "Dev/Ops Scripting",
+       "score": 19,
+       "tok_s": 19.7
+      },
+      {
+       "id": "B1",
+       "category": "Document Processing",
+       "score": 20,
+       "tok_s": 18.9
+      },
+      {
+       "id": "B2",
+       "category": "Document Processing",
+       "score": 20,
+       "tok_s": 17.2
+      },
+      {
+       "id": "C2",
+       "category": "Content Production",
+       "score": 18,
+       "tok_s": 14.8
+      },
+      {
+       "id": "C4",
+       "category": "Content Production",
+       "score": 19,
+       "tok_s": 15.9
+      }
+     ],
+     "run_date": "2026-09-02"
+    },
+    "1b": {
+     "score_avg": 20,
+     "score_total": 160,
+     "tests_run": 8,
+     "tests_total": 8,
+     "avg_tok_s": 15.3,
+     "per_test": [
+      {
+       "id": "WA1",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 14.9
+      },
+      {
+       "id": "WA2",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 16.8
+      },
+      {
+       "id": "WA3",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 16.5
+      },
+      {
+       "id": "WA4",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 19.8
+      },
+      {
+       "id": "WA5",
+       "category": "Tool Calling & Protocol Adherence",
+       "score": 20,
+       "tok_s": 14.5
+      },
+      {
+       "id": "WB1",
+       "category": "Agent Robustness & State Management",
+       "score": 20,
+       "tok_s": 12.8
+      },
+      {
+       "id": "WB2",
+       "category": "Agent Robustness & State Management",
+       "score": 20,
+       "tok_s": 13.8
+      },
+      {
+       "id": "WB3",
+       "category": "Agent Robustness & State Management",
+       "score": 20,
+       "tok_s": 13.5
+      }
+     ],
+     "run_date": "2026-09-02"
+    }
+   },
+   "mean_tok_s": 15.8,
+   "axes": {
+    "g": 74.6,
+    "a": 100.0,
+    "u": null,
+    "n": null,
+    "t": null,
+    "l": null,
+    "e": null,
+    "tp": 6.6
+   },
+   "axes_scored": 3
   },
   {
    "name": "Hermes-4 70B 4bit MLX",
@@ -6621,394 +7009,6 @@
    "axes_scored": 2
   },
   {
-   "name": "GPT-OSS 120B",
-   "params": "120B",
-   "arch": "gpt_oss",
-   "size_gb": 63.41,
-   "quant": "mxfp4",
-   "format": "MLX",
-   "is_cot": true,
-   "status": "keeper",
-   "base_org": null,
-   "model_card_url": "https://huggingface.co/mlx-community/gpt-oss-120b-MXFP4-Q8",
-   "slug": "gpt-oss-120b",
-   "internal_id": "G4",
-   "cls": "standard",
-   "suites": {
-    "1a": {
-     "score_avg": 18.9,
-     "score_total": 170.1,
-     "tests_run": 9,
-     "tests_total": 13,
-     "avg_tok_s": 40.0,
-     "per_test": [
-      {
-       "id": "A1",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 49.9
-      },
-      {
-       "id": "A2",
-       "category": "Dev/Ops Scripting",
-       "score": 18,
-       "tok_s": 35.7
-      },
-      {
-       "id": "A3",
-       "category": "Dev/Ops Scripting",
-       "score": 18,
-       "tok_s": 52.8
-      },
-      {
-       "id": "A4",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 21.0
-      },
-      {
-       "id": "A5",
-       "category": "Dev/Ops Scripting",
-       "score": 14,
-       "tok_s": 53.9
-      },
-      {
-       "id": "A6",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 56.2
-      },
-      {
-       "id": "B1",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 45.1
-      },
-      {
-       "id": "B2",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 23.8
-      },
-      {
-       "id": "B3",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 21.3
-      }
-     ],
-     "run_date": "2026-09-02"
-    },
-    "1e": {
-     "score_avg": 18.8,
-     "score_total": 112.8,
-     "tests_run": 6,
-     "tests_total": 6,
-     "avg_tok_s": 51.7,
-     "per_test": [
-      {
-       "id": "E1",
-       "category": "SOW & Requirements Decomposition",
-       "score": 19,
-       "tok_s": 53.5
-      },
-      {
-       "id": "E2",
-       "category": "SOW & Requirements Decomposition",
-       "score": 20,
-       "tok_s": 35.9
-      },
-      {
-       "id": "E3",
-       "category": "Executive & Proposal Content",
-       "score": 18,
-       "tok_s": 71.4
-      },
-      {
-       "id": "E4",
-       "category": "Executive & Proposal Content",
-       "score": 17,
-       "tok_s": 64.4
-      },
-      {
-       "id": "E5",
-       "category": "Executive & Proposal Content",
-       "score": 19,
-       "tok_s": 55.5
-      },
-      {
-       "id": "E6",
-       "category": "Executive & Proposal Content",
-       "score": 20,
-       "tok_s": 29.4
-      }
-     ],
-     "run_date": "2026-08-02"
-    },
-    "1g2": {
-     "score_avg": 12,
-     "score_total": 36,
-     "tests_run": 3,
-     "tests_total": 3,
-     "avg_tok_s": 7.9,
-     "per_test": [
-      {
-       "id": "L7",
-       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
-       "score": 20,
-       "tok_s": 12.8
-      },
-      {
-       "id": "L8",
-       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
-       "score": 13,
-       "tok_s": 8.5
-      },
-      {
-       "id": "L9",
-       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
-       "score": 3,
-       "tok_s": 2.3
-      }
-     ],
-     "run_date": "2026-08-31"
-    },
-    "1h": {
-     "score_avg": 17,
-     "score_total": 68,
-     "tests_run": 4,
-     "tests_total": 4,
-     "avg_tok_s": 49.1,
-     "per_test": [
-      {
-       "id": "H1",
-       "category": "Web-Estate One-Shot Builds",
-       "score": 19,
-       "tok_s": 61.8
-      },
-      {
-       "id": "H2",
-       "category": "Web-Estate One-Shot Builds",
-       "score": 16,
-       "tok_s": 43.0
-      },
-      {
-       "id": "H3",
-       "category": "Web-Estate One-Shot Builds",
-       "score": 17,
-       "tok_s": 63.9
-      },
-      {
-       "id": "H4",
-       "category": "Web-Estate One-Shot Builds",
-       "score": 16,
-       "tok_s": 27.7
-      }
-     ],
-     "run_date": "2026-09-02"
-    }
-   },
-   "thinking": {
-    "tests_seen": 15,
-    "stalls": 0,
-    "runaways": 0,
-    "stall_rate": 0.0,
-    "mean_reasoning_tokens": 0.0,
-    "max_reasoning_tokens": 0
-   },
-   "mean_tok_s": 37.2,
-   "axes": {
-    "g": 65.4,
-    "a": null,
-    "u": null,
-    "n": 60.0,
-    "t": 100.0,
-    "l": 85.0,
-    "e": null,
-    "tp": 15.6
-   },
-   "axes_scored": 5
-  },
-  {
-   "name": "GPT-OSS 20B (OpenAI mxfp4)",
-   "params": "20B",
-   "arch": "gpt_oss",
-   "size_gb": 12.1,
-   "quant": "mxfp4",
-   "format": "MLX",
-   "is_cot": false,
-   "status": "keeper",
-   "base_org": null,
-   "model_card_url": "https://lmstudio.ai/models/openai/gpt-oss-20b",
-   "slug": "gpt-oss-20b-openai-mxfp4",
-   "internal_id": "G2",
-   "cls": "standard",
-   "suites": {
-    "1a": {
-     "score_avg": 18.4,
-     "score_total": 165.6,
-     "tests_run": 9,
-     "tests_total": 13,
-     "avg_tok_s": 89.2
-    },
-    "1h": {
-     "score_avg": 14.2,
-     "score_total": 56.8,
-     "tests_run": 4,
-     "tests_total": 4,
-     "avg_tok_s": 117.2,
-     "per_test": [
-      {
-       "id": "H1",
-       "category": "Web-Estate One-Shot Builds",
-       "score": 15,
-       "tok_s": 120.8
-      },
-      {
-       "id": "H2",
-       "category": "Web-Estate One-Shot Builds",
-       "score": 15,
-       "tok_s": 123.0
-      },
-      {
-       "id": "H3",
-       "category": "Web-Estate One-Shot Builds",
-       "score": 13,
-       "tok_s": 116.8
-      },
-      {
-       "id": "H4",
-       "category": "Web-Estate One-Shot Builds",
-       "score": 14,
-       "tok_s": 108.4
-      }
-     ],
-     "run_date": "2026-08-27"
-    }
-   },
-   "thinking": {
-    "tests_seen": 10,
-    "stalls": 0,
-    "runaways": 0,
-    "stall_rate": 0.0,
-    "mean_reasoning_tokens": 0.0,
-    "max_reasoning_tokens": 0
-   },
-   "mean_tok_s": 103.2,
-   "axes": {
-    "g": 63.7,
-    "a": null,
-    "u": null,
-    "n": null,
-    "t": null,
-    "l": 71.0,
-    "e": null,
-    "tp": 43.4
-   },
-   "axes_scored": 3
-  },
-  {
-   "name": "GPT-OSS 120B Fable-5 Distilled",
-   "params": "120B",
-   "arch": "gpt_oss",
-   "size_gb": 63.41,
-   "quant": "mxfp4",
-   "format": "MLX",
-   "is_cot": true,
-   "status": "retired",
-   "base_org": null,
-   "model_card_url": "https://huggingface.co/cloudyu/gpt-oss-120b-Fable-5-Distilled",
-   "slug": "gpt-oss-120b-fable-5-distilled",
-   "internal_id": "G5",
-   "cls": "standard",
-   "suites": {
-    "1a": {
-     "score_avg": 18.3,
-     "score_total": 164.7,
-     "tests_run": 9,
-     "tests_total": 13,
-     "avg_tok_s": 34.8,
-     "per_test": [
-      {
-       "id": "A1",
-       "category": "Dev/Ops Scripting",
-       "score": 18,
-       "tok_s": 39.6
-      },
-      {
-       "id": "A2",
-       "category": "Dev/Ops Scripting",
-       "score": 18,
-       "tok_s": 41.0
-      },
-      {
-       "id": "A3",
-       "category": "Dev/Ops Scripting",
-       "score": 18,
-       "tok_s": 37.9
-      },
-      {
-       "id": "A4",
-       "category": "Dev/Ops Scripting",
-       "score": 19,
-       "tok_s": 27.4
-      },
-      {
-       "id": "A5",
-       "category": "Dev/Ops Scripting",
-       "score": 14,
-       "tok_s": 50.2
-      },
-      {
-       "id": "A6",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 42.0
-      },
-      {
-       "id": "B1",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 37.1
-      },
-      {
-       "id": "B2",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 22.3
-      },
-      {
-       "id": "B3",
-       "category": "Document Processing",
-       "score": 18,
-       "tok_s": 15.6
-      }
-     ],
-     "run_date": "2026-09-02"
-    }
-   },
-   "thinking": {
-    "tests_seen": 9,
-    "stalls": 0,
-    "runaways": 0,
-    "stall_rate": 0.0,
-    "mean_reasoning_tokens": 0.0,
-    "max_reasoning_tokens": 0
-   },
-   "mean_tok_s": 34.8,
-   "axes": {
-    "g": 63.3,
-    "a": null,
-    "u": null,
-    "n": null,
-    "t": null,
-    "l": null,
-    "e": null,
-    "tp": 14.6
-   },
-   "axes_scored": 2
-  },
-  {
    "name": "DeepSeek-R1-Distill-Llama 70B 8bit MLX",
    "params": "70B",
    "arch": "llama",
@@ -7384,207 +7384,6 @@
    "axes_scored": 2
   },
   {
-   "name": "GPT-OSS 20B MLX",
-   "params": "20B",
-   "arch": "gpt_oss",
-   "size_gb": 22.26,
-   "quant": "MLX",
-   "format": "MLX",
-   "is_cot": true,
-   "status": "retired",
-   "base_org": null,
-   "model_card_url": "https://huggingface.co/lmstudio-community/gpt-oss-20b-MLX-8bit",
-   "slug": "gpt-oss-20b-mlx",
-   "internal_id": "G1",
-   "cls": "standard",
-   "suites": {
-    "1a": {
-     "score_avg": 15.7,
-     "score_total": 141.3,
-     "tests_run": 9,
-     "tests_total": 13,
-     "avg_tok_s": 33.8,
-     "per_test": [
-      {
-       "id": "A1",
-       "category": "Dev/Ops Scripting",
-       "score": 16,
-       "tok_s": 38.2
-      },
-      {
-       "id": "A2",
-       "category": "Dev/Ops Scripting",
-       "score": 14,
-       "tok_s": 37.0
-      },
-      {
-       "id": "A3",
-       "category": "Dev/Ops Scripting",
-       "score": 17,
-       "tok_s": 11.0
-      },
-      {
-       "id": "A4",
-       "category": "Dev/Ops Scripting",
-       "score": 15,
-       "tok_s": 30.3
-      },
-      {
-       "id": "A5",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 40.4
-      },
-      {
-       "id": "A6",
-       "category": "Dev/Ops Scripting",
-       "score": 20,
-       "tok_s": 45.3
-      },
-      {
-       "id": "B1",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 44.8
-      },
-      {
-       "id": "B2",
-       "category": "Document Processing",
-       "score": 19,
-       "tok_s": 23.0
-      },
-      {
-       "id": "B3",
-       "category": "Document Processing",
-       "score": 0
-      }
-     ],
-     "run_date": "2026-09-02"
-    }
-   },
-   "thinking": {
-    "tests_seen": 9,
-    "stalls": 0,
-    "runaways": 0,
-    "stall_rate": 0.0,
-    "mean_reasoning_tokens": 0.0,
-    "max_reasoning_tokens": 0
-   },
-   "mean_tok_s": 33.8,
-   "axes": {
-    "g": 54.3,
-    "a": null,
-    "u": null,
-    "n": null,
-    "t": null,
-    "l": null,
-    "e": null,
-    "tp": 14.2
-   },
-   "axes_scored": 2
-  },
-  {
-   "name": "GPT-OSS Safeguard 20B MLX",
-   "params": "20B",
-   "arch": "gpt_oss",
-   "size_gb": 11.15,
-   "quant": "MLX",
-   "format": "MLX",
-   "is_cot": true,
-   "status": "retired",
-   "base_org": null,
-   "model_card_url": "https://huggingface.co/lmstudio-community/gpt-oss-safeguard-20b-MLX-MXFP4",
-   "slug": "gpt-oss-safeguard-20b-mlx",
-   "internal_id": "G3",
-   "cls": "standard",
-   "suites": {
-    "1a": {
-     "score_avg": 15.3,
-     "score_total": 137.7,
-     "tests_run": 9,
-     "tests_total": 13,
-     "avg_tok_s": 58.0,
-     "per_test": [
-      {
-       "id": "A1",
-       "category": "Dev/Ops Scripting",
-       "score": 14,
-       "tok_s": 46.9
-      },
-      {
-       "id": "A2",
-       "category": "Dev/Ops Scripting",
-       "score": 17,
-       "tok_s": 76.7
-      },
-      {
-       "id": "A3",
-       "category": "Dev/Ops Scripting",
-       "score": 5,
-       "tok_s": 45.2
-      },
-      {
-       "id": "A4",
-       "category": "Dev/Ops Scripting",
-       "score": 19,
-       "tok_s": 63.1
-      },
-      {
-       "id": "A5",
-       "category": "Dev/Ops Scripting",
-       "score": 16,
-       "tok_s": 71.0
-      },
-      {
-       "id": "A6",
-       "category": "Dev/Ops Scripting",
-       "score": 18,
-       "tok_s": 77.9
-      },
-      {
-       "id": "B1",
-       "category": "Document Processing",
-       "score": 20,
-       "tok_s": 77.6
-      },
-      {
-       "id": "B2",
-       "category": "Document Processing",
-       "score": 19,
-       "tok_s": 40.6
-      },
-      {
-       "id": "B3",
-       "category": "Document Processing",
-       "score": 10,
-       "tok_s": 22.9
-      }
-     ],
-     "run_date": "2026-09-02"
-    }
-   },
-   "thinking": {
-    "tests_seen": 9,
-    "stalls": 0,
-    "runaways": 0,
-    "stall_rate": 0.0,
-    "mean_reasoning_tokens": 0.0,
-    "max_reasoning_tokens": 0
-   },
-   "mean_tok_s": 58.0,
-   "axes": {
-    "g": 53.0,
-    "a": null,
-    "u": null,
-    "n": null,
-    "t": null,
-    "l": null,
-    "e": null,
-    "tp": 24.4
-   },
-   "axes_scored": 2
-  },
-  {
    "name": "Phi-3.5-mini-instruct 4bit MLX",
    "params": "3.8B",
    "arch": "phi3",
@@ -7885,6 +7684,222 @@
    "axes_scored": 3
   },
   {
+   "name": "GPT-OSS 20B (OpenAI mxfp4)",
+   "params": "20B",
+   "arch": "gpt_oss",
+   "size_gb": 12.1,
+   "quant": "mxfp4",
+   "format": "MLX",
+   "is_cot": false,
+   "status": "keeper",
+   "base_org": null,
+   "model_card_url": "https://lmstudio.ai/models/openai/gpt-oss-20b",
+   "slug": "gpt-oss-20b-openai-mxfp4",
+   "internal_id": "G2",
+   "cls": "standard",
+   "suites": {
+    "1h": {
+     "score_avg": 14.2,
+     "score_total": 56.8,
+     "tests_run": 4,
+     "tests_total": 4,
+     "avg_tok_s": 117.2,
+     "per_test": [
+      {
+       "id": "H1",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 15,
+       "tok_s": 120.8
+      },
+      {
+       "id": "H2",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 15,
+       "tok_s": 123.0
+      },
+      {
+       "id": "H3",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 13,
+       "tok_s": 116.8
+      },
+      {
+       "id": "H4",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 14,
+       "tok_s": 108.4
+      }
+     ],
+     "run_date": "2026-08-27"
+    }
+   },
+   "thinking": {
+    "tests_seen": 10,
+    "stalls": 0,
+    "runaways": 0,
+    "stall_rate": 0.0,
+    "mean_reasoning_tokens": 0.0,
+    "max_reasoning_tokens": 0
+   },
+   "mean_tok_s": 117.2,
+   "axes": {
+    "g": null,
+    "a": null,
+    "u": null,
+    "n": null,
+    "t": null,
+    "l": 71.0,
+    "e": null,
+    "tp": 49.3
+   },
+   "axes_scored": 2
+  },
+  {
+   "name": "GPT-OSS 120B",
+   "params": "120B",
+   "arch": "gpt_oss",
+   "size_gb": 63.41,
+   "quant": "mxfp4",
+   "format": "MLX",
+   "is_cot": true,
+   "status": "keeper",
+   "base_org": null,
+   "model_card_url": "https://huggingface.co/mlx-community/gpt-oss-120b-MXFP4-Q8",
+   "slug": "gpt-oss-120b",
+   "internal_id": "G4",
+   "cls": "standard",
+   "suites": {
+    "1e": {
+     "score_avg": 18.8,
+     "score_total": 112.8,
+     "tests_run": 6,
+     "tests_total": 6,
+     "avg_tok_s": 51.7,
+     "per_test": [
+      {
+       "id": "E1",
+       "category": "SOW & Requirements Decomposition",
+       "score": 19,
+       "tok_s": 53.5
+      },
+      {
+       "id": "E2",
+       "category": "SOW & Requirements Decomposition",
+       "score": 20,
+       "tok_s": 35.9
+      },
+      {
+       "id": "E3",
+       "category": "Executive & Proposal Content",
+       "score": 18,
+       "tok_s": 71.4
+      },
+      {
+       "id": "E4",
+       "category": "Executive & Proposal Content",
+       "score": 17,
+       "tok_s": 64.4
+      },
+      {
+       "id": "E5",
+       "category": "Executive & Proposal Content",
+       "score": 19,
+       "tok_s": 55.5
+      },
+      {
+       "id": "E6",
+       "category": "Executive & Proposal Content",
+       "score": 20,
+       "tok_s": 29.4
+      }
+     ],
+     "run_date": "2026-08-02"
+    },
+    "1g2": {
+     "score_avg": 12,
+     "score_total": 36,
+     "tests_run": 3,
+     "tests_total": 3,
+     "avg_tok_s": 7.9,
+     "per_test": [
+      {
+       "id": "L7",
+       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
+       "score": 20,
+       "tok_s": 12.8
+      },
+      {
+       "id": "L8",
+       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
+       "score": 13,
+       "tok_s": 8.5
+      },
+      {
+       "id": "L9",
+       "category": "Long-Context \u2014 Multi-Needle Retrieval (MRCR)",
+       "score": 3,
+       "tok_s": 2.3
+      }
+     ],
+     "run_date": "2026-08-31"
+    },
+    "1h": {
+     "score_avg": 17,
+     "score_total": 68,
+     "tests_run": 4,
+     "tests_total": 4,
+     "avg_tok_s": 49.1,
+     "per_test": [
+      {
+       "id": "H1",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 19,
+       "tok_s": 61.8
+      },
+      {
+       "id": "H2",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 16,
+       "tok_s": 43.0
+      },
+      {
+       "id": "H3",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 17,
+       "tok_s": 63.9
+      },
+      {
+       "id": "H4",
+       "category": "Web-Estate One-Shot Builds",
+       "score": 16,
+       "tok_s": 27.7
+      }
+     ],
+     "run_date": "2026-09-02"
+    }
+   },
+   "thinking": {
+    "tests_seen": 15,
+    "stalls": 0,
+    "runaways": 0,
+    "stall_rate": 0.0,
+    "mean_reasoning_tokens": 0.0,
+    "max_reasoning_tokens": 0
+   },
+   "mean_tok_s": 36.2,
+   "axes": {
+    "g": null,
+    "a": null,
+    "u": null,
+    "n": 60.0,
+    "t": 100.0,
+    "l": 85.0,
+    "e": null,
+    "tp": 15.2
+   },
+   "axes_scored": 4
+  },
+  {
    "name": "Qwen3-VL 30B-A3B Instruct 4bit MLX",
    "params": "30B total / 3B active per token",
    "arch": "qwen3_vl_moe",
@@ -8014,112 +8029,6 @@
    "axes_scored": 3
   },
   {
-   "name": "Qwen3.8-27B MLX 8bit (lmstudio-community)",
-   "params": "27B dense",
-   "arch": "qwen3_5",
-   "size_gb": 28.0,
-   "quant": "8bit",
-   "format": "MLX",
-   "is_cot": true,
-   "status": "retired",
-   "base_org": null,
-   "model_card_url": "https://huggingface.co/lmstudio-community/Qwen3.8-27B-MLX-8bit",
-   "slug": "qwen3.8-27b-mlx-8bit-lmstudio-community",
-   "internal_id": "M25d",
-   "cls": "standard",
-   "suites": {
-    "1a": {
-     "score_avg": 0,
-     "score_total": 0,
-     "tests_run": 13,
-     "tests_total": 13,
-     "avg_tok_s": 15.5,
-     "per_test": [
-      {
-       "id": "A1",
-       "category": "Dev/Ops Scripting",
-       "score": 0,
-       "tok_s": 15.5
-      }
-     ],
-     "run_date": "2026-08-15"
-    }
-   },
-   "thinking": {
-    "tests_seen": 2,
-    "stalls": 2,
-    "runaways": 0,
-    "stall_rate": 1.0,
-    "mean_reasoning_tokens": 16252.0,
-    "max_reasoning_tokens": 16277
-   },
-   "mean_tok_s": 15.5,
-   "axes": {
-    "g": 0.0,
-    "a": null,
-    "u": null,
-    "n": null,
-    "t": null,
-    "l": null,
-    "e": null,
-    "tp": 6.5
-   },
-   "axes_scored": 2
-  },
-  {
-   "name": "Qwen3.8-27B MTPLX Optimized-Speed 4bit MLX (Youssofal)",
-   "params": "27B dense",
-   "arch": "qwen3_5",
-   "size_gb": 20.4,
-   "quant": "4bit",
-   "format": "MLX",
-   "is_cot": true,
-   "status": "retired",
-   "base_org": null,
-   "model_card_url": "https://huggingface.co/Youssofal/Qwen3.8-27B-MTPLX-Optimized-Speed",
-   "slug": "qwen3.8-27b-mtplx-optimized-speed-4bit-mlx-youssofal",
-   "internal_id": "M25e",
-   "cls": "standard",
-   "suites": {
-    "1a": {
-     "score_avg": 0,
-     "score_total": 0,
-     "tests_run": 13,
-     "tests_total": 13,
-     "avg_tok_s": 20.0,
-     "per_test": [
-      {
-       "id": "A1",
-       "category": "Dev/Ops Scripting",
-       "score": 0,
-       "tok_s": 20.0
-      }
-     ],
-     "run_date": "2026-08-15"
-    }
-   },
-   "thinking": {
-    "tests_seen": 1,
-    "stalls": 1,
-    "runaways": 0,
-    "stall_rate": 1.0,
-    "mean_reasoning_tokens": 10476.0,
-    "max_reasoning_tokens": 10476
-   },
-   "mean_tok_s": 20.0,
-   "axes": {
-    "g": 0.0,
-    "a": null,
-    "u": null,
-    "n": null,
-    "t": null,
-    "l": null,
-    "e": null,
-    "tp": 8.4
-   },
-   "axes_scored": 2
-  },
-  {
    "name": "Qwen3.8-27B MLX 6bit (lmstudio-community)",
    "params": "27B dense",
    "arch": "qwen3_5",
@@ -8205,7 +8114,7 @@
    "status": "tested",
    "base_org": null,
    "model_card_url": "https://huggingface.co/lmstudio-community/Qwen3.8-27B-MLX-8bit",
-   "slug": "qwen3.8-27b-mlx-8bit-lmstudio-community-2",
+   "slug": "qwen3.8-27b-mlx-8bit-lmstudio-community",
    "internal_id": "M25g",
    "cls": "standard",
    "suites": {
