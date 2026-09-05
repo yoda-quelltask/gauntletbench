@@ -1,6 +1,6 @@
 {
  "schema_version": 2,
- "generated_at": "2026-09-04T08:50:48Z",
+ "generated_at": "2026-09-05T08:57:37Z",
  "host": {
   "name": "MacBook Pro",
   "hw": "Apple M5 Max, 128 GB unified memory",
@@ -1777,11 +1777,11 @@
    "cls": "standard",
    "suites": {
     "1a": {
-     "score_avg": 19.1,
-     "score_total": 248.3,
+     "score_avg": 19.0,
+     "score_total": 247.0,
      "tests_run": 13,
      "tests_total": 13,
-     "avg_tok_s": 22.0,
+     "avg_tok_s": 22.8,
      "per_test": [
       {
        "id": "A1",
@@ -1931,16 +1931,16 @@
     "mean_reasoning_tokens": 2350.1,
     "max_reasoning_tokens": 16383
    },
-   "mean_tok_s": 22.2,
+   "mean_tok_s": 22.6,
    "axes": {
-    "g": 95.5,
+    "g": 95.0,
     "a": 100.0,
     "u": null,
     "n": null,
     "t": 95.7,
     "l": null,
     "e": null,
-    "tp": 9.4
+    "tp": 9.5
    },
    "axes_scored": 4
   },
@@ -6583,7 +6583,7 @@
    "quant": "kquant (unconfirmed exact scheme -- filename says \"kquant\", not a standard llama.cpp quant label)",
    "format": "GGUF",
    "is_cot": false,
-   "status": "tested",
+   "status": "tested-offloaded",
    "base_org": null,
    "model_card_url": null,
    "slug": "muse-glimmer-30b-gguf-kquant-17gb",
